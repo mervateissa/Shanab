@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Addresses-->
+        <scene sceneID="gt4-ha-oDx">
+            <objects>
+                <viewController storyboardIdentifier="MyAddressesVC" id="IKe-NL-C0M" customClass="MyAddressesVC" customModule="Shanab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ont-h4-1EU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rTB-Js-Zju">
+                                <rect key="frame" x="20.5" y="108" width="373" height="54"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8c-dg-0Ba">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="54"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCi-Sl-Ci8">
+                                                <rect key="frame" x="0.0" y="0.0" width="373" height="54"/>
+                                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Add New Address" image="+5">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="AddAddressBn:" destination="IKe-NL-C0M" eventType="touchUpInside" id="VvN-I3-Prf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="UCi-Sl-Ci8" firstAttribute="height" secondItem="e8c-dg-0Ba" secondAttribute="height" id="HDu-y3-QZM"/>
+                                            <constraint firstItem="UCi-Sl-Ci8" firstAttribute="centerX" secondItem="e8c-dg-0Ba" secondAttribute="centerX" id="hEo-ze-UZZ"/>
+                                            <constraint firstItem="UCi-Sl-Ci8" firstAttribute="width" secondItem="e8c-dg-0Ba" secondAttribute="width" id="hJ2-hq-dEL"/>
+                                            <constraint firstItem="UCi-Sl-Ci8" firstAttribute="centerY" secondItem="e8c-dg-0Ba" secondAttribute="centerY" id="mql-a3-pbs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="udN-Cu-fT0">
+                                <rect key="frame" x="0.0" y="162" width="414" height="700"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rTB-Js-Zju" firstAttribute="width" secondItem="Ont-h4-1EU" secondAttribute="width" multiplier="0.9" id="3M9-q5-TPJ"/>
+                            <constraint firstItem="hUk-lS-Ic2" firstAttribute="bottom" secondItem="udN-Cu-fT0" secondAttribute="bottom" id="4ew-ox-e0b"/>
+                            <constraint firstItem="udN-Cu-fT0" firstAttribute="top" secondItem="rTB-Js-Zju" secondAttribute="bottom" id="Ako-og-KHi"/>
+                            <constraint firstItem="rTB-Js-Zju" firstAttribute="height" secondItem="Ont-h4-1EU" secondAttribute="height" multiplier="0.06" id="JUO-9G-Tlf"/>
+                            <constraint firstItem="udN-Cu-fT0" firstAttribute="leading" secondItem="hUk-lS-Ic2" secondAttribute="leading" id="Xjb-ps-R0S"/>
+                            <constraint firstItem="rTB-Js-Zju" firstAttribute="top" secondItem="hUk-lS-Ic2" secondAttribute="top" constant="20" id="gl9-yL-a9T"/>
+                            <constraint firstItem="hUk-lS-Ic2" firstAttribute="trailing" secondItem="udN-Cu-fT0" secondAttribute="trailing" id="tpv-TW-mSm"/>
+                            <constraint firstItem="rTB-Js-Zju" firstAttribute="centerX" secondItem="hUk-lS-Ic2" secondAttribute="centerX" id="xqg-99-nGU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hUk-lS-Ic2"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Addresses" id="HlX-VB-ybE">
+                        <barButtonItem key="backBarButtonItem" title=" " id="CZj-Dc-cxi"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="AddressesTableView" destination="udN-Cu-fT0" id="aEf-Js-pdF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PXm-Tz-5hu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="134.59821428571428"/>
+        </scene>
+        <!--My Addresses-->
+        <scene sceneID="viy-Xm-yXb">
+            <objects>
+                <viewController storyboardIdentifier="LocationDetailsVC" id="3dt-ho-yWJ" customClass="LocationDetailsVC" customModule="Shanab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cMe-rb-K47">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLn-Q2-EWg">
+                                <rect key="frame" x="10.5" y="128" width="393" height="179"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZEY-YE-YuU">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="179"/>
+                                    </mapView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="ZEY-YE-YuU" firstAttribute="top" secondItem="fLn-Q2-EWg" secondAttribute="top" id="6Pn-3d-RyZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZEY-YE-YuU" secondAttribute="bottom" id="73L-1t-D1y"/>
+                                    <constraint firstItem="ZEY-YE-YuU" firstAttribute="leading" secondItem="fLn-Q2-EWg" secondAttribute="leading" id="lC2-UZ-Zld"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZEY-YE-YuU" secondAttribute="trailing" id="rEk-m6-SvQ"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GBD-AI-Gpq">
+                                <rect key="frame" x="20.5" y="357" width="373" height="358.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSp-aV-ect" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34.5"/>
+                                        <state key="normal" title="Choose Country" image="dropdown">
+                                            <color key="titleColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="countryBN:" destination="3dt-ho-yWJ" eventType="touchUpInside" id="idO-iQ-dFM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYz-I3-1SA" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="54.5" width="373" height="34"/>
+                                        <state key="normal" title="Choose City" image="dropdown">
+                                            <color key="titleColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="CityBN:" destination="3dt-ho-yWJ" eventType="touchUpInside" id="ETs-WV-ONh"/>
+                                            <action selector="Confirm:" destination="3dt-ho-yWJ" eventType="touchUpInside" id="spx-th-l2S"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wB-wQ-Yz3" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="108.5" width="373" height="34"/>
+                                        <state key="normal" title="Choose Area" image="dropdown">
+                                            <color key="titleColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="AreaBN:" destination="3dt-ho-yWJ" eventType="touchUpInside" id="Wf1-a8-5XZ"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dnJ-V5-Mic" customClass="CustomTextField" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="162.5" width="373" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0T-pi-NB7" customClass="CustomTextField" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="216.5" width="373" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bulding" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tZy-DP-ubk" customClass="CustomTextField" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="270.5" width="373" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6t-CO-Dr0">
+                                        <rect key="frame" x="0.0" y="324.5" width="373" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Flat" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4m8-Ec-wbh" customClass="CustomTextField" customModule="Shanab" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="186.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Floor" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fjZ-F1-rSO" customClass="CustomTextField" customModule="Shanab" customModuleProvider="target">
+                                                <rect key="frame" x="186.5" y="0.0" width="186.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4m8-Ec-wbh" firstAttribute="width" secondItem="GBD-AI-Gpq" secondAttribute="width" multiplier="0.5" id="Ilo-ev-joM"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsf-tm-vEo" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                <rect key="frame" x="41.5" y="750.5" width="331" height="40"/>
+                                <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="CJU-47-bCt"/>
+                                </constraints>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Confirm:" destination="3dt-ho-yWJ" eventType="touchUpInside" id="jDS-DR-LQE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GBD-AI-Gpq" firstAttribute="width" secondItem="cMe-rb-K47" secondAttribute="width" multiplier="0.9" id="1T8-67-5UC"/>
+                            <constraint firstItem="fLn-Q2-EWg" firstAttribute="centerX" secondItem="3Vg-gY-TC6" secondAttribute="centerX" id="A5U-LN-kld"/>
+                            <constraint firstItem="fLn-Q2-EWg" firstAttribute="height" secondItem="cMe-rb-K47" secondAttribute="height" multiplier="0.2" id="Rws-x9-TdX"/>
+                            <constraint firstItem="fLn-Q2-EWg" firstAttribute="top" secondItem="3Vg-gY-TC6" secondAttribute="top" constant="40" id="TWx-0J-qY1"/>
+                            <constraint firstItem="Bsf-tm-vEo" firstAttribute="centerX" secondItem="3Vg-gY-TC6" secondAttribute="centerX" id="WKG-A2-JQp"/>
+                            <constraint firstItem="GBD-AI-Gpq" firstAttribute="top" secondItem="fLn-Q2-EWg" secondAttribute="bottom" constant="50" id="erX-zD-HM7"/>
+                            <constraint firstItem="GBD-AI-Gpq" firstAttribute="height" secondItem="cMe-rb-K47" secondAttribute="height" multiplier="0.4" id="fj8-fo-AZo"/>
+                            <constraint firstItem="Bsf-tm-vEo" firstAttribute="top" secondItem="GBD-AI-Gpq" secondAttribute="bottom" constant="35" id="l22-ED-ctY"/>
+                            <constraint firstItem="fLn-Q2-EWg" firstAttribute="width" secondItem="cMe-rb-K47" secondAttribute="width" multiplier="0.95" id="nDm-8D-Ytb"/>
+                            <constraint firstItem="GBD-AI-Gpq" firstAttribute="centerX" secondItem="3Vg-gY-TC6" secondAttribute="centerX" id="qrx-1N-s44"/>
+                            <constraint firstItem="Bsf-tm-vEo" firstAttribute="width" secondItem="cMe-rb-K47" secondAttribute="width" multiplier="0.8" id="zPP-VM-w0I"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3Vg-gY-TC6"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Addresses" id="htw-Tt-fN3"/>
+                    <connections>
+                        <outlet property="MapView" destination="ZEY-YE-YuU" id="xum-zC-SbI"/>
+                        <outlet property="addressTF" destination="dnJ-V5-Mic" id="LOK-IJ-ebl"/>
+                        <outlet property="apartmentTF" destination="4m8-Ec-wbh" id="FMI-AO-PI2"/>
+                        <outlet property="areaBn" destination="5wB-wQ-Yz3" id="Sry-Lf-fJe"/>
+                        <outlet property="building" destination="tZy-DP-ubk" id="cD2-Gk-aQo"/>
+                        <outlet property="city" destination="IYz-I3-1SA" id="zJJ-2o-oGR"/>
+                        <outlet property="country" destination="QSp-aV-ect" id="gJ8-8u-13l"/>
+                        <outlet property="floor" destination="fjZ-F1-rSO" id="4pV-Tl-2fI"/>
+                        <outlet property="street" destination="L0T-pi-NB7" id="Nid-hQ-RIK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K7G-Ut-6Z6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2795.6521739130435" y="129.91071428571428"/>
+        </scene>
+        <!--Location-->
+        <scene sceneID="FpK-On-Xl5">
+            <objects>
+                <viewController storyboardIdentifier="LocationVC" id="dR6-cl-ahB" customClass="LocationVC" customModule="Shanab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jcy-qQ-Z5v">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sYS-hb-5pX">
+                                <rect key="frame" x="0.0" y="88" width="414" height="624"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 Ali Mahmoud st, Cairo, Egypt" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZX-bM-siE">
+                                <rect key="frame" x="10.5" y="747" width="393" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBt-hL-Cbc" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                <rect key="frame" x="41.5" y="802" width="331" height="40"/>
+                                <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8RR-bG-PcY"/>
+                                </constraints>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rBt-hL-Cbc" firstAttribute="centerX" secondItem="blC-03-N2f" secondAttribute="centerX" id="45y-ET-FtL"/>
+                            <constraint firstItem="jZX-bM-siE" firstAttribute="centerX" secondItem="blC-03-N2f" secondAttribute="centerX" id="bre-VN-RJX"/>
+                            <constraint firstItem="rBt-hL-Cbc" firstAttribute="top" secondItem="jZX-bM-siE" secondAttribute="bottom" constant="35" id="e56-T2-kJJ"/>
+                            <constraint firstItem="rBt-hL-Cbc" firstAttribute="width" secondItem="jcy-qQ-Z5v" secondAttribute="width" multiplier="0.8" id="eue-RV-nmo"/>
+                            <constraint firstItem="jZX-bM-siE" firstAttribute="centerX" secondItem="blC-03-N2f" secondAttribute="centerX" id="fDZ-y9-rd0"/>
+                            <constraint firstItem="blC-03-N2f" firstAttribute="bottom" secondItem="sYS-hb-5pX" secondAttribute="bottom" constant="150" id="guz-iv-7uE"/>
+                            <constraint firstItem="sYS-hb-5pX" firstAttribute="leading" secondItem="blC-03-N2f" secondAttribute="leading" id="iVB-OO-ghJ"/>
+                            <constraint firstItem="jZX-bM-siE" firstAttribute="width" secondItem="jcy-qQ-Z5v" secondAttribute="width" multiplier="0.95" id="reb-11-Ko2"/>
+                            <constraint firstItem="blC-03-N2f" firstAttribute="trailing" secondItem="sYS-hb-5pX" secondAttribute="trailing" id="tSc-eA-lmf"/>
+                            <constraint firstItem="sYS-hb-5pX" firstAttribute="top" secondItem="blC-03-N2f" secondAttribute="top" id="vjC-uF-hb4"/>
+                            <constraint firstItem="jZX-bM-siE" firstAttribute="top" secondItem="sYS-hb-5pX" secondAttribute="bottom" constant="35" id="zB1-Nk-Yc7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="blC-03-N2f"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Location" id="KTJ-dG-Zzo"/>
+                    <connections>
+                        <outlet property="LocationLabel" destination="jZX-bM-siE" id="qPW-O8-Co2"/>
+                        <outlet property="MapView" destination="sYS-hb-5pX" id="jp7-N0-hZQ"/>
+                        <outlet property="locationConfirmation" destination="rBt-hL-Cbc" id="jHu-mw-5FN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MTW-Aa-50D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4572.463768115942" y="140.625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zfw-HK-AW8">
+            <objects>
+                <navigationController storyboardIdentifier="MyAddressesNav" automaticallyAdjustsScrollViewInsets="NO" id="zdD-rP-VBB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DEz-gQ-RTr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IKe-NL-C0M" kind="relationship" relationship="rootViewController" id="Qbn-6S-Tdj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nup-pA-ieD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="134.59821428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XtJ-hJ-bk4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WA9-qi-Qvo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wNY-ag-4HL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3dt-ho-yWJ" kind="relationship" relationship="rootViewController" id="uSF-AY-mPW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IIF-R9-miy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1885.5072463768117" y="129.91071428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lQx-ey-9FL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j1b-eJ-u99" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qIK-mg-Ox8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dR6-cl-ahB" kind="relationship" relationship="rootViewController" id="76F-8M-o8p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FtD-Ql-WCh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3662.3188405797105" y="140.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="+5" width="25" height="25"/>
+        <image name="dropdown" width="25" height="25"/>
+    </resources>
+</document>

@@ -1,0 +1,45 @@
+
+/* Class = "UITextField"; placeholder = "Flat"; ObjectID = "4m8-Ec-wbh"; */
+"4m8-Ec-wbh.placeholder" = "شقة";
+
+/* Class = "UIButton"; normalTitle = "Choose Area"; ObjectID = "5wB-wQ-Yz3"; */
+"5wB-wQ-Yz3.normalTitle" = "اختار منطقة";
+
+/* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "Bsf-tm-vEo"; */
+"Bsf-tm-vEo.normalTitle" = "تاكيد";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "CZj-Dc-cxi"; */
+"CZj-Dc-cxi.title" = " ";
+
+/* Class = "UINavigationItem"; title = "My Addresses"; ObjectID = "HlX-VB-ybE"; */
+"HlX-VB-ybE.title" = "عناويني";
+
+/* Class = "UIButton"; normalTitle = "Choose City"; ObjectID = "IYz-I3-1SA"; */
+"IYz-I3-1SA.normalTitle" = "اختار مدينة";
+
+/* Class = "UINavigationItem"; title = "Location"; ObjectID = "KTJ-dG-Zzo"; */
+"KTJ-dG-Zzo.title" = "الموقع";
+
+/* Class = "UITextField"; placeholder = "Street"; ObjectID = "L0T-pi-NB7"; */
+"L0T-pi-NB7.placeholder" = "الشارع";
+
+/* Class = "UIButton"; normalTitle = "Choose Country"; ObjectID = "QSp-aV-ect"; */
+"QSp-aV-ect.normalTitle" = "اختار بلد";
+
+/* Class = "UILabel"; text = "Add New Address"; ObjectID = "VEx-uP-Ud1"; */
+"VEx-uP-Ud1.text" = "اضف عنوان جديد";
+
+/* Class = "UITextField"; placeholder = "Floor"; ObjectID = "fjZ-F1-rSO"; */
+"fjZ-F1-rSO.placeholder" = "دور";
+
+/* Class = "UINavigationItem"; title = "My Addresses"; ObjectID = "htw-Tt-fN3"; */
+"htw-Tt-fN3.title" = "عناويني";
+
+/* Class = "UILabel"; text = "18 Ali Mahmoud st, Cairo, Egypt"; ObjectID = "jZX-bM-siE"; */
+"jZX-bM-siE.text" = "18 Ali Mahmoud st, Cairo, Egypt";
+
+/* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "rBt-hL-Cbc"; */
+"rBt-hL-Cbc.normalTitle" = "تاكيد";
+
+/* Class = "UITextField"; placeholder = "Bulding"; ObjectID = "tZy-DP-ubk"; */
+"tZy-DP-ubk.placeholder" = "مبني";

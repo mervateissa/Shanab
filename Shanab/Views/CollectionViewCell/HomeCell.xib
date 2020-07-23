@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCell" id="gTV-IL-0wX" customClass="HomeCell" customModule="Shanab" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="92" height="54"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="92" height="54"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOu-Pd-OCf" customClass="CustomView" customModule="Shanab" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="92" height="54"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3kg-JD-qyb">
+                                <rect key="frame" x="0.0" y="0.0" width="92" height="54"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wBe-kN-ro7">
+                                        <rect key="frame" x="2.5" y="0.0" width="87" height="51.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza" translatesAutoresizingMaskIntoConstraints="NO" id="yb5-FY-pkI" customClass="CustomImageView" customModule="Shanab" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="87" height="36"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRz-5V-aJE">
+                                                <rect key="frame" x="0.0" y="36" width="87" height="15.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="yb5-FY-pkI" firstAttribute="height" secondItem="wBe-kN-ro7" secondAttribute="height" multiplier="0.7" id="hFF-OU-fIe"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wBe-kN-ro7" firstAttribute="height" secondItem="3kg-JD-qyb" secondAttribute="height" multiplier="0.95" id="TZD-tW-uCK"/>
+                                    <constraint firstItem="wBe-kN-ro7" firstAttribute="width" secondItem="3kg-JD-qyb" secondAttribute="width" multiplier="0.95" id="ffu-hh-U2m"/>
+                                    <constraint firstItem="wBe-kN-ro7" firstAttribute="centerX" secondItem="3kg-JD-qyb" secondAttribute="centerX" id="hck-Yq-e8c"/>
+                                    <constraint firstItem="wBe-kN-ro7" firstAttribute="top" secondItem="3kg-JD-qyb" secondAttribute="top" id="r0I-hT-rIU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3kg-JD-qyb" firstAttribute="leading" secondItem="cOu-Pd-OCf" secondAttribute="leading" id="JhX-F3-XVJ"/>
+                            <constraint firstItem="3kg-JD-qyb" firstAttribute="top" secondItem="cOu-Pd-OCf" secondAttribute="top" id="RRZ-Yh-Cfz"/>
+                            <constraint firstAttribute="trailing" secondItem="3kg-JD-qyb" secondAttribute="trailing" id="hVc-OR-oGq"/>
+                            <constraint firstAttribute="bottom" secondItem="3kg-JD-qyb" secondAttribute="bottom" id="ybv-6e-Uuh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cOu-Pd-OCf" secondAttribute="bottom" id="7oK-Hg-he1"/>
+                <constraint firstItem="cOu-Pd-OCf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cOG-RV-EK0"/>
+                <constraint firstAttribute="trailing" secondItem="cOu-Pd-OCf" secondAttribute="trailing" id="uX2-lx-SIe"/>
+                <constraint firstItem="cOu-Pd-OCf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="w5H-RZ-uEU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="92" height="54"/>
+            <connections>
+                <outlet property="sectionImageView" destination="yb5-FY-pkI" id="VdV-CV-jC3"/>
+                <outlet property="sectionName" destination="VRz-5V-aJE" id="gP3-gg-Dog"/>
+            </connections>
+            <point key="canvasLocation" x="-281.15942028985512" y="-50.892857142857139"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="pizza" width="2702" height="1801.5"/>
+    </resources>
+</document>

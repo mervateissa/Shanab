@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "Restaurants"; ObjectID = "EhO-dd-f60"; */
+"EhO-dd-f60.normalTitle" = "المطاعم";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "NSm-wr-k4z"; */
+"NSm-wr-k4z.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Products"; ObjectID = "QFb-Rg-1Fy"; */
+"QFb-Rg-1Fy.normalTitle" = "المنتجات";
+
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "QW8-iN-hXk"; */
+"QW8-iN-hXk.normalTitle" = "بحث";
