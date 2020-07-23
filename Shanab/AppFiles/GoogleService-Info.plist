@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>883808746752-sc7j9744apf66bupd3jboohe9atar8mm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.883808746752-sc7j9744apf66bupd3jboohe9atar8mm</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>883808746752-cpapdf3orp6ib4frb24jn6465746hkij.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyApV50sGfAI11EJy_UVBTxPV4rWZvBFZs0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>883808746752</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Dtag.Sal7ha.Shanab</string>
+	<key>PROJECT_ID</key>
+	<string>shanp-4bd89</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shanp-4bd89.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:883808746752:ios:6ee907a87b8b0d194dc7e5</string>
+	<key>DATABASE_URL</key>
+	<string>https://shanp-4bd89.firebaseio.com</string>
+</dict>
+</plist>

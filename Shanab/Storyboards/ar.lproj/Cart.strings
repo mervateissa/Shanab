@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "SAR"; ObjectID = "B5a-pQ-p7W"; */
+"B5a-pQ-p7W.text" = "SAR";
+
+/* Class = "UILabel"; text = "Add Notes"; ObjectID = "CPz-2T-Zq6"; */
+"CPz-2T-Zq6.text" = "Add Notes";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ege-xZ-txP"; */
+"Ege-xZ-txP.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "F7G-OB-BoC"; */
+"F7G-OB-BoC.normalTitle" = "Confirm";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "O8C-3i-Csx"; */
+"O8C-3i-Csx.text" = "Total";
+
+/* Class = "UINavigationItem"; title = "Cart"; ObjectID = "WXP-qb-pFE"; */
+"WXP-qb-pFE.title" = "Cart";

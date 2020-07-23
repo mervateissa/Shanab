@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "Sections"; ObjectID = "0Lr-VC-Cc3"; */
+"0Lr-VC-Cc3.text" = "الأقسام";
+
+/* Class = "UINavigationItem"; title = "Cart"; ObjectID = "1iB-G9-XoX"; */
+"1iB-G9-XoX.title" = "سلة المشتريات";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "64W-uf-slK"; */
+"64W-uf-slK.title" = " ";
+
+/* Class = "UINavigationItem"; title = "Home"; ObjectID = "71x-Xr-x0b"; */
+"71x-Xr-x0b.title" = "الصفحة الرئيسية";
+
+/* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "AlT-jO-V2f"; */
+"AlT-jO-V2f.normalTitle" = "تاكيد";
+
+/* Class = "UILabel"; text = "168. 00"; ObjectID = "CYj-mo-mZe"; */
+"CYj-mo-mZe.text" = "168. 00";
+
+/* Class = "UITabBarItem"; title = "Order List"; ObjectID = "FxC-xz-tgV"; */
+"FxC-xz-tgV.title" = "طلباتي";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "SrK-jv-2oF"; */
+"SrK-jv-2oF.title" = "الصفحة الرئيسية";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "VzB-Wo-Xsp"; */
+"VzB-Wo-Xsp.text" = "الاجمالي";
+
+/* Class = "UILabel"; text = "SAR"; ObjectID = "aNY-SI-jry"; */
+"aNY-SI-jry.text" = "ريال";
+
+/* Class = "UINavigationItem"; title = "Order List"; ObjectID = "lOT-yh-S8z"; */
+"lOT-yh-S8z.title" =  "طلباتي";
+
+/* Class = "UILabel"; text = "AValiable Restaurants"; ObjectID = "lmW-Ko-7d4"; */
+"lmW-Ko-7d4.text" = " المطاعم المتاحة";
+
+/* Class = "UITabBarItem"; title = "Cart"; ObjectID = "mMI-69-dCA"; */
+"mMI-69-dCA.title" = "سلة المشتريات";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "s6j-GI-wCm"; */
+"s6j-GI-wCm.text" = "اضف الملاحظات";

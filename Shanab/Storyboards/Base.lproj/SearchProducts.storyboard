@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SearchVC-->
+        <scene sceneID="v2H-e7-tDm">
+            <objects>
+                <viewController storyboardIdentifier="SearchVC" id="LdC-l7-gom" customClass="SearchVC" customModule="Shanab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Ex-da-ctZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ag4-Qh-IIg">
+                                <rect key="frame" x="10.5" y="158" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GUk-1e-j7h">
+                                <rect key="frame" x="20.5" y="108" width="373" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-Rg-1Fy" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="186.5" height="45"/>
+                                        <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Products">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="meals:" destination="LdC-l7-gom" eventType="touchUpInside" id="tT7-n0-ccc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhO-dd-f60" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                        <rect key="frame" x="186.5" y="0.0" width="186.5" height="45"/>
+                                        <state key="normal" title="Restaurants">
+                                            <color key="titleColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="restaurantsBn:" destination="LdC-l7-gom" eventType="touchUpInside" id="DSu-CK-lxw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ae-Ro-ZJo">
+                                <rect key="frame" x="20.5" y="234" width="373" height="519.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-iN-hXk" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
+                                <rect key="frame" x="103.5" y="793.5" width="207" height="45"/>
+                                <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="98f-ab-Yca"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="searchBn:" destination="LdC-l7-gom" eventType="touchUpInside" id="8g0-dz-bXY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ag4-Qh-IIg" firstAttribute="width" secondItem="2Ex-da-ctZ" secondAttribute="width" multiplier="0.95" id="0zH-Wm-k5K"/>
+                            <constraint firstItem="QW8-iN-hXk" firstAttribute="centerX" secondItem="Q3o-3N-U6Y" secondAttribute="centerX" id="8TG-EG-7Fh"/>
+                            <constraint firstItem="GUk-1e-j7h" firstAttribute="height" secondItem="2Ex-da-ctZ" secondAttribute="height" multiplier="0.05" id="FQn-f0-h2O"/>
+                            <constraint firstItem="ag4-Qh-IIg" firstAttribute="top" secondItem="Q3o-3N-U6Y" secondAttribute="top" constant="70" id="HIG-Nh-A4V"/>
+                            <constraint firstItem="GUk-1e-j7h" firstAttribute="centerX" secondItem="Q3o-3N-U6Y" secondAttribute="centerX" id="O4A-lU-bHA"/>
+                            <constraint firstItem="ag4-Qh-IIg" firstAttribute="centerX" secondItem="Q3o-3N-U6Y" secondAttribute="centerX" id="QEX-Av-kou"/>
+                            <constraint firstItem="GUk-1e-j7h" firstAttribute="top" secondItem="Q3o-3N-U6Y" secondAttribute="top" constant="20" id="QzD-4Z-TGC"/>
+                            <constraint firstItem="QW8-iN-hXk" firstAttribute="top" secondItem="8ae-Ro-ZJo" secondAttribute="bottom" constant="40" id="WNW-Ff-A9Q"/>
+                            <constraint firstItem="QW8-iN-hXk" firstAttribute="width" secondItem="2Ex-da-ctZ" secondAttribute="width" multiplier="0.5" id="WfI-SG-NLo"/>
+                            <constraint firstItem="QW8-iN-hXk" firstAttribute="width" secondItem="2Ex-da-ctZ" secondAttribute="width" multiplier="0.5" id="gMU-B1-3G5"/>
+                            <constraint firstItem="8ae-Ro-ZJo" firstAttribute="height" secondItem="2Ex-da-ctZ" secondAttribute="height" multiplier="0.58" id="gTn-e7-qNi"/>
+                            <constraint firstItem="8ae-Ro-ZJo" firstAttribute="width" secondItem="2Ex-da-ctZ" secondAttribute="width" multiplier="0.9" id="sJQ-rZ-FSh"/>
+                            <constraint firstItem="8ae-Ro-ZJo" firstAttribute="centerX" secondItem="Q3o-3N-U6Y" secondAttribute="centerX" id="tnI-bR-J5p"/>
+                            <constraint firstItem="GUk-1e-j7h" firstAttribute="width" secondItem="2Ex-da-ctZ" secondAttribute="width" multiplier="0.9" id="uZ7-no-816"/>
+                            <constraint firstItem="QW8-iN-hXk" firstAttribute="centerX" secondItem="Q3o-3N-U6Y" secondAttribute="centerX" id="vdL-Qh-CrQ"/>
+                            <constraint firstItem="8ae-Ro-ZJo" firstAttribute="top" secondItem="ag4-Qh-IIg" secondAttribute="bottom" constant="20" id="vhB-jb-Q6u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Q3o-3N-U6Y"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7LO-Zu-c4S">
+                        <barButtonItem key="backBarButtonItem" title=" " id="NSm-wr-k4z"/>
+                        <barButtonItem key="rightBarButtonItem" image="text.justify" catalog="system" id="G2W-0Q-WK1">
+                            <connections>
+                                <action selector="sideMenu:" destination="LdC-l7-gom" id="0DS-XP-CkQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="products" destination="QFb-Rg-1Fy" id="Ae4-jW-YMg"/>
+                        <outlet property="restaurants" destination="EhO-dd-f60" id="wzU-LT-C73"/>
+                        <outlet property="searchBar" destination="ag4-Qh-IIg" id="KwJ-a0-mDY"/>
+                        <outlet property="searchTableView" destination="8ae-Ro-ZJo" id="dGB-KA-WA0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lx4-cG-bCN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044.9275362318842" y="116.51785714285714"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IYZ-Hw-Dgz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EJA-Hq-Hro" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="83g-Zd-luP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LdC-l7-gom" kind="relationship" relationship="rootViewController" id="wex-i0-KnZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QOv-L7-mCa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134.78260869565219" y="116.51785714285714"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="text.justify" catalog="system" width="64" height="50"/>
+    </resources>
+</document>
