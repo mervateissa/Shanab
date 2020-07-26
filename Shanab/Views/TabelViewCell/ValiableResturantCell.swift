@@ -23,6 +23,7 @@ class ValiableResturantCell: UITableViewCell {
         staticLB.minimumScaleFactor = 0.5
         staticTime.adjustsFontSizeToFitWidth = true
         staticTime.minimumScaleFactor = 0.5
+        
         // Initialization code
     }
     

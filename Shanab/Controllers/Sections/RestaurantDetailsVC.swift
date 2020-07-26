@@ -131,14 +131,12 @@ extension RestaurantDetailsVC: RestaurantDetailsViewDelegate {
     }
     
     func RestaurantDetailsResult(_ error: Error?, _ details: RestaurantDetail?) {
-//        if let restaurantDetails = details {
-//            self.details = [restaurantDetails]
-//            self.ProductName.text = details?.nameEn
-//            if let oneImageView = details.image {
-//                                  guard let url = URL(string: image) else { return }
-//                                  self.oneImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "shanab loading"))
-//                              }
-//        }
+        if let restaurantDetails = details {
+            self.details = [restaurantDetails]
+//            self.ProductName.text = restaurantDetails.nameAr ?? ""
+//            self.oneImageView.image = restaurantDetails.image ?? UIImage()
+//            self.deliveryFees.text = restaurantDetails.deliveryTime ?? 0
+        }
     }
 }
 extension RestaurantDetailsVC: UICollectionViewDelegate, UICollectionViewDataSource {

@@ -17,6 +17,7 @@ class HomeVC: UIViewController {
     fileprivate let CellIdentifierCollectionView = "HomeCell"
     fileprivate let CellIdentifierTableView = "ValiableResturantCell"
     private let GetAddsVCPresenter = GetAddsPresenter(services: Services())
+    var restaunt_id = Int()
     var sections = [Category]() {
         didSet {
             DispatchQueue.main.async {
@@ -44,22 +45,24 @@ class HomeVC: UIViewController {
         GetAddsVCPresenter.setGetAddsViewDelegate(GetAddsViewDelegate: self)
         GetAddsVCPresenter.showIndicator()
         GetAddsVCPresenter.getAdds()
+        GetAddsVCPresenter.getCatgeories()
+        GetAddsVCPresenter.getAllRestaurants(type: ["restaurant"])
         
     }
     
     fileprivate func setupImageSlider() {
-//        if self.imageURLS.count == 1 {
-//            imageSlider.isHidden = true
-//            oneImageView.isHidden = false
-//            oneImageView.image = UIImage.init(url: URL(string: BASE_URL + "/" + (self.imageURLS[0].image ?? "")))
-//            oneImageView.contentMode = .scaleAspectFill
-//            oneImageView.layer.cornerRadius = 15
-//            oneImageView.layer.masksToBounds = true
-//        } else {
+        if self.imageURLS.count == 1 {
+            imageSlider.isHidden = true
+            oneImageView.isHidden = false
+            oneImageView.image = UIImage.init(url: URL(string:  (self.imageURLS[0].image ?? "")))
+            oneImageView.contentMode = .scaleAspectFill
+            oneImageView.layer.cornerRadius = 25
+            oneImageView.layer.masksToBounds = true
+        } else {
             imageSlider.isHidden = false
             oneImageView.isHidden = true
             imageSlider.setImageInputs(self.getImageData())
-       // }
+        }
         imageSlider.slideshowInterval = 1.5
         imageSlider.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         imageSlider.contentScaleMode = .scaleAspectFill
@@ -97,6 +100,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.config(imagePath: sections[indexPath.row].image ?? "", name: sections[indexPath.row].nameAr ?? "")
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let details = UIStoryboard(name: "Products", bundle: nil).instantiateViewController(withIdentifier: "MealDetailsVC") as? MealDetailsVC else { return }
+        details.category_id =  self.sections[indexPath.row].id ?? 0
+        self.navigationController?.pushViewController(details, animated: true)
+    }
     
     
     
@@ -117,11 +125,16 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifierTableView, for: indexPath) as? ValiableResturantCell else {return UITableViewCell()}
-        //        cell.config(name: restaurants[indexPath.row].nameAr ?? "", type: restaurants[indexPath.row]., time: <#T##String#>, rate: <#T##Double#>, price: <#T##Double#>, imagePath: <#T##String#>)
+        cell.config(name: restaurants[indexPath.row].nameAr ?? "", time: restaurants[indexPath.row].updatedAt ?? "", rate: Double(restaurants[indexPath.row].rate ?? 0), price: 0, imagePath: restaurants[indexPath.row].image ?? "")
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        200
+        150
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+          guard let details = UIStoryboard(name: "Products", bundle: nil).instantiateViewController(withIdentifier: "RestaurantDetailsVC") as? RestaurantDetailsVC else { return }
+              details.restaurant_id =  self.restaurants[indexPath.row].id ?? 0
+                   self.navigationController?.pushViewController(details, animated: true)
     }
     
     

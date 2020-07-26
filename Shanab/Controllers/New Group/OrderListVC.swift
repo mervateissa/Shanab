@@ -96,8 +96,8 @@ extension OrderListVC: UserListViewDelegate {
         if let lists = list {
             self.list = lists.reversed()
             if self.list.count == 0 {
-                self.emptyView.isHidden = false
-                self.listTableView.isHidden = true
+                self.emptyView.isHidden = true
+                self.listTableView.isHidden = false
             } else {
                 self.emptyView.isHidden = true
                 self.listTableView.isHidden = false

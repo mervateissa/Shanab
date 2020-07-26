@@ -582,6 +582,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="LF3-cM-yqR" firstAttribute="centerX" secondItem="XRL-2v-xvo" secondAttribute="centerX" id="dJk-hy-sWw"/>
+                                        </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Notes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xx-kh-7uc">
                                         <rect key="frame" x="49.5" y="182.5" width="232" height="20.5"/>

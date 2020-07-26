@@ -161,11 +161,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSe-rV-bgc" customClass="ImageSlideshow" customModule="ImageSlideshow">
-                                <rect key="frame" x="20.5" y="138" width="373" height="179"/>
+                                <rect key="frame" x="10.5" y="138" width="393" height="179"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mUz-zA-1xS" customClass="CustomImageView" customModule="Shanab" customModuleProvider="target">
-                                <rect key="frame" x="20.5" y="138" width="373" height="179"/>
+                                <rect key="frame" x="10.5" y="138" width="393" height="179"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -176,7 +176,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="51K-E5-mQP">
-                                <rect key="frame" x="20.5" y="382" width="373" height="134.5"/>
+                                <rect key="frame" x="20.5" y="372" width="373" height="107.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dT8-J5-cmv">
                                     <size key="itemSize" width="50" height="50"/>
@@ -190,15 +190,8 @@
                                     <outlet property="delegate" destination="2Ep-O9-XQb" id="9FW-Y4-W0i"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sections" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Lr-VC-Cc3">
-                                <rect key="frame" x="20.5" y="347" width="373" height="20"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AValiable Restaurants" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmW-Ko-7d4">
-                                <rect key="frame" x="20.5" y="521.5" width="373" height="20"/>
+                                <rect key="frame" x="20.5" y="484.5" width="373" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Nd4-Si-P1k"/>
                                 </constraints>
@@ -207,7 +200,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e1T-Eg-YJV">
-                                <rect key="frame" x="10.5" y="543.5" width="393" height="287"/>
+                                <rect key="frame" x="10.5" y="514.5" width="393" height="287"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2Ep-O9-XQb" id="EGy-TU-4Fe"/>
@@ -218,15 +211,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="WSe-rV-bgc" firstAttribute="height" secondItem="2Ep-O9-XQb" secondAttribute="height" multiplier="0.2" id="0Tx-Qk-oG2"/>
-                            <constraint firstItem="51K-E5-mQP" firstAttribute="height" secondItem="2Ep-O9-XQb" secondAttribute="height" multiplier="0.15" id="7Xl-j8-JRs"/>
-                            <constraint firstItem="0Lr-VC-Cc3" firstAttribute="top" secondItem="WSe-rV-bgc" secondAttribute="bottom" constant="30" id="9iw-bk-1YP"/>
+                            <constraint firstItem="51K-E5-mQP" firstAttribute="height" secondItem="2Ep-O9-XQb" secondAttribute="height" multiplier="0.12" id="7Xl-j8-JRs"/>
                             <constraint firstItem="e1T-Eg-YJV" firstAttribute="width" secondItem="2Ep-O9-XQb" secondAttribute="width" multiplier="0.95" id="DY9-fd-EWN"/>
-                            <constraint firstItem="e1T-Eg-YJV" firstAttribute="top" secondItem="lmW-Ko-7d4" secondAttribute="bottom" constant="2" id="EFL-iJ-5kI"/>
+                            <constraint firstItem="e1T-Eg-YJV" firstAttribute="top" secondItem="lmW-Ko-7d4" secondAttribute="bottom" constant="10" id="EFL-iJ-5kI"/>
                             <constraint firstItem="X6e-SG-B7s" firstAttribute="top" secondItem="Uty-Es-Xrx" secondAttribute="top" id="EZd-k0-gPP"/>
                             <constraint firstItem="mUz-zA-1xS" firstAttribute="height" secondItem="WSe-rV-bgc" secondAttribute="height" id="Fnd-6s-aXJ"/>
                             <constraint firstItem="e1T-Eg-YJV" firstAttribute="height" secondItem="2Ep-O9-XQb" secondAttribute="height" multiplier="0.32" id="Fsv-gi-PR4"/>
-                            <constraint firstItem="0Lr-VC-Cc3" firstAttribute="centerX" secondItem="Uty-Es-Xrx" secondAttribute="centerX" id="GlN-J5-Pzs"/>
-                            <constraint firstItem="WSe-rV-bgc" firstAttribute="width" secondItem="2Ep-O9-XQb" secondAttribute="width" multiplier="0.9" id="Kpi-TV-8aN"/>
+                            <constraint firstItem="WSe-rV-bgc" firstAttribute="width" secondItem="2Ep-O9-XQb" secondAttribute="width" multiplier="0.95" id="Kpi-TV-8aN"/>
                             <constraint firstItem="mUz-zA-1xS" firstAttribute="centerY" secondItem="WSe-rV-bgc" secondAttribute="centerY" id="MOG-aU-fhy"/>
                             <constraint firstItem="e1T-Eg-YJV" firstAttribute="centerX" secondItem="Uty-Es-Xrx" secondAttribute="centerX" id="N1n-4S-bEh"/>
                             <constraint firstItem="mUz-zA-1xS" firstAttribute="centerX" secondItem="WSe-rV-bgc" secondAttribute="centerX" id="THg-1l-5dB"/>
@@ -234,9 +225,8 @@
                             <constraint firstItem="mUz-zA-1xS" firstAttribute="top" secondItem="WSe-rV-bgc" secondAttribute="top" id="W1N-Gg-bJt"/>
                             <constraint firstItem="mUz-zA-1xS" firstAttribute="top" secondItem="Uty-Es-Xrx" secondAttribute="top" constant="50" id="WYg-3I-XFB"/>
                             <constraint firstItem="lmW-Ko-7d4" firstAttribute="centerX" secondItem="Uty-Es-Xrx" secondAttribute="centerX" id="aGi-T4-hQN"/>
-                            <constraint firstItem="51K-E5-mQP" firstAttribute="top" secondItem="0Lr-VC-Cc3" secondAttribute="bottom" constant="15" id="eH8-CD-krZ"/>
                             <constraint firstItem="mUz-zA-1xS" firstAttribute="width" secondItem="WSe-rV-bgc" secondAttribute="width" id="fCi-P9-6OL"/>
-                            <constraint firstItem="0Lr-VC-Cc3" firstAttribute="width" secondItem="2Ep-O9-XQb" secondAttribute="width" multiplier="0.9" id="fF4-7q-pZz"/>
+                            <constraint firstItem="51K-E5-mQP" firstAttribute="top" secondItem="WSe-rV-bgc" secondAttribute="bottom" constant="55" id="lU6-mq-ZZp"/>
                             <constraint firstItem="51K-E5-mQP" firstAttribute="width" secondItem="2Ep-O9-XQb" secondAttribute="width" multiplier="0.9" id="o6Z-5e-0Ff"/>
                             <constraint firstItem="51K-E5-mQP" firstAttribute="centerX" secondItem="Uty-Es-Xrx" secondAttribute="centerX" id="s5l-ww-FQw"/>
                             <constraint firstItem="WSe-rV-bgc" firstAttribute="centerX" secondItem="Uty-Es-Xrx" secondAttribute="centerX" id="sp4-Ut-Dlq"/>

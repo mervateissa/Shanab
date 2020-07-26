@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="KGk-i7-Jjw" customClass="AdditionsCell" customModule="Shanab" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="267" height="112"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="267" height="112"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUO-St-zFa">
+                        <rect key="frame" x="13.5" y="0.0" width="240" height="89.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GIo-AD-Y34">
+                                <rect key="frame" x="18" y="10" width="204" height="76"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qr-Nk-ZZU" customClass="DLRadioButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="22"/>
+                                        <state key="normal" title="Pepsci">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f2G-pu-6lc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzp-n3-Kdb" customClass="DLRadioButton">
+                                        <rect key="frame" x="0.0" y="27" width="204" height="22"/>
+                                        <state key="normal" title="Pepsci">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Ax-Zw-Da9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVA-pf-KTx" customClass="DLRadioButton">
+                                        <rect key="frame" x="0.0" y="54" width="204" height="22"/>
+                                        <state key="normal" title="Pepsci">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FFT-oU-gYI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GIo-AD-Y34" firstAttribute="height" secondItem="tUO-St-zFa" secondAttribute="height" multiplier="0.85" id="2O9-na-Tfb"/>
+                            <constraint firstItem="GIo-AD-Y34" firstAttribute="top" secondItem="tUO-St-zFa" secondAttribute="top" constant="10" id="ir2-fZ-qCK"/>
+                            <constraint firstItem="GIo-AD-Y34" firstAttribute="centerX" secondItem="tUO-St-zFa" secondAttribute="centerX" id="k5t-9e-GIQ"/>
+                            <constraint firstItem="GIo-AD-Y34" firstAttribute="width" secondItem="tUO-St-zFa" secondAttribute="width" multiplier="0.85" id="uH8-VP-Yd9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tUO-St-zFa" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.9" id="6f8-dn-mff"/>
+                    <constraint firstItem="tUO-St-zFa" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Jbl-VD-eNl"/>
+                    <constraint firstItem="tUO-St-zFa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fVb-vt-FmU"/>
+                    <constraint firstItem="tUO-St-zFa" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.8" id="wNy-F3-qm2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="32.608695652173914" y="145.98214285714286"/>
+        </tableViewCell>
+    </objects>
+</document>
