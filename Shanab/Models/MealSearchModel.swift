@@ -7,20 +7,19 @@
 //
 
 import Foundation
-struct MealsSearchModelModelJSON: Codable {
+struct MealDetailsModelJSON: Codable {
     var status: Bool?
-    var data: mealSearchDataClass?
+    var data: CollectionDataClass?
 }
 
 // MARK: - DataClass
-struct mealSearchDataClass: Codable {
+struct CollectionDataClass: Codable {
     var id, restaurantID, categoryID, restaurantCategoryID: Int?
     var offerID: Int?
     var nameAr, nameEn, descriptionAr, descriptionEn: String?
     var points, rate: Int?
     var image: String?
     var status, createdAt, updatedAt: String?
-    var favorite: [Int]?
     var price: [Price]?
     var collection: [Collection]?
 
@@ -37,15 +36,14 @@ struct mealSearchDataClass: Codable {
         case points, rate, image, status
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case favorite, price, collection
+        case  price, collection
     }
 }
-
 // MARK: - Collection
 struct Collection: Codable {
     var id, mealID: Int?
     var nameAr, nameEn, createdAt, updatedAt: String?
-    var option: [Option]?
+    var option: [Options]?
 
     enum CodingKeys: String, CodingKey {
         case id

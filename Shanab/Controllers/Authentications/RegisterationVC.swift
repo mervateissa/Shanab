@@ -33,6 +33,12 @@ class RegisterationVC: UIViewController {
             self?.phone.setFlag(countryCode: country.code)
         }
     }
+    @IBAction func strongPassword(_ sender: Any) {
+        let sb = UIStoryboard(name: "PopUps", bundle: nil).instantiateViewController(withIdentifier: "StrongPasswordPopupVC")
+        sb.modalPresentationStyle = .overCurrentContext
+        sb.modalTransitionStyle = .crossDissolve
+        self.present(sb, animated: true, completion: nil)
+    }
     
     @IBAction func register(_ sender: UIButton) {
         guard self.validate() else {return}

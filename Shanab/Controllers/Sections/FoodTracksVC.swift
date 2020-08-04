@@ -26,8 +26,8 @@ class FoodTracksVC: UIViewController {
         super.viewDidLoad()
         TracksTableView.delegate = self
         TracksTableView.dataSource = self
-        TracksTableView.rowHeight = UITableView.automaticDimension
-               TracksTableView.estimatedRowHeight = UITableView.automaticDimension
+//        TracksTableView.rowHeight = UITableView.automaticDimension
+//               TracksTableView.estimatedRowHeight = UITableView.automaticDimension
         TracksTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         RestaurantsVCPresenter.setRestaurantsViewDelegate(RestaurantsViewDelegate: self)
         RestaurantsVCPresenter.showIndicator()
@@ -48,9 +48,14 @@ extension FoodTracksVC: UITableViewDelegate, UITableViewDataSource {
         cell.config(familyName: restaurants_list[indexPath.row].nameAr ?? "", time: restaurants_list[indexPath.row].hasDelivery ?? 0 , imagePath: restaurants_list[indexPath.row].image ?? "", productName: restaurants_list[indexPath.row].nameEn ?? "", price: Double(restaurants_list[indexPath.row].hasDelivery ?? 0), rate: Double(restaurants_list[indexPath.row].rate ?? 0))
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        200
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        150
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let details = UIStoryboard(name: "Products", bundle: nil).instantiateViewController(withIdentifier: "RestaurantDetailsVC") as? RestaurantDetailsVC else { return }
+                details.restaurant_id = restaurants_list[indexPath.row].id ?? 0
+               self.navigationController?.pushViewController(details, animated: true)
+    }
     
     
 }

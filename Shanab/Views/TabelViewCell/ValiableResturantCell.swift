@@ -13,6 +13,7 @@ class ValiableResturantCell: UITableViewCell {
     @IBOutlet weak var staticLB: UILabel!
     @IBOutlet weak var staticTime: UILabel!
     @IBOutlet weak var resturantImage: UIImageView!
+    @IBOutlet weak var type: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var cosmos: CosmosView!
     @IBOutlet weak var time: UILabel!
@@ -23,6 +24,7 @@ class ValiableResturantCell: UITableViewCell {
         staticLB.minimumScaleFactor = 0.5
         staticTime.adjustsFontSizeToFitWidth = true
         staticTime.minimumScaleFactor = 0.5
+        resturantImage.setRounded()
         
         // Initialization code
     }
@@ -30,7 +32,7 @@ class ValiableResturantCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func config(name: String, time: String, rate: Double, price: Double, imagePath: String) {
+    func config(name: String, time: String, rate: Double, price: Double, imagePath: String, type: String) {
         if imagePath != "" {
             guard let imageURL = URL(string:  imagePath) else { return }
             self.resturantImage.kf.setImage(with: imageURL)
@@ -42,6 +44,7 @@ class ValiableResturantCell: UITableViewCell {
         self.time.text = time
         self.price.text = "\(price)"
         self.cosmos.rating = rate
+        self.type.text = type
     }
     
 }

@@ -23,6 +23,7 @@ struct Setting: Codable {
     var key: String?
     var valueAr, valueEn: String?
     var createdAt, updatedAt: String?
+     var SettingImage: Data?
 
     enum CodingKeys: String, CodingKey {
         case id, key
@@ -30,5 +31,6 @@ struct Setting: Codable {
         case valueEn = "value_en"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case SettingImage
     }
 }

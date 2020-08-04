@@ -15,7 +15,7 @@ class SearchVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
     private let cellForTable = "RestaurantCell"
-    private let MealsCellIdentifier = "SectionCell"
+    private let MealsCellIdentifier = "SearchCell"
     var type = String()
     var id = Int()
     var isSearching = false
@@ -84,8 +84,8 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
             
             
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MealsCellIdentifier, for: indexPath) as? SectionsCell else { return UITableViewCell()}
-            cell.config(imagePath: NormalResult[indexPath.row].image ?? "" , name: NormalResult[indexPath.row].nameAr ?? "")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MealsCellIdentifier, for: indexPath) as? SearchCell else { return UITableViewCell()}
+            cell.config(name: NormalResult[indexPath.row].nameAr ?? "", imagePath: NormalResult[indexPath.row].image ?? "", section: NormalResult[indexPath.row].type ?? "", price: "")
             return cell
         }
         

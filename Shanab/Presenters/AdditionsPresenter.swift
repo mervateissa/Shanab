@@ -9,7 +9,7 @@
 import Foundation
 import SVProgressHUD
 protocol AdditionsViewDelegate: class {
-    func MealDetailsResult(_ error: Error?, _ details: [RestaurantMeal]?)
+    func MealDetailsResult(_ error: Error?, _ details: CollectionDataClass?)
     
 }
 class AdditionsPresenter {
@@ -28,7 +28,7 @@ class AdditionsPresenter {
         SVProgressHUD.dismiss()
     }
     func postMealDetails(meal_id: Int) {
-        services.postMealDetails(meal_id: meal_id) {[weak self] (error: Error?, details: [RestaurantMeal]?) in
+        services.postMealDetails(meal_id: meal_id) {[weak self] (error: Error?, details: CollectionDataClass?) in
             self?.AdditionsViewDelegate?.MealDetailsResult(error, details)
             self?.dismissIndicator()
         }

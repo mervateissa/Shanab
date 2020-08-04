@@ -28,8 +28,8 @@ class ProductiveFamiliesVC: UIViewController {
         super.viewDidLoad()
         FamiliesTableView.delegate = self
         FamiliesTableView.dataSource = self
-        FamiliesTableView.rowHeight = UITableView.automaticDimension
-               FamiliesTableView.estimatedRowHeight = UITableView.automaticDimension
+//        FamiliesTableView.rowHeight = UITableView.automaticDimension
+//               FamiliesTableView.estimatedRowHeight = UITableView.automaticDimension
         FamiliesTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         RestaurantsVCPresenter.setRestaurantsViewDelegate(RestaurantsViewDelegate: self)
         RestaurantsVCPresenter.showIndicator()
@@ -48,9 +48,9 @@ extension ProductiveFamiliesVC: UITableViewDataSource, UITableViewDelegate {
         cell.config(familyName: restaurants_list[indexPath.row].nameAr ?? "", time: restaurants_list[indexPath.row].hasDelivery ?? 0 , imagePath: restaurants_list[indexPath.row].image ?? "", productName: restaurants_list[indexPath.row].nameEn ?? "", price: Double(restaurants_list[indexPath.row].hasDelivery ?? 0), rate: Double(restaurants_list[indexPath.row].rate ?? 0))
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 200
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
     
     
 }

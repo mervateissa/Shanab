@@ -26,6 +26,8 @@ struct RestaurantMeal: Codable {
     var image: String?
     var status, createdAt, updatedAt: String?
     var favorite: [RestaurantsFavorite]?
+    var price: [Price]?
+    var collection: [Collection]?
 
     enum CodingKeys: String, CodingKey {
         case id

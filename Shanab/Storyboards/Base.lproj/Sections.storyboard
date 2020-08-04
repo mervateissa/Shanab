@@ -16,13 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Productive Family" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmb-HF-bSx">
-                                <rect key="frame" x="20.5" y="168" width="373" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                <color key="textColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fOD-NM-hKm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fOD-NM-hKm">
                                 <rect key="frame" x="20" y="208" width="374" height="634"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
@@ -39,15 +33,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fOD-NM-hKm" firstAttribute="top" secondItem="fTO-wV-f73" secondAttribute="top" constant="120" id="0gX-6x-4Bc"/>
-                            <constraint firstItem="bmb-HF-bSx" firstAttribute="centerX" secondItem="fTO-wV-f73" secondAttribute="centerX" id="AYL-0G-2mR"/>
                             <constraint firstItem="E4I-DE-uXQ" firstAttribute="width" secondItem="sN4-Un-Etg" secondAttribute="width" id="GPq-Yh-P0a"/>
                             <constraint firstItem="fTO-wV-f73" firstAttribute="trailing" secondItem="fOD-NM-hKm" secondAttribute="trailing" constant="20" id="JPu-IT-H1h"/>
                             <constraint firstItem="fTO-wV-f73" firstAttribute="bottom" secondItem="fOD-NM-hKm" secondAttribute="bottom" constant="20" id="KOm-9N-XbQ"/>
                             <constraint firstItem="E4I-DE-uXQ" firstAttribute="centerX" secondItem="fTO-wV-f73" secondAttribute="centerX" id="Orv-bF-tNU"/>
-                            <constraint firstItem="bmb-HF-bSx" firstAttribute="width" secondItem="sN4-Un-Etg" secondAttribute="width" multiplier="0.9" id="QNf-US-kyZ"/>
                             <constraint firstItem="E4I-DE-uXQ" firstAttribute="top" secondItem="fTO-wV-f73" secondAttribute="top" constant="20" id="gBx-ZO-Uvq"/>
                             <constraint firstItem="fOD-NM-hKm" firstAttribute="leading" secondItem="fTO-wV-f73" secondAttribute="leading" constant="20" id="h7M-Ql-uxA"/>
-                            <constraint firstItem="bmb-HF-bSx" firstAttribute="top" secondItem="fTO-wV-f73" secondAttribute="top" constant="80" id="uen-Ea-Rj5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fTO-wV-f73"/>
                     </view>
@@ -74,14 +65,8 @@
                                 <rect key="frame" x="0.0" y="108" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Trucks" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ms-Vo-AEV">
-                                <rect key="frame" x="20.5" y="184" width="373" height="20"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W9F-lp-iT3">
-                                <rect key="frame" x="41.5" y="224" width="331" height="627"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W9F-lp-iT3">
+                                <rect key="frame" x="41.5" y="204" width="331" height="627"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2jd-Kw-pnr" id="0em-jp-K6k"/>
@@ -93,11 +78,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="W9F-lp-iT3" firstAttribute="height" secondItem="2jd-Kw-pnr" secondAttribute="height" multiplier="0.7" id="4oa-ru-CB3"/>
-                            <constraint firstItem="1ms-Vo-AEV" firstAttribute="top" secondItem="vqH-tv-6Wh" secondAttribute="bottom" constant="20" id="EVb-u6-q3j"/>
-                            <constraint firstItem="1ms-Vo-AEV" firstAttribute="centerX" secondItem="zji-LL-NJT" secondAttribute="centerX" id="LxZ-qP-SoL"/>
-                            <constraint firstItem="1ms-Vo-AEV" firstAttribute="width" secondItem="2jd-Kw-pnr" secondAttribute="width" multiplier="0.9" id="Ms6-m2-MxC"/>
+                            <constraint firstItem="W9F-lp-iT3" firstAttribute="top" secondItem="vqH-tv-6Wh" secondAttribute="bottom" constant="40" id="AiV-OT-VFl"/>
                             <constraint firstItem="W9F-lp-iT3" firstAttribute="centerX" secondItem="zji-LL-NJT" secondAttribute="centerX" id="TGJ-z4-dLT"/>
-                            <constraint firstItem="W9F-lp-iT3" firstAttribute="top" secondItem="1ms-Vo-AEV" secondAttribute="bottom" constant="20" id="akC-30-0H7"/>
                             <constraint firstItem="vqH-tv-6Wh" firstAttribute="top" secondItem="zji-LL-NJT" secondAttribute="top" constant="20" id="hwp-Lu-wi4"/>
                             <constraint firstItem="vqH-tv-6Wh" firstAttribute="centerX" secondItem="zji-LL-NJT" secondAttribute="centerX" id="pdH-fS-ea0"/>
                             <constraint firstItem="vqH-tv-6Wh" firstAttribute="width" secondItem="2jd-Kw-pnr" secondAttribute="width" id="zLS-50-jrq"/>
@@ -185,14 +167,8 @@
                                 <rect key="frame" x="0.0" y="108" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTW-tJ-zmf">
-                                <rect key="frame" x="20.5" y="184" width="373" height="20"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9m3-Ou-o4d">
-                                <rect key="frame" x="41.5" y="224" width="331" height="627"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9m3-Ou-o4d">
+                                <rect key="frame" x="41.5" y="204" width="331" height="627"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="N3O-FY-DHq" id="Ctu-nY-srO"/>
@@ -205,13 +181,10 @@
                         <constraints>
                             <constraint firstItem="9m3-Ou-o4d" firstAttribute="height" secondItem="Tf1-9a-T9k" secondAttribute="height" multiplier="0.7" id="ARV-fl-Es9"/>
                             <constraint firstItem="Hiz-cF-yMq" firstAttribute="top" secondItem="cgr-dD-WDm" secondAttribute="top" constant="20" id="HUw-Uo-cQo"/>
-                            <constraint firstItem="OTW-tJ-zmf" firstAttribute="centerX" secondItem="cgr-dD-WDm" secondAttribute="centerX" id="PMS-Tn-YQs"/>
-                            <constraint firstItem="9m3-Ou-o4d" firstAttribute="top" secondItem="OTW-tJ-zmf" secondAttribute="bottom" constant="20" id="VG0-JG-3GM"/>
                             <constraint firstItem="Hiz-cF-yMq" firstAttribute="centerX" secondItem="cgr-dD-WDm" secondAttribute="centerX" id="VoN-1u-wo6"/>
                             <constraint firstItem="9m3-Ou-o4d" firstAttribute="centerX" secondItem="cgr-dD-WDm" secondAttribute="centerX" id="cKc-st-Jn4"/>
-                            <constraint firstItem="OTW-tJ-zmf" firstAttribute="width" secondItem="Tf1-9a-T9k" secondAttribute="width" multiplier="0.9" id="enO-EU-Nwp"/>
                             <constraint firstItem="9m3-Ou-o4d" firstAttribute="width" secondItem="Tf1-9a-T9k" secondAttribute="width" multiplier="0.8" id="etj-va-lFL"/>
-                            <constraint firstItem="OTW-tJ-zmf" firstAttribute="top" secondItem="Hiz-cF-yMq" secondAttribute="bottom" constant="20" id="uit-ga-KPB"/>
+                            <constraint firstItem="9m3-Ou-o4d" firstAttribute="top" secondItem="Hiz-cF-yMq" secondAttribute="bottom" constant="40" id="uV6-Pk-EXP"/>
                             <constraint firstItem="Hiz-cF-yMq" firstAttribute="width" secondItem="Tf1-9a-T9k" secondAttribute="width" id="yQO-3L-MLy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cgr-dD-WDm"/>

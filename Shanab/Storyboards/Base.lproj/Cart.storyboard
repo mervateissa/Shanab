@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Cairo-Bold.ttf">
+            <string>Cairo-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Cart-->
         <scene sceneID="pma-32-1jV">
@@ -150,6 +155,193 @@
             </objects>
             <point key="canvasLocation" x="1044.9275362318842" y="130.58035714285714"/>
         </scene>
+        <!--Cart Details-->
+        <scene sceneID="cOV-SV-Dtk">
+            <objects>
+                <viewController storyboardIdentifier="CartDetailsVC" id="Kaa-J3-FDb" customClass="CartDetailsVC" customModule="Shanab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Be-Gc-4Qo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brooke-lark-HlNcigvUi4Q-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="8Qf-Wv-HmV" customClass="CustomImageView" customModule="Shanab" customModuleProvider="target">
+                                <rect key="frame" x="10.5" y="108" width="393" height="224"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0JZ-vH-DmZ">
+                                <rect key="frame" x="20.5" y="352" width="373" height="179"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52a-Vi-dBI">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="41"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6K-iv-4Ev">
+                                        <rect key="frame" x="0.0" y="46" width="373" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x88-8F-106">
+                                        <rect key="frame" x="0.0" y="92" width="373" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFG-2A-B49">
+                                        <rect key="frame" x="0.0" y="138" width="373" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-gS-9hj">
+                                <rect key="frame" x="20.5" y="551" width="373" height="37.5"/>
+                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="20"/>
+                                <color key="textColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fl8-Eq-2RG" customClass="CustomTextField" customModule="Shanab" customModuleProvider="target">
+                                <rect key="frame" x="31" y="603.5" width="352" height="58.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vcx-ad-n3I">
+                                <rect key="frame" x="41.5" y="682" width="331" height="44.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GiG-Z9-uM2">
+                                        <rect key="frame" x="0.0" y="0.0" width="53" height="44.5"/>
+                                        <state key="normal" image="dicris"/>
+                                        <connections>
+                                            <action selector="decreases:" destination="Kaa-J3-FDb" eventType="touchUpInside" id="X5Z-0n-lJm"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Li-TD-fgN">
+                                        <rect key="frame" x="58" y="0.0" width="8" height="44.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPW-Sq-6jb">
+                                        <rect key="frame" x="71" y="0.0" width="40" height="44.5"/>
+                                        <state key="normal" image="+5"/>
+                                        <connections>
+                                            <action selector="increase:" destination="Kaa-J3-FDb" eventType="touchUpInside" id="oit-dP-v6H"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SS9-os-BbB">
+                                        <rect key="frame" x="116" y="0.0" width="215" height="44.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-CV-of1" customClass="CustomLabel" customModule="Shanab" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="105" height="44.5"/>
+                                                <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud9-YB-Kca" customClass="CustomLabel" customModule="Shanab" customModuleProvider="target">
+                                                <rect key="frame" x="110" y="0.0" width="105" height="44.5"/>
+                                                <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="uPW-Sq-6jb" firstAttribute="width" secondItem="vcx-ad-n3I" secondAttribute="width" multiplier="0.12" id="jG2-HR-V93"/>
+                                    <constraint firstItem="SS9-os-BbB" firstAttribute="width" secondItem="vcx-ad-n3I" secondAttribute="width" multiplier="0.65" id="xvN-RX-XDk"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vcx-ad-n3I" firstAttribute="width" secondItem="9Be-Gc-4Qo" secondAttribute="width" multiplier="0.8" id="4Ok-a9-qfZ"/>
+                            <constraint firstItem="8Qf-Wv-HmV" firstAttribute="width" secondItem="9Be-Gc-4Qo" secondAttribute="width" multiplier="0.95" id="5Bb-oP-QkC"/>
+                            <constraint firstItem="vcx-ad-n3I" firstAttribute="centerX" secondItem="H1o-AG-8ay" secondAttribute="centerX" id="99o-JN-PPz"/>
+                            <constraint firstItem="Fl8-Eq-2RG" firstAttribute="top" secondItem="fsj-gS-9hj" secondAttribute="bottom" constant="15" id="CAX-rL-D9c"/>
+                            <constraint firstItem="Fl8-Eq-2RG" firstAttribute="width" secondItem="9Be-Gc-4Qo" secondAttribute="width" multiplier="0.85" id="Gt3-nQ-hxG"/>
+                            <constraint firstItem="Fl8-Eq-2RG" firstAttribute="height" secondItem="9Be-Gc-4Qo" secondAttribute="height" multiplier="0.065" id="JM4-jW-KCE"/>
+                            <constraint firstItem="vcx-ad-n3I" firstAttribute="top" secondItem="Fl8-Eq-2RG" secondAttribute="bottom" constant="20" id="JQk-8o-MIK"/>
+                            <constraint firstItem="0JZ-vH-DmZ" firstAttribute="centerX" secondItem="H1o-AG-8ay" secondAttribute="centerX" id="OQb-RX-09P"/>
+                            <constraint firstItem="fsj-gS-9hj" firstAttribute="centerX" secondItem="H1o-AG-8ay" secondAttribute="centerX" id="Qul-dv-50K"/>
+                            <constraint firstItem="fsj-gS-9hj" firstAttribute="top" secondItem="0JZ-vH-DmZ" secondAttribute="bottom" constant="20" id="V0g-fy-JPG"/>
+                            <constraint firstItem="vcx-ad-n3I" firstAttribute="height" secondItem="9Be-Gc-4Qo" secondAttribute="height" multiplier="0.05" id="WjB-rs-jdB"/>
+                            <constraint firstItem="8Qf-Wv-HmV" firstAttribute="centerX" secondItem="H1o-AG-8ay" secondAttribute="centerX" id="X53-9R-Hyz"/>
+                            <constraint firstItem="Fl8-Eq-2RG" firstAttribute="centerX" secondItem="H1o-AG-8ay" secondAttribute="centerX" id="aa1-uW-lmT"/>
+                            <constraint firstItem="0JZ-vH-DmZ" firstAttribute="height" secondItem="9Be-Gc-4Qo" secondAttribute="height" multiplier="0.2" id="jyT-Ca-NmW"/>
+                            <constraint firstItem="0JZ-vH-DmZ" firstAttribute="width" secondItem="9Be-Gc-4Qo" secondAttribute="width" multiplier="0.9" id="ll2-Sa-srs"/>
+                            <constraint firstItem="fsj-gS-9hj" firstAttribute="width" secondItem="9Be-Gc-4Qo" secondAttribute="width" multiplier="0.9" id="rbx-ls-vc7"/>
+                            <constraint firstItem="8Qf-Wv-HmV" firstAttribute="top" secondItem="H1o-AG-8ay" secondAttribute="top" constant="20" id="u2R-xx-ijc"/>
+                            <constraint firstItem="0JZ-vH-DmZ" firstAttribute="top" secondItem="8Qf-Wv-HmV" secondAttribute="bottom" constant="20" id="uUt-K2-gav"/>
+                            <constraint firstItem="8Qf-Wv-HmV" firstAttribute="height" secondItem="9Be-Gc-4Qo" secondAttribute="height" multiplier="0.25" id="x7C-ym-jZA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="H1o-AG-8ay"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cart Details" id="8md-Sv-vWK">
+                        <barButtonItem key="leftBarButtonItem" image="menu (1)" id="vSc-8s-orR">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calories" destination="g6K-iv-4Ev" id="xxD-Cs-0AQ"/>
+                        <outlet property="mealComponents" destination="x88-8F-106" id="aqg-bQ-dAm"/>
+                        <outlet property="mealImage" destination="8Qf-Wv-HmV" id="tnl-U7-Erv"/>
+                        <outlet property="mealNameLB" destination="52a-Vi-dBI" id="yoj-yK-Fii"/>
+                        <outlet property="notes" destination="Fl8-Eq-2RG" id="i20-9W-8gU"/>
+                        <outlet property="quantity" destination="8Li-TD-fgN" id="MPq-9f-Dgb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WVX-Ib-t32" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4147.826086956522" y="129.91071428571428"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ARq-8v-EeY">
             <objects>
@@ -172,5 +364,33 @@
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="130.58035714285714"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4rs-zA-4XI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fyh-Vk-930" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SDH-Ee-Dik">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kaa-J3-FDb" kind="relationship" relationship="rootViewController" id="5S9-Tv-mAw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NHM-9n-JGC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3237.68115942029" y="129.91071428571428"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="+5" width="25" height="25"/>
+        <image name="brooke-lark-HlNcigvUi4Q-unsplash" width="5760" height="3840"/>
+        <image name="dicris" width="25" height="25"/>
+        <image name="menu (1)" width="22.5" height="21"/>
+    </resources>
 </document>

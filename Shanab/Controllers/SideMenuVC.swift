@@ -70,7 +70,7 @@ class SideMenuVC: UIViewController {
                     SideMenuModel(name: "Favorite Meals".localized, id: "FavoriteMeals", selected: false, sideImage: #imageLiteral(resourceName: "heart-1")),
                     SideMenuModel(name: "ContactUs".localized, id: "ContactUs", selected: false,sideImage: #imageLiteral(resourceName: "contactUs")),
                     SideMenuModel(name: "TermsAndConditions".localized, id: "TermsAndConditions", selected: false, sideImage: #imageLiteral(resourceName: "terms")),
-                    SideMenuModel(name: "Setting".localized, id: "Setting", selected: false, sideImage: #imageLiteral(resourceName: "burger"))
+                    SideMenuModel(name: "Settings".localized, id: "Settings", selected: false, sideImage: #imageLiteral(resourceName: "burger"))
                     
                 ]
             } else {

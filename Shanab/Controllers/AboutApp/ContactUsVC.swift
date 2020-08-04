@@ -10,20 +10,35 @@ import UIKit
 import DropDown
 import MessageUI
 class ContactUsVC: UIViewController {
+    @IBOutlet weak var socialMediaCollectionView: UICollectionView!
     private let MailTemplateVCPresenter = MailTempaltePresenter(services: Services())
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var messageDetails: UITextField!
     @IBOutlet weak var messageAddress: UIButton!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var name: UITextField!
-      let TypeArr = ["شكوي", "اقتراح"]
+    fileprivate let  cellIdentifeir = "SettingCell"
+    let TypeArr = ["شكوي", "اقتراح"]
     var id = Int()
     var mailTempalte = [Tempalte]()
+    var sectionArr = [Setting]() {
+        didSet {
+            DispatchQueue.main.async {
+            self.socialMediaCollectionView.reloadData()
+                
+            }
+        }
+    }
     let MessageTypeDropDown = DropDown()
     override func viewDidLoad() {
         super.viewDidLoad()
-     SetupMessageTypeDropDown()
-       
+        SetupMessageTypeDropDown()
+        socialMediaCollectionView.delegate = self
+        socialMediaCollectionView.dataSource = self
+        socialMediaCollectionView.register(UINib(nibName: cellIdentifeir, bundle: nil), forCellWithReuseIdentifier: cellIdentifeir)
+        MailTemplateVCPresenter.showIndicator()
+        MailTemplateVCPresenter.getSettings()
+        
     }
     func SetupMessageTypeDropDown() {
         MessageTypeDropDown.anchorView = messageAddress
@@ -38,87 +53,94 @@ class ContactUsVC: UIViewController {
         MessageTypeDropDown.direction = .any
         MessageTypeDropDown.width = self.view.frame.width * 1
     }
+    func SelectionAction(index: Int) {
+        switch sectionArr[index].valueEn  {
+        case "twitter":
+            let userName = sectionArr[index].valueEn ?? ""
+            
+            let appURL = URL(string: "twitter:///\(userName)")!
+            let webURL = URL(string: "https://twitter.com/\(userName)")!
+            if UIApplication.shared.canOpenURL(appURL as URL) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(appURL)
+                } else {
+                    UIApplication.shared.openURL(appURL)
+                }
+            } else {
+                
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(webURL)
+                } else {
+                    UIApplication.shared.openURL(webURL)
+                }
+            }
+        case "facebook":
+            let facebook = sectionArr[index].valueEn ?? ""
+            let urlFacebook = "https://wa.me/\(facebook)"
+            if let urlString = urlFacebook.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+                if let facebookURL = URL(string: urlString) {
+                    if UIApplication.shared.canOpenURL(facebookURL){
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(facebookURL, options: [:], completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(facebookURL)
+                        }
+                    }
+                    else {
+                        displayMessage(title: "", message: "Install Facebook First", status: .info, forController: self)
+                    }
+                }
+            }
+        case "instagram":
+            let instagram = sectionArr[index].valueEn ?? ""
+            let urlinstagram = "https://wa.me/\(instagram)"
+            if let urlString = urlinstagram.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+                if let instgramURL = URL(string: urlString) {
+                    if UIApplication.shared.canOpenURL(instgramURL){
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(instgramURL, options: [:], completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(instgramURL)
+                        }
+                    }
+                    else {
+                        displayMessage(title: "", message: "Install Instagram First", status: .info, forController: self)
+                    }
+                }
+            }
+            
+        default:
+            print("Default")
+            break
+            
+        }
+    }
     
     
     @IBAction func send(_ sender: Any) {
-    
+        
         
     }
     
-    @IBAction func twitterBn(_ sender: UIButton) {
-
-         let userName =  "twitter"
-        let appURL = URL(string: "twitter:///\(userName)")!
-        let webURL = URL(string: "https://twitter.com/\(userName)")!
-        if UIApplication.shared.canOpenURL(appURL as URL) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(appURL)
-            } else {
-                UIApplication.shared.openURL(appURL)
-            }
-        } else {
-          
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(webURL)
-            } else {
-                UIApplication.shared.openURL(webURL)
-            }
-        }
-        
-    }
+    
     @IBAction func messageType(_ sender: UIButton) {
         MessageTypeDropDown.show()
     }
-    @IBAction func snapChatBn(_ sender: UIButton) {
-        let username = "instagram"
-        let appURL = URL(string: "snapchat://add/\(username)")!
-        let application = UIApplication.shared
-
-        if application.canOpenURL(appURL) {
-            application.open(appURL)
-
-        } else {
-            // if Snapchat app is not installed, open URL inside Safari
-            let webURL = URL(string: "https://www.snapchat.com/add/\(username)")!
-            application.open(webURL)
-
-    }
-    }
-    func sendEmail(email: String) {
-           
-           if MFMailComposeViewController.canSendMail() {
-               let mail = MFMailComposeViewController()
-               mail.mailComposeDelegate = self
-               mail.setToRecipients([email])
-               mail.setMessageBody("", isHTML: true)
-
-               present(mail, animated: true)
-           } else {
-               // show failure alert
-               displayMessage(title: "", message: "Please Add your an Email to your device first", status: .error, forController: self)
-               print("Please check the email.")
-           }
-       }
     
-    @IBAction func facebookBn(_ sender: UIButton) {
-        let userName =  "Facebook"
-              let appURL = URL(string: "facebook:///\(userName)")!
-              let webURL = URL(string: "https://facebook.com/\(userName)")!
-              if UIApplication.shared.canOpenURL(appURL as URL) {
-                  if #available(iOS 10.0, *) {
-                      UIApplication.shared.open(appURL)
-                  } else {
-                      UIApplication.shared.openURL(appURL)
-                  }
-              } else {
-                
-                  if #available(iOS 10.0, *) {
-                      UIApplication.shared.open(webURL)
-                  } else {
-                      UIApplication.shared.openURL(webURL)
-                  }
-              }
+    func sendEmail(email: String) {
         
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([email])
+            mail.setMessageBody("", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+            displayMessage(title: "", message: "Please Add your an Email to your device first", status: .error, forController: self)
+            print("Please check the email.")
+        }
     }
 }
 extension ContactUsVC: MFMailComposeViewControllerDelegate {
@@ -161,10 +183,62 @@ extension ContactUsVC: MFMailComposeViewControllerDelegate {
         
     }
 }
-
+extension ContactUsVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return sectionArr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifeir, for: indexPath) as? SettingCell else {return UICollectionViewCell()}
+        cell.config(imagePath: UIImage(data: sectionArr[indexPath.row].SettingImage!) ?? #imageLiteral(resourceName: "shanab loading"))
+        cell.selectionAction = {
+                   self.SelectionAction(index: indexPath.row)
+               }
+               return cell
+    
+     
+         
+    }
+    
+    
+}
+ extension ContactUsVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+        let size: CGFloat = (collectionView.frame.size.width - space) / 3.1
+        return CGSize(width: size, height: size + 25)
+    }
+    
+}
 
 
 extension ContactUsVC: MailTempalteViewDelegate {
+    func SupprortingResult(_ error: Error?, _ result: [Setting]?) {
+        if let settings = result {
+            for i in 0..<3 {
+                self.sectionArr.append(settings[i])
+                
+            }
+            for i in 0..<self.sectionArr.count {
+                        switch self.sectionArr[i].key {
+                        case "facebook":
+                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "twitter").pngData()
+                        case "twitter":
+                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "logo").pngData()
+                        case "instagram":
+                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "snapchat").pngData()
+                       
+                            
+                        default:
+                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "profile pic").pngData()
+                        }
+                    }
+                }
+    }
+
+    
+    
     func mailTempalteResult(_ error: Error?, _ result: [Tempalte]?) {
         
         

@@ -91,6 +91,7 @@
                                                 <state key="normal" image="password-1"/>
                                                 <connections>
                                                     <action selector="rejaxPopUpButton:" destination="je0-FP-4ZI" eventType="touchUpInside" id="3kn-pV-LQO"/>
+                                                    <action selector="strongPassword:" destination="je0-FP-4ZI" eventType="touchUpInside" id="O9F-Pk-juT"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -210,8 +211,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kw6-8e-eyG">
-                                <rect key="frame" x="41.5" y="803" width="331" height="50"/>
-                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="20"/>
+                                <rect key="frame" x="41.5" y="803" width="331" height="44"/>
+                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
                                 <state key="normal" title="No Account? Register now">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -496,7 +497,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReX-bE-9eT">
                                         <rect key="frame" x="0.0" y="0.0" width="269" height="34.5"/>
-                                        <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
                                         <state key="normal" title="Forget Password?">
                                             <color key="titleColor" red="0.99204939599999997" green="0.99221879239999999" blue="0.9920386672" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -506,7 +507,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxY-SR-EXc">
                                         <rect key="frame" x="0.0" y="54.5" width="269" height="35"/>
-                                        <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
                                         <state key="normal" title="No Account? Register now">
                                             <color key="titleColor" red="0.99204939599999997" green="0.99221879239999999" blue="0.9920386672" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -766,8 +767,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKc-o4-TtM">
-                                <rect key="frame" x="41.5" y="708.5" width="331" height="50"/>
-                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="20"/>
+                                <rect key="frame" x="41.5" y="708.5" width="331" height="44"/>
+                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
                                 <state key="normal" title="No Account? Register now">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>

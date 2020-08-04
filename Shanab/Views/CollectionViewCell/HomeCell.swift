@@ -22,7 +22,11 @@ class HomeCell: UICollectionViewCell {
         } else {
                 self.sectionImageView.image = #imageLiteral(resourceName: "shanab loading")
         }
+       
+        
         self.sectionName.text = name
     }
+    
+    
     
 }

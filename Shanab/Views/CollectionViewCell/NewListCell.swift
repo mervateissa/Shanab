@@ -19,7 +19,7 @@ class NewListCell: UICollectionViewCell {
         // Initialization code
     }
     func config(name: String, address: String, rate: Double, imagePath: String) {
-        guard let imageURL = URL(string: "BASE_URL" + "/" + imagePath) else { return }
+        guard let imageURL = URL(string:  imagePath) else { return }
                self.image.kf.setImage(with: imageURL)
         self.name.text = name
         self.address.text = address

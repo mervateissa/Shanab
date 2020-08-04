@@ -105,6 +105,7 @@ struct Option: Codable {
     }
 }
 
+
 // MARK: - Options
 struct Options: Codable {
     var id: Int?
@@ -132,7 +133,7 @@ struct Price: Codable {
     var id, currencyID, mealID, optionID: Int?
     var price: Double?
     var createdAt, updatedAt: String?
-    var currency: String?
+    var currency: Currency?
 
     enum CodingKeys: String, CodingKey {
         case id

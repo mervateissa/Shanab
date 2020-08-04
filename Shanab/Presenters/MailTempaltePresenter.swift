@@ -10,6 +10,7 @@ import Foundation
 import SVProgressHUD
 protocol MailTempalteViewDelegate: class {
     func mailTempalteResult(_ error: Error?, _ result: [Tempalte]?)
+    func SupprortingResult(_ error: Error?, _ result: [Setting]?)
 }
 class MailTempaltePresenter {
     private let services: Services
@@ -32,4 +33,10 @@ class MailTempaltePresenter {
             self?.dismissIndicator()
         }
     }
+    func getSettings() {
+           services.getSetting {[weak self] (error: Error?, result: [Setting]?) in
+               self?.MailTempalteViewDelegate?.SupprortingResult(error, result)
+               self?.dismissIndicator()
+           }
+       }
 }

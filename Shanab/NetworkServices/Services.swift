@@ -1237,7 +1237,7 @@ class Services {
                 response in
                 do {
                     let result = try
-                        JSONDecoder().decode(MealsSearchModelModelJSON.self, from: response.data!)
+                        JSONDecoder().decode(MealDetailsModelJSON.self, from: response.data!)
                     if result.status == true, let mealsResult = result.data?.collection {
                         print(mealsResult)
                         completion(nil, mealsResult)
@@ -1375,7 +1375,7 @@ class Services {
         }
     }
     //MARK:- Meal Details
-    func postMealDetails(meal_id: Int, Completion: @escaping(_ error: Error?, _ result: [RestaurantMeal]?)->Void) {
+    func postMealDetails(meal_id: Int, Completion: @escaping(_ error: Error?, _ result: CollectionDataClass?)->Void) {
         let url = ConfigURLs.postMealDetails
         let parameters = [
             "meal_id": meal_id
@@ -1388,9 +1388,12 @@ class Services {
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
+                let json = JSON(response.result.value)
+                               print(json)
                 do {
-                    let mealDetails = try JSONDecoder().decode(RestaurantMealsModelJSON.self, from: response.data!)
-                    if mealDetails.status == true, let details = mealDetails.data?.restaurantMeals {
+                    let mealDetails = try JSONDecoder().decode(MealDetailsModelJSON.self, from: response.data!)
+                     print(mealDetails)
+                    if mealDetails.status == true, let details = mealDetails.data {
                         print(details)
                         Completion(nil, details)
                     }
@@ -1507,34 +1510,34 @@ class Services {
     }
     // MARK:- Get Cities And Aries
     func postGetCountries(table: String,  completion: @escaping( _ error: Error?, _ result: [Country]?)->Void) {
-           let url = ConfigURLs.postGetCities
-           let parameters = [
-               "table": table,
-               "condition": "null"
+        let url = ConfigURLs.postGetCities
+        let parameters = [
+            "table": table,
+            "condition": "null"
             ,
-               ] as [String : Any]
-           let token = Helper.getApiToken() ?? ""
-           let headers = [
-               "token": token
-           ]
-           Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
-               .validate(statusCode: 200..<300)
-               .responseJSON {
-                   response in
-                   let json = JSON(response.result.value as Any)
-                   print(json)
-                   do {
-                       let countries = try JSONDecoder().decode(GetCountriesModelJSON.self, from: response.data!)
-                       if countries.status == true, let result = countries.data?.countries {
-                           print(result)
-                           completion(nil, result)
-                       }
-                   } catch {
-                       print(error.localizedDescription)
-                       completion(error, nil)
-                   }
-           }
-       }
+            ] as [String : Any]
+        let token = Helper.getApiToken() ?? ""
+        let headers = [
+            "token": token
+        ]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
+                response in
+                let json = JSON(response.result.value as Any)
+                print(json)
+                do {
+                    let countries = try JSONDecoder().decode(GetCountriesModelJSON.self, from: response.data!)
+                    if countries.status == true, let result = countries.data?.countries {
+                        print(result)
+                        completion(nil, result)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    completion(error, nil)
+                }
+        }
+    }
     //MARK:- Delete Address
     func postDeleteAddress(id: Int, completion: @escaping(_ error: Error?, _ result: SuccessError_Model?)->Void) {
         let url = ConfigURLs.postDeleteAddress
@@ -1568,29 +1571,29 @@ class Services {
                 
         }
     }
-    //MARK:- Cart Items
-//    func getCartItems(completion: @escaping(_ error: Error?, _ result: [Cart]?)->Void){
-//        let url = ConfigURLs.getCart
-//        let token = Helper.getApiToken()
-//        let headers = [
-//            "token": token
-//        ]
-//        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers as! HTTPHeaders)
-//            .validate(statusCode: 200..<300)
-//            .responseJSON {
-//                response in
-//                do {
-//                    let cartItems = try JSONDecoder().decode(GetCountriesModelJSON.self, from: response.data!)
-//                    if cartItems.status == true, let result = cartItems.data {
-//                        print(result)
-//                        completion(nil, result)
-//                    }
-//                } catch {
-//                    print(error.localizedDescription)
-//                    completion(error, nil)
-//                    
-//                }
-//        }
-//    
-//    }
+    //MARK:-  Get Setting
+    func getSetting(completion: @escaping(_ error: Error?, _ result: [Setting]?)->Void){
+        let url = ConfigURLs.getSetting
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
+                response in
+                do {
+                    let setting = try JSONDecoder().decode(SettingModelJSON.self, from: response.data!)
+                    if setting.status == true, let result = setting.data?.settings {
+                        print(result)
+                        completion(nil, result)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    completion(error, nil)
+                    
+                }
+        }
+        
+    }
+    //MARK:- Get Cart Items
+    func getCartItems() {
+        
+    }
 }

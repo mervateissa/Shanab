@@ -1,48 +1,48 @@
 
 /* Class = "UINavigationItem"; title = "Profile"; ObjectID = "4hA-E4-rX0"; */
-"4hA-E4-rX0.title" = "Profile";
+"4hA-E4-rX0.title" = "الملف الشخصي";
 
 /* Class = "UITextField"; placeholder = "Address"; ObjectID = "5kX-3R-Zep"; */
-"5kX-3R-Zep.placeholder" = "Address";
+"5kX-3R-Zep.placeholder" = "العنوان";
 
 /* Class = "UINavigationItem"; title = "Change Password"; ObjectID = "74L-16-fuN"; */
-"74L-16-fuN.title" = "Change Password";
+"74L-16-fuN.title" = "تغيير كلمة المرور";
 
 /* Class = "UITextField"; placeholder = "User Name"; ObjectID = "Pg6-0N-CzI"; */
-"Pg6-0N-CzI.placeholder" = "User Name";
+"Pg6-0N-CzI.placeholder" = "اسم المستخدم";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "QlO-2X-nIs"; */
-"QlO-2X-nIs.normalTitle" = "Save";
+"QlO-2X-nIs.normalTitle" = "حفظ";
 
 /* Class = "UITextField"; placeholder = "New Password Confirmation"; ObjectID = "XHj-sU-k2a"; */
-"XHj-sU-k2a.placeholder" = "New Password Confirmation";
+"XHj-sU-k2a.placeholder" = "تاكيد كلمة المرور الجديدة";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "Zr9-xk-34S"; */
 "Zr9-xk-34S.title" = "Item";
 
 /* Class = "UITextField"; placeholder = "Phone"; ObjectID = "cQP-ee-7Dp"; */
-"cQP-ee-7Dp.placeholder" = "Phone";
+"cQP-ee-7Dp.placeholder" = "التليفون";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "dav-0m-MO6"; */
-"dav-0m-MO6.placeholder" = "Email";
+"dav-0m-MO6.placeholder" = "البريد الالكتروني";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "gUW-F8-k6g"; */
-"gUW-F8-k6g.normalTitle" = "Save";
+"gUW-F8-k6g.normalTitle" = "حفظ";
 
 /* Class = "UITabBarItem"; title = "الباسورد"; ObjectID = "lMs-2h-laI"; */
 "lMs-2h-laI.title" = "الباسورد";
 
 /* Class = "UIButton"; normalTitle = "Guidelines for strong password"; ObjectID = "n16-k5-Oei"; */
-"n16-k5-Oei.normalTitle" = "Guidelines for strong password";
+"n16-k5-Oei.normalTitle" = "الارشادات لكلمة مرور قوية";
 
 /* Class = "UIBarButtonItem"; title = "  "; ObjectID = "pef-wa-Ay8"; */
 "pef-wa-Ay8.title" = "  ";
 
 /* Class = "UITextField"; placeholder = "New Password"; ObjectID = "rL8-Z5-BtF"; */
-"rL8-Z5-BtF.placeholder" = "New Password";
+"rL8-Z5-BtF.placeholder" = "كلمة المرور الجديدة";
 
 /* Class = "UITextField"; placeholder = "Old Password"; ObjectID = "u8w-LQ-fyA"; */
-"u8w-LQ-fyA.placeholder" = "Old Password";
+"u8w-LQ-fyA.placeholder" = "كلمة المرور القديمة";
 
 /* Class = "UINavigationItem"; title = "Notifications"; ObjectID = "wbX-ua-XQa"; */
-"wbX-ua-XQa.title" = "Notifications";
+"wbX-ua-XQa.title" = "الاشعارات";

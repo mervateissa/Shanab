@@ -17,8 +17,7 @@ class BestSellerCell: UITableViewCell {
     var addToCart:(() ->Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
-        mealImage.layer.cornerRadius = 25
-        mealImage.layer.masksToBounds = true
+        mealImage.setRounded()
         
     }
     func config(imagePath: String, name: String, mealComponants: String, price: Double) {

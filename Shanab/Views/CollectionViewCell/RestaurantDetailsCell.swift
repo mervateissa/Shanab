@@ -18,8 +18,8 @@ class RestaurantDetailsCell: UICollectionViewCell {
     func config(name: String, selected: Bool) {
         self.nameLB.text = name
         if selected {
-            self.nameLB.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            self.nameLB.textColor = #colorLiteral(red: 0.8121929765, green: 0.2939046025, blue: 0.2674312294, alpha: 1)
+            self.nameLB.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+            self.nameLB.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         } else {
             self.nameLB.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             self.nameLB.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

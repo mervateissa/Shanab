@@ -110,5 +110,11 @@ struct ConfigURLs {
     static var postDeleteAddress = BASE_URL + "/api/user/deleteAddress"
     // get Cart
     static var getCart = BASE_URL + "/api/user/cart/cartItems"
+    // post Add To Cart
+    static var postAddToCart = BASE_URL + "/api/user/cart/addToCart"
+    // post Delete Cart
+    static var postDeleteCart = BASE_URL + "/api/user/cart/deleteCart"
+    // get Setting
+    static var getSetting = BASE_URL + "/api/general/settings"
    
 }

@@ -33,13 +33,13 @@ class ReservationRequestVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetupNmberListDropDown()
-        clock.displayRealTime = true
-        clock.startClock()
+//        clock.displayRealTime = true
+//        clock.startClock()
         numberCollectionView.delegate = self
         numberCollectionView.dataSource = self
         numberCollectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         CreateResevationVCPresenter.setCreateReservationViewDelegate(CreateReservationViewDelegate: self)
-        CreateResevationVCPresenter.showIndicator()
+      
         
     }
     func SetupNmberListDropDown() {
@@ -65,6 +65,10 @@ class ReservationRequestVC: UIViewController {
         self.outing.setTitleColor(#colorLiteral(red: 0.8121929765, green: 0.2939046025, blue: 0.2674312294, alpha: 1), for: .normal)
         
         
+    }
+    @IBAction func confirm(_ sender: UIButton) {
+          CreateResevationVCPresenter.showIndicator()
+//        CreateResevationVCPresenter.postCreateReservation(restaurant_id: restaurant, number_of_persons: , date: <#T##String#>, time: <#T##String#>)
     }
     @IBAction func NumberListBN(_ sender: UIButton) {
         NmberListDropDown.show()

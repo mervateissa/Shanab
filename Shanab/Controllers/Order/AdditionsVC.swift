@@ -8,22 +8,20 @@
 
 import UIKit
 import DLRadioButton
-import ImageSlideshow
 class AdditionsVC: UIViewController {
     @IBOutlet weak var AdditionTableView: UITableView!
     private let AdditionalVCPresenter = AdditionsPresenter(services: Services())
-   
     @IBOutlet weak var notesTF: UITextField!
     @IBOutlet weak var oneImageView: UIImageView!
     @IBOutlet weak var price: UILabel!
     fileprivate let cellIdentifier = "AdditionsCell"
-   
+    fileprivate let HeaderIdentifier = "HeaderCell"
     var restaurant_id = Int()
     var total = Double()
     var meal_id = Int()
        var cartItems = [CartModelItem]()
        var currency = String()
-    var mealDetails = [RestaurantMeal]() {
+    var mealDetails:  CollectionDataClass? {
         didSet {
             DispatchQueue.main.async {
                 self.AdditionTableView.reloadData()
@@ -34,9 +32,11 @@ class AdditionsVC: UIViewController {
         super.viewDidLoad()
         AdditionTableView.delegate = self
         AdditionTableView.dataSource = self
-        let headerView = UIView()
-        AdditionTableView.tableHeaderView = headerView
+        AdditionTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+      AdditionTableView.register(UINib(nibName: HeaderIdentifier, bundle: nil), forCellReuseIdentifier: HeaderIdentifier)
         AdditionalVCPresenter.setAdditionsViewDelegate(AdditionsViewDelegate: self)
+        AdditionalVCPresenter.showIndicator()
+        AdditionalVCPresenter.postMealDetails(meal_id: 10)
       
     }
     func handleGetCart() {
@@ -49,30 +49,7 @@ class AdditionsVC: UIViewController {
               displayMessage(title: "", message: "No Cart Yet", status: .error, forController: self)
           }
       }
-    @IBAction func mealSelection(_ radioButton: DLRadioButton) {
-        switch radioButton.tag {
-               case 1:
-                   print("")
-               case 2:
-                   print("")
-               default:
-                   break
-               }
-          
-    }
-    
-    @IBAction func selectDrink(_ radioButton: DLRadioButton) {
-        switch radioButton.tag {
-               case 1:
-                   print("")
-               case 2:
-                   print("")
-               default:
-                   break
-               }
-         
-    }
-    
+ 
     @IBAction func sideMenu(_ sender: UIBarButtonItem) {
         self.setupSideMenu()
     }
@@ -82,29 +59,51 @@ class AdditionsVC: UIViewController {
     }
     
     @IBAction func confirm(_ sender: UIButton) {
-        AdditionalVCPresenter.showIndicator()
-        AdditionalVCPresenter.postMealDetails(meal_id: meal_id)
-        
-        
-    }
-    
+       
+//                  var modifiedCartItems = self.cartItems
+//                  var totalPrice = Double()
+//                  var item = CartModelItem(itemId: self.mealDetails[indexPath.row].itemID ?? 0, itemNameEn: item_type.nameEn ?? "", itemNameAr: item_type.nameAr ?? "", itemPrice: 50, itemSize: "Large", itemQuantity: 1, itemImageURL: item_type.image ?? "", itemCurrency: "SAR")
+//                  if modifiedCartItems.contains(where: {$0.itemId == item.itemId}) {
+//                      item.itemQuantity! += 1
+//                  } else {
+//                      modifiedCartItems.append(item)
+//                  }
+//                  for item in modifiedCartItems {
+//                      totalPrice += (item.itemPrice ?? 0.0) * (Double(item.itemQuantity ?? 1))
+//                  }
+//                  self.total = totalPrice
+//                  let cartModel = CartModel(items: modifiedCartItems, totalPrice: self.total, cartNotes: "", Currency: self.currency)
+//
+//                  CartCoreData.SaveCart(cart_data: cartModel)
+           }
     
 }
 extension AdditionsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mealDetails.count
+        return mealDetails?.collection?[section].option?.count ?? 0
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return mealDetails?.collection?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CartCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AdditionsCell else {return UITableViewCell()}
+        cell
+        
         return cell
         
     }
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HeaderIdentifier) as? HeaderCell else {return UITableViewCell()}
+        cell.config(mealName: mealDetails?.collection?[section].nameAr ?? "" )
+        
+            return cell
+    }
+   
     
 }
 extension AdditionsVC: AdditionsViewDelegate {
-    func MealDetailsResult(_ error: Error?, _ details: [RestaurantMeal]?) {
+    func MealDetailsResult(_ error: Error?, _ details: CollectionDataClass?) {
         if let lists = details {
             self.mealDetails = lists
         }

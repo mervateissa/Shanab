@@ -74,10 +74,18 @@ class HomeVC: UIViewController {
         print("imageURL Count : \(self.imageURLS.count)")
         if self.imageURLS.count != 0 {
             for imageURL in imageURLS {
-                let url = URL(string:  (imageURL.image ?? ""))
-                print(url!)
-                let image = UIImage.init(url: url)!
-                imageS.append(ImageSource(image: image))
+                if (imageURL.image?.contains("http"))! {
+                    guard let url = URL(string: (imageURL.image ?? "")) else {return imageS}
+                    print(url)
+                    let image = UIImage.init(url: url)!
+                    imageS.append(ImageSource(image: image))
+                } else {
+                    guard let url = URL(string: BASE_URL + "/" + (imageURL.image ?? "")) else {return imageS}
+                    print(url)
+                    let image = UIImage.init(url: url)!
+                    imageS.append(ImageSource(image: image))
+                }
+                
                 
             }
         }
@@ -125,16 +133,16 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifierTableView, for: indexPath) as? ValiableResturantCell else {return UITableViewCell()}
-        cell.config(name: restaurants[indexPath.row].nameAr ?? "", time: restaurants[indexPath.row].updatedAt ?? "", rate: Double(restaurants[indexPath.row].rate ?? 0), price: 0, imagePath: restaurants[indexPath.row].image ?? "")
+        cell.config(name: restaurants[indexPath.row].nameAr ?? "", time: restaurants[indexPath.row].updatedAt ?? "", rate: Double(restaurants[indexPath.row].rate ?? 0), price: 0, imagePath: restaurants[indexPath.row].image ?? "", type: "")
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-          guard let details = UIStoryboard(name: "Products", bundle: nil).instantiateViewController(withIdentifier: "RestaurantDetailsVC") as? RestaurantDetailsVC else { return }
-              details.restaurant_id =  self.restaurants[indexPath.row].id ?? 0
-                   self.navigationController?.pushViewController(details, animated: true)
+        guard let details = UIStoryboard(name: "Products", bundle: nil).instantiateViewController(withIdentifier: "RestaurantDetailsVC") as? RestaurantDetailsVC else { return }
+        details.restaurant_id =  self.restaurants[indexPath.row].id ?? 0
+        self.navigationController?.pushViewController(details, animated: true)
     }
     
     

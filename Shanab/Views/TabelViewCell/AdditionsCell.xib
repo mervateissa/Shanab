@@ -21,33 +21,25 @@
                         <rect key="frame" x="13.5" y="0.0" width="240" height="89.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GIo-AD-Y34">
-                                <rect key="frame" x="18" y="10" width="204" height="76"/>
+                                <rect key="frame" x="12" y="5" width="216" height="80.5"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qr-Nk-ZZU" customClass="DLRadioButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="204" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="216" height="80.5"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Pepsci">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconOnRight" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="indicatorSize">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iconSize">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="selection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f2G-pu-6lc"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzp-n3-Kdb" customClass="DLRadioButton">
-                                        <rect key="frame" x="0.0" y="27" width="204" height="22"/>
-                                        <state key="normal" title="Pepsci">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="selection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Ax-Zw-Da9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVA-pf-KTx" customClass="DLRadioButton">
-                                        <rect key="frame" x="0.0" y="54" width="204" height="22"/>
-                                        <state key="normal" title="Pepsci">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="selection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FFT-oU-gYI"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -55,10 +47,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="GIo-AD-Y34" firstAttribute="height" secondItem="tUO-St-zFa" secondAttribute="height" multiplier="0.85" id="2O9-na-Tfb"/>
-                            <constraint firstItem="GIo-AD-Y34" firstAttribute="top" secondItem="tUO-St-zFa" secondAttribute="top" constant="10" id="ir2-fZ-qCK"/>
+                            <constraint firstItem="GIo-AD-Y34" firstAttribute="height" secondItem="tUO-St-zFa" secondAttribute="height" multiplier="0.9" id="2O9-na-Tfb"/>
+                            <constraint firstItem="GIo-AD-Y34" firstAttribute="top" secondItem="tUO-St-zFa" secondAttribute="top" constant="5" id="ir2-fZ-qCK"/>
                             <constraint firstItem="GIo-AD-Y34" firstAttribute="centerX" secondItem="tUO-St-zFa" secondAttribute="centerX" id="k5t-9e-GIQ"/>
-                            <constraint firstItem="GIo-AD-Y34" firstAttribute="width" secondItem="tUO-St-zFa" secondAttribute="width" multiplier="0.85" id="uH8-VP-Yd9"/>
+                            <constraint firstItem="GIo-AD-Y34" firstAttribute="width" secondItem="tUO-St-zFa" secondAttribute="width" multiplier="0.9" id="uH8-VP-Yd9"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -70,6 +62,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="optionBN" destination="3Qr-Nk-ZZU" id="z8V-zU-bHU"/>
+            </connections>
             <point key="canvasLocation" x="32.608695652173914" y="145.98214285714286"/>
         </tableViewCell>
     </objects>

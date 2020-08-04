@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  Shanab
+
+  Created by Macbook on 7/6/20.
+  Copyright © 2020 Dtag. All rights reserved.
+*/
+"lang" = "en";
+"Home" = "Home";
+"Sections" = "Sections";
+"Cart" = "Cart";
+"Reservations" = "Reservations";
+"Order List" = "Order List";
+"Profile" = "Profile";
+"Favorit Restaurants" = "Favorit Restaurants";
+"Favorite Meals" = "Favorite Meals";
+"Contact Us" = "Contact Us";
+"TermsAndConditions " = "Terms And Conditions";
+"Setting" = "Settings";
+
+

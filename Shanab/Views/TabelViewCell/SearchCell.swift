@@ -19,11 +19,17 @@ class SearchCell: UITableViewCell {
         super.awakeFromNib()
       
     }
-    func config(name: String, searchImage: UIImage, section: String, price: String) {
-        
+    func config(name: String, imagePath: String, section: String, price: String) {
+        if imagePath != "" {
+                  guard let imageURL = URL(string: imagePath) else { return }
+                  self.searchImage.kf.setImage(with: imageURL)
+              } else {
+                  self.searchImage.image = #imageLiteral(resourceName: "shanab loading")
+              }
     self.familyName.text = name
     self.price.text = price
     self.section.text = section
+      
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

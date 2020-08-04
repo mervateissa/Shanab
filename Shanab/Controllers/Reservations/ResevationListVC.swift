@@ -22,7 +22,6 @@ class ResevationListVC: UIViewController {
         }
     }
     fileprivate let cellIdentifier = "ReservationListCell"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         reservationListTableView.delegate = self
@@ -41,7 +40,7 @@ class ResevationListVC: UIViewController {
         self.reservationListButton.backgroundColor = #colorLiteral(red: 0.992049396, green: 0.9922187924, blue: 0.9920386672, alpha: 1)
         self.cancelReservation.backgroundColor = #colorLiteral(red: 0.9195484519, green: 0.2682709396, blue: 0.21753335, alpha: 1)
         ReservationListVCPresenter.showIndicator()
-        ReservationListVCPresenter.postReservationget(cancelation: 1)
+    ReservationListVCPresenter.postReservationget(cancelation: 1)
     }
 }
 extension ResevationListVC: UITableViewDataSource, UITableViewDelegate {

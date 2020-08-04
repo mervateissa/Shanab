@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="117" height="66"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="العروض" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejd-tb-cel">
-                                <rect key="frame" x="17.5" y="26.5" width="82" height="33"/>
+                                <rect key="frame" x="17.5" y="21.5" width="82" height="33"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -30,7 +30,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ejd-tb-cel" firstAttribute="centerX" secondItem="Tjs-zB-K1p" secondAttribute="centerX" id="0KN-yQ-aca"/>
-                            <constraint firstItem="ejd-tb-cel" firstAttribute="centerY" secondItem="Tjs-zB-K1p" secondAttribute="centerY" constant="10" id="Clb-U5-wp5"/>
+                            <constraint firstItem="ejd-tb-cel" firstAttribute="centerY" secondItem="Tjs-zB-K1p" secondAttribute="centerY" constant="5" id="Clb-U5-wp5"/>
                             <constraint firstItem="ejd-tb-cel" firstAttribute="height" secondItem="Tjs-zB-K1p" secondAttribute="height" multiplier="0.5" id="Fqt-LA-LnC"/>
                             <constraint firstItem="ejd-tb-cel" firstAttribute="width" secondItem="Tjs-zB-K1p" secondAttribute="width" multiplier="0.7" id="GL0-Sa-ISX"/>
                         </constraints>

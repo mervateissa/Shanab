@@ -22,7 +22,13 @@ class UserProfileChangePasswordVC: UIViewController {
 
     }
     
-
+    @IBAction func strongPassword(_ sender: UIButton) {
+        let sb = UIStoryboard(name: "PopUps", bundle: nil).instantiateViewController(withIdentifier: "StrongPasswordPopupVC")
+               sb.modalPresentationStyle = .overCurrentContext
+               sb.modalTransitionStyle = .crossDissolve
+               self.present(sb, animated: true, completion: nil)
+    }
+    
     @IBAction func save(_ sender: UIButton) {
          guard self.validate() else { return }
         guard let password = self.passwordTF.text else {return}

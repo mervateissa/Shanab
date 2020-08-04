@@ -29,7 +29,7 @@ class RestaurantCell: UITableViewCell {
             guard let imageURL = URL(string: imagePath) else { return }
             self.restaurantImage.kf.setImage(with: imageURL)
         } else {
-            self.restaurantImage.image = #imageLiteral(resourceName: "logo-1")
+            self.restaurantImage.image = #imageLiteral(resourceName: "shanab loading")
         }
         
         self.restaurantNameLB.text = name

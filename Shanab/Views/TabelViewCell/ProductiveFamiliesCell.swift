@@ -10,9 +10,11 @@ import UIKit
 import Cosmos
 import Kingfisher
 class ProductiveFamiliesCell: UITableViewCell {
+     var addToFavorite: (() -> Void)? = nil
     @IBOutlet weak var staticLB: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var feesStatic: UILabel!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var cosmos: CosmosView!
     @IBOutlet weak var familyName: UILabel!
@@ -22,9 +24,14 @@ class ProductiveFamiliesCell: UITableViewCell {
         productImage.setRounded()
         staticLB.adjustsFontSizeToFitWidth = true
         staticLB.minimumScaleFactor = 0.5
+        feesStatic.adjustsFontSizeToFitWidth = true
+        feesStatic.minimumScaleFactor = 0.5
         
     }
     
+    @IBAction func addToFavorite(_ sender: UIButton) {
+        addToFavorite?()
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -35,7 +42,7 @@ class ProductiveFamiliesCell: UITableViewCell {
             guard let imageURL = URL(string: imagePath) else { return }
             self.productImage.kf.setImage(with: imageURL)
         } else {
-            self.productImage.image = #imageLiteral(resourceName: "logo")
+            self.productImage.image = #imageLiteral(resourceName: "shanab loading")
         }
         
         self.productName.text = productName

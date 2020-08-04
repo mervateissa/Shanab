@@ -96,7 +96,6 @@ extension MealDetailsVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
          guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectinCellIdentifier, for: indexPath) as? RestaurantDetailsCell else {return UICollectionViewCell()}
         cell.config(name: categoriesArr[indexPath.row].CategoeryName, selected: categoriesArr[indexPath.row].NameSelected)
-                       cell.selectedBackgroundView?.backgroundColor = .clear
                 return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

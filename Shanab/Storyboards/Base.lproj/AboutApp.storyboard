@@ -212,37 +212,17 @@
                                     <constraint firstItem="Dkh-yD-3QL" firstAttribute="centerX" secondItem="oCW-hJ-JcU" secondAttribute="centerX" id="kbP-rC-QZu"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-sj-ioo">
-                                <rect key="frame" x="41.5" y="715.5" width="331" height="89.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYu-Xp-0Jn" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="97" height="89.5"/>
-                                        <state key="normal" image="twitter"/>
-                                        <connections>
-                                            <action selector="twitterBn:" destination="LvY-1L-I3b" eventType="touchUpInside" id="U81-U1-54w"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZt-EJ-vpG" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
-                                        <rect key="frame" x="117" y="0.0" width="97" height="89.5"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="snapchat">
-                                            <color key="titleColor" red="0.99910300969999999" green="0.92058563230000001" blue="0.0015383550200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="snapChatBn:" destination="LvY-1L-I3b" eventType="touchUpInside" id="cea-tJ-02t"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qEA-ff-n7m" customClass="CustomButtons" customModule="Shanab" customModuleProvider="target">
-                                        <rect key="frame" x="234" y="0.0" width="97" height="89.5"/>
-                                        <state key="normal" image="facebook">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="facebookBn:" destination="LvY-1L-I3b" eventType="touchUpInside" id="lh0-E3-jFa"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dCy-Or-jez">
+                                <rect key="frame" x="10.5" y="730.5" width="393" height="80.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mRm-Yx-rEf">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -253,24 +233,24 @@
                             <constraint firstItem="oCW-hJ-JcU" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="680-aq-44J"/>
                             <constraint firstItem="4V8-Z8-a98" firstAttribute="height" secondItem="WRY-dB-YKr" secondAttribute="height" multiplier="0.1" id="8P2-8a-qfq"/>
                             <constraint firstItem="fs6-l5-hm4" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="8RB-K9-EbJ"/>
+                            <constraint firstItem="dCy-Or-jez" firstAttribute="top" secondItem="oCW-hJ-JcU" secondAttribute="bottom" constant="40" id="A1T-eN-2zA"/>
                             <constraint firstItem="a1K-6D-f3I" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" id="Dcb-VI-VI5"/>
                             <constraint firstItem="4V8-Z8-a98" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" id="FMJ-Wp-Zcn"/>
                             <constraint firstItem="bqD-0W-ts0" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="JGv-uj-uVq"/>
                             <constraint firstItem="oCW-hJ-JcU" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" id="JKp-tN-ypN"/>
                             <constraint firstItem="fs6-l5-hm4" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" id="PVJ-F4-JcX"/>
                             <constraint firstItem="bqD-0W-ts0" firstAttribute="height" secondItem="WRY-dB-YKr" secondAttribute="height" multiplier="0.1" id="S12-sw-pLP"/>
-                            <constraint firstItem="eaw-sj-ioo" firstAttribute="height" secondItem="WRY-dB-YKr" secondAttribute="height" multiplier="0.1" id="SsJ-gu-SZO"/>
                             <constraint firstItem="bqD-0W-ts0" firstAttribute="top" secondItem="a1K-6D-f3I" secondAttribute="bottom" constant="5" id="Tzu-Bc-9h4"/>
                             <constraint firstItem="bqD-0W-ts0" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" id="U1g-dC-wMl"/>
                             <constraint firstItem="a1K-6D-f3I" firstAttribute="top" secondItem="4V8-Z8-a98" secondAttribute="bottom" constant="5" id="Ui4-cR-Y8g"/>
+                            <constraint firstItem="dCy-Or-jez" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" multiplier="0.95" id="Yjt-aG-hjQ"/>
                             <constraint firstItem="4V8-Z8-a98" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="ZXX-Mv-UoK"/>
                             <constraint firstItem="Axa-kq-YpN" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" multiplier="0.99" id="ZpM-Lb-QsE"/>
                             <constraint firstItem="4V8-Z8-a98" firstAttribute="top" secondItem="fs6-l5-hm4" secondAttribute="bottom" constant="5" id="gt7-hB-Ba2"/>
                             <constraint firstItem="a1K-6D-f3I" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="gy9-gB-PrP"/>
                             <constraint firstItem="fs6-l5-hm4" firstAttribute="top" secondItem="Axa-kq-YpN" secondAttribute="bottom" constant="5" id="hfB-cC-8dx"/>
-                            <constraint firstItem="eaw-sj-ioo" firstAttribute="top" secondItem="oCW-hJ-JcU" secondAttribute="bottom" constant="25" id="mSe-kM-VDh"/>
-                            <constraint firstItem="eaw-sj-ioo" firstAttribute="width" secondItem="WRY-dB-YKr" secondAttribute="width" multiplier="0.8" id="pDe-bY-F3m"/>
-                            <constraint firstItem="eaw-sj-ioo" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="qPy-kP-g8y"/>
+                            <constraint firstItem="dCy-Or-jez" firstAttribute="height" secondItem="WRY-dB-YKr" secondAttribute="height" multiplier="0.09" id="kVc-tW-Gyf"/>
+                            <constraint firstItem="dCy-Or-jez" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="mQe-tZ-IUJ"/>
                             <constraint firstItem="a1K-6D-f3I" firstAttribute="height" secondItem="WRY-dB-YKr" secondAttribute="height" multiplier="0.1" id="tyj-to-UAY"/>
                             <constraint firstItem="Axa-kq-YpN" firstAttribute="centerX" secondItem="wjf-HJ-Jc1" secondAttribute="centerX" id="wV6-el-1Qg"/>
                             <constraint firstItem="oCW-hJ-JcU" firstAttribute="top" secondItem="bqD-0W-ts0" secondAttribute="bottom" constant="5" id="xkd-yk-GT3"/>
@@ -285,6 +265,7 @@
                         <outlet property="messageDetails" destination="qi9-ML-m1D" id="5le-XR-OGZ"/>
                         <outlet property="name" destination="yN0-bi-4dW" id="3ds-dE-atG"/>
                         <outlet property="phone" destination="utC-Yi-JCy" id="DTA-LA-vHb"/>
+                        <outlet property="socialMediaCollectionView" destination="dCy-Or-jez" id="q7h-Aa-PQ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCE-Tx-z2P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -500,8 +481,5 @@
     </scenes>
     <resources>
         <image name="arrow-down-filled-triangle" width="12" height="12"/>
-        <image name="facebook" width="25" height="25"/>
-        <image name="snapchat" width="25" height="25"/>
-        <image name="twitter" width="24" height="24"/>
     </resources>
 </document>
