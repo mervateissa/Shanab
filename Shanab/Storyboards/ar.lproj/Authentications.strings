@@ -5,17 +5,20 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "3Yk-pU-Yvb"; */
 "3Yk-pU-Yvb.placeholder" = "كلمة المرور";
 
+/* Class = "UIButton"; normalTitle = "Login as Service Provider"; ObjectID = "4aP-Te-LOX"; */
+"4aP-Te-LOX.normalTitle" = "سجل كمذود خدمة";
+
 /* Class = "UINavigationItem"; title = "Login"; ObjectID = "6P1-FL-GxX"; */
 "6P1-FL-GxX.title" = "تسجيل الدخول";
 
-/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "6ft-8V-RGm"; */
-"6ft-8V-RGm.placeholder" = "اسم المستخدم";
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "6ft-8V-RGm"; */
+"6ft-8V-RGm.placeholder" = "البريد الالكتروني";
 
 /* Class = "UIButton"; normalTitle = "Login as A Driver"; ObjectID = "8Wr-vo-9db"; */
-"8Wr-vo-9db.normalTitle" = "تسجيل الدخول كسائق";
+"8Wr-vo-9db.normalTitle" = "سجل كمندوب";
 
 /* Class = "UITextField"; placeholder = "User Name"; ObjectID = "A6W-ij-wnQ"; */
-"A6W-ij-wnQ.placeholder" = "اسم المستخدم";
+"A6W-ij-wnQ.placeholder" = "البريد الالكتروني";
 
 /* Class = "UITextField"; placeholder = "Phone"; ObjectID = "CC6-g7-NGt"; */
 "CC6-g7-NGt.placeholder" = "الهاتف";
@@ -24,10 +27,10 @@
 "Dvh-hz-fuz.placeholder" = "العنوان";
 
 /* Class = "UIButton"; normalTitle = "No Account? Register now"; ObjectID = "EKc-o4-TtM"; */
-"EKc-o4-TtM.normalTitle" = "ليس لديك حساب? سجل الان";
+"EKc-o4-TtM.normalTitle" = "ليس لديك حساب ؟ قم بالتسجيل الان";
 
 /* Class = "UIButton"; normalTitle = "Forget Password?"; ObjectID = "FSL-zA-eeq"; */
-"FSL-zA-eeq.normalTitle" = "هل نسيت كلمة السر?";
+"FSL-zA-eeq.normalTitle" = "نسيت كلمة المرور؟";
 
 /* Class = "UITextField"; placeholder = "Address"; ObjectID = "Fo3-u7-3E4"; */
 "Fo3-u7-3E4.placeholder" = "العنوان";
@@ -36,19 +39,19 @@
 "GIl-1I-gxK.text" = "حساب جديد";
 
 /* Class = "UITextField"; placeholder = "User Name"; ObjectID = "GLD-GW-teO"; */
-"GLD-GW-teO.placeholder" = "اسم المستخدم";
+"GLD-GW-teO.placeholder" = "البريد الالكتروني";
 
 /* Class = "UINavigationItem"; title = "Driver Registeration"; ObjectID = "HXW-4j-EwN"; */
-"HXW-4j-EwN.title" = "تسجيل الدخول كسائق";
+"HXW-4j-EwN.title" = "Driver Registeration";
 
 /* Class = "UIButton"; normalTitle = "No Account? Register now"; ObjectID = "Kw6-8e-eyG"; */
-"Kw6-8e-eyG.normalTitle" = "ليس لديك حساب? سجل الان";
+"Kw6-8e-eyG.normalTitle" = "ليس لديك حساب ؟ قم بالتسجيل الان";
 
 /* Class = "UIButton"; normalTitle = "Register"; ObjectID = "RZI-kK-CIH"; */
-"RZI-kK-CIH.normalTitle" = "تسجيل البيانات";
+"RZI-kK-CIH.normalTitle" = "تسجيل";
 
 /* Class = "UIButton"; normalTitle = "Forget Password?"; ObjectID = "ReX-bE-9eT"; */
-"ReX-bE-9eT.normalTitle" = "هل نسيت كلمة السر?";
+"ReX-bE-9eT.normalTitle" =  "نسيت كلمة المرور؟";
 
 /* Class = "UILabel"; text = "New Account"; ObjectID = "Tdh-1l-viX"; */
 "Tdh-1l-viX.text" = "حساب جديد";
@@ -57,8 +60,7 @@
 "Y0j-cT-JY3.placeholder" = "تاكيد كلمة المرور";
 
 /* Class = "UIButton"; normalTitle = "No Account? Register now"; ObjectID = "ZxY-SR-EXc"; */
-"ZxY-SR-EXc.normalTitle" = "ليس لديك حساب? سجل الان";
-
+"ZxY-SR-EXc.normalTitle" = "ليس لديك حساب ؟ قم بالتسجيل الان";
 /* Class = "UIButton"; normalTitle = "Attach the documents"; ObjectID = "dpn-xa-xgV"; */
 "dpn-xa-xgV.normalTitle" = "ارفاق المستندات";
 
@@ -84,7 +86,7 @@
 "nWE-hM-phy.placeholder" = "كلمة المرور";
 
 /* Class = "UINavigationItem"; title = "Registeration"; ObjectID = "o6a-U3-njh"; */
-"o6a-U3-njh.title" = "تسجيل البيانات";
+"o6a-U3-njh.title" = "Registeration";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "rZf-kX-2Yx"; */
 "rZf-kX-2Yx.placeholder" = "البريد الالكتروني";
@@ -93,10 +95,10 @@
 "urn-Jp-9LG.normalTitle" = "تسجيل";
 
 /* Class = "UINavigationItem"; title = "Login Driver"; ObjectID = "wNb-Ji-hwY"; */
-"wNb-Ji-hwY.title" = " تسجيل دخول السائق";
+"wNb-Ji-hwY.title" = "Login Driver";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "wXI-xR-ef3"; */
 "wXI-xR-ef3.placeholder" = "كلمة المرور";
 
 /* Class = "UIButton"; normalTitle = "No Account? Register now"; ObjectID = "z1G-9H-DYl"; */
-"z1G-9H-DYl.normalTitle" = "ليس لديك حساب? سجل الان";
+"z1G-9H-DYl.normalTitle" = "ليس لديك حساب ؟ قم بالتسجيل الان";

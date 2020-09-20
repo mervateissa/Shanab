@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,36 +15,48 @@
         <!--Side MenuVC-->
         <scene sceneID="gfj-Hi-9Cf">
             <objects>
-                <viewController storyboardIdentifier="SideMenuVC" id="qLR-4n-FYT" customClass="SideMenuVC" customModule="Shanab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SideMenuVC" id="qLR-4n-FYT" customClass="SideMenuVC" customModule="Shnp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jUx-Hu-0rz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-Rn-XIG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="118.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="134.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vlS-fx-BtC">
-                                        <rect key="frame" x="3.5" y="5" width="405.5" height="93.5"/>
+                                        <rect key="frame" x="10.5" y="35" width="393" height="94"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile pic" translatesAutoresizingMaskIntoConstraints="NO" id="rRa-C1-v5t">
-                                                <rect key="frame" x="0.0" y="1.5" width="90" height="90"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile pic" translatesAutoresizingMaskIntoConstraints="NO" id="rRa-C1-v5t" customClass="CustomImageView" customModule="Shnp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="4.5" width="85" height="85"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="90" id="cde-Ey-Dll"/>
-                                                    <constraint firstAttribute="width" constant="90" id="wOr-7X-BnJ"/>
+                                                    <constraint firstAttribute="height" constant="85" id="cde-Ey-Dll"/>
+                                                    <constraint firstAttribute="width" constant="85" id="wOr-7X-BnJ"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="42.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-tC-3j6">
-                                                <rect key="frame" x="90" y="0.0" width="315.5" height="93"/>
+                                                <rect key="frame" x="85" y="0.0" width="308" height="94"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-Ay-PbN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="315.5" height="44"/>
-                                                        <color key="backgroundColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="308" height="28"/>
+                                                        <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5i3-ME-OcI">
+                                                        <rect key="frame" x="0.0" y="33" width="308" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEi-hI-URT">
-                                                        <rect key="frame" x="0.0" y="49" width="315.5" height="44"/>
+                                                        <rect key="frame" x="0.0" y="66" width="308" height="28"/>
                                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="17"/>
                                                         <state key="normal" title="Edit">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,18 +69,28 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="progress bar-1" translatesAutoresizingMaskIntoConstraints="NO" id="E1b-Xh-fUp">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="134.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="vlS-fx-BtC" firstAttribute="width" secondItem="Bge-Rn-XIG" secondAttribute="width" multiplier="0.98" id="Ima-yw-NWb"/>
-                                    <constraint firstItem="vlS-fx-BtC" firstAttribute="top" secondItem="Bge-Rn-XIG" secondAttribute="top" constant="5" id="KtT-kb-U12"/>
-                                    <constraint firstAttribute="bottom" secondItem="vlS-fx-BtC" secondAttribute="bottom" constant="20" id="MaZ-33-Cx9"/>
-                                    <constraint firstAttribute="trailing" secondItem="vlS-fx-BtC" secondAttribute="trailing" constant="5" id="sMW-qf-6Dz"/>
+                                    <constraint firstItem="vlS-fx-BtC" firstAttribute="centerX" secondItem="Bge-Rn-XIG" secondAttribute="centerX" id="DdI-Mi-4vj"/>
+                                    <constraint firstItem="E1b-Xh-fUp" firstAttribute="width" secondItem="Bge-Rn-XIG" secondAttribute="width" id="JP9-2j-d65"/>
+                                    <constraint firstItem="vlS-fx-BtC" firstAttribute="height" secondItem="Bge-Rn-XIG" secondAttribute="height" multiplier="0.7" id="RRm-ir-waK"/>
+                                    <constraint firstItem="E1b-Xh-fUp" firstAttribute="centerX" secondItem="Bge-Rn-XIG" secondAttribute="centerX" id="YCu-t0-Bmt"/>
+                                    <constraint firstItem="vlS-fx-BtC" firstAttribute="width" secondItem="Bge-Rn-XIG" secondAttribute="width" multiplier="0.949275" id="cJR-lE-oI0"/>
+                                    <constraint firstItem="E1b-Xh-fUp" firstAttribute="centerY" secondItem="Bge-Rn-XIG" secondAttribute="centerY" id="d6v-8l-Xej"/>
+                                    <constraint firstItem="E1b-Xh-fUp" firstAttribute="height" secondItem="Bge-Rn-XIG" secondAttribute="height" id="rdp-NR-3wT"/>
+                                    <constraint firstItem="vlS-fx-BtC" firstAttribute="top" secondItem="Bge-Rn-XIG" secondAttribute="top" constant="35" id="t6t-4W-Eza"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dtQ-5k-ydh">
-                                <rect key="frame" x="0.0" y="188" width="414" height="615.5"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dtQ-5k-ydh">
+                                <rect key="frame" x="0.0" y="126" width="414" height="677.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="separatorColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="qLR-4n-FYT" id="d69-b3-fdo"/>
                                     <outlet property="delegate" destination="qLR-4n-FYT" id="ShB-mb-8uy"/>
@@ -82,7 +103,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="410" height="31"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="20"/>
                                         <state key="normal" title="Login">
-                                            <color key="titleColor" red="0.99204939599999997" green="0.99221879239999999" blue="0.9920386672" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="qLR-4n-FYT" eventType="touchUpInside" id="x8G-uW-atd"/>
@@ -90,10 +111,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xB5-yX-fgD">
                                         <rect key="frame" x="0.0" y="31" width="410" height="31.5"/>
-                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="LogOut" image="logout">
-                                            <color key="titleColor" red="0.99204939599999997" green="0.99221879239999999" blue="0.9920386672" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                        <state key="normal" title="LogOut" image="logout-1">
+                                            <color key="titleColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="LogOut:" destination="qLR-4n-FYT" eventType="touchUpInside" id="Bon-YY-k67"/>
@@ -105,18 +125,18 @@
                         <color key="backgroundColor" red="0.2117912471" green="0.2075385451" blue="0.2240747511" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SXo-Pf-zlk" firstAttribute="height" secondItem="jUx-Hu-0rz" secondAttribute="height" multiplier="0.07" id="1xk-Mi-xgQ"/>
-                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="height" secondItem="jUx-Hu-0rz" secondAttribute="height" multiplier="0.132" id="AtS-mm-20C"/>
                             <constraint firstAttribute="bottom" secondItem="SXo-Pf-zlk" secondAttribute="bottom" constant="10" id="E84-7G-Tbb"/>
                             <constraint firstItem="dtQ-5k-ydh" firstAttribute="leading" secondItem="EXB-6b-HdG" secondAttribute="leading" id="ELn-7l-mSb"/>
                             <constraint firstItem="dtQ-5k-ydh" firstAttribute="trailing" secondItem="EXB-6b-HdG" secondAttribute="trailing" id="Fe7-cy-syb"/>
-                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="width" secondItem="jUx-Hu-0rz" secondAttribute="width" id="T5o-Bg-Yac"/>
-                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="top" secondItem="EXB-6b-HdG" secondAttribute="top" id="UYC-zb-Dqq"/>
                             <constraint firstItem="SXo-Pf-zlk" firstAttribute="width" secondItem="jUx-Hu-0rz" secondAttribute="width" multiplier="0.99" id="Ufu-89-qkq"/>
-                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="centerX" secondItem="EXB-6b-HdG" secondAttribute="centerX" id="Xv9-te-tVa"/>
+                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="width" secondItem="jUx-Hu-0rz" secondAttribute="width" id="VZk-RE-6MB"/>
+                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="height" secondItem="jUx-Hu-0rz" secondAttribute="height" multiplier="0.15" id="cPG-eK-ihK"/>
                             <constraint firstItem="SXo-Pf-zlk" firstAttribute="top" secondItem="dtQ-5k-ydh" secondAttribute="bottom" constant="20" id="faZ-a3-hur"/>
                             <constraint firstItem="dtQ-5k-ydh" firstAttribute="centerX" secondItem="EXB-6b-HdG" secondAttribute="centerX" id="iRe-4M-KIx"/>
                             <constraint firstItem="SXo-Pf-zlk" firstAttribute="centerX" secondItem="EXB-6b-HdG" secondAttribute="centerX" id="o1T-KY-iG6"/>
-                            <constraint firstItem="dtQ-5k-ydh" firstAttribute="top" secondItem="EXB-6b-HdG" secondAttribute="top" constant="100" id="vfo-D7-n0e"/>
+                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="top" secondItem="jUx-Hu-0rz" secondAttribute="top" id="tOm-BB-dAg"/>
+                            <constraint firstItem="dtQ-5k-ydh" firstAttribute="top" secondItem="EXB-6b-HdG" secondAttribute="top" constant="82" id="vfo-D7-n0e"/>
+                            <constraint firstItem="Bge-Rn-XIG" firstAttribute="centerX" secondItem="EXB-6b-HdG" secondAttribute="centerX" id="wnJ-yf-4xy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EXB-6b-HdG"/>
                     </view>
@@ -124,6 +144,7 @@
                     <connections>
                         <outlet property="SideMenuTableView" destination="dtQ-5k-ydh" id="jD6-G4-mFC"/>
                         <outlet property="SignOut" destination="xB5-yX-fgD" id="l7g-zc-Pot"/>
+                        <outlet property="StatusLB" destination="5i3-ME-OcI" id="Qcy-sy-QQP"/>
                         <outlet property="editBN" destination="DEi-hI-URT" id="JYC-vV-3B4"/>
                         <outlet property="name" destination="ENG-Ay-PbN" id="e2K-7g-VjI"/>
                         <outlet property="profilePic" destination="rRa-C1-v5t" id="h1b-j5-TgA"/>
@@ -137,10 +158,9 @@
         <!--Side Menu Navigation Controller-->
         <scene sceneID="Na7-FX-NAg">
             <objects>
-                <navigationController storyboardIdentifier="SideMenu" automaticallyAdjustsScrollViewInsets="NO" id="7SO-lL-n6c" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SideMenu" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7SO-lL-n6c" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cr2-eq-diQ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.91954845190000001" green="0.26827093959999998" blue="0.21753334999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -155,7 +175,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logout" width="18" height="18"/>
+        <image name="logout-1" width="25" height="25"/>
         <image name="profile pic" width="400" height="257.5"/>
+        <image name="progress bar-1" width="303.5" height="70.5"/>
     </resources>
 </document>

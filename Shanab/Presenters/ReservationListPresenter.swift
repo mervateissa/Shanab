@@ -10,7 +10,7 @@ import Foundation
 import SVProgressHUD
 protocol ReservationListViewDelegate: class {
     func ReservationListResult(_ error: Error?, _ list: [reservationList]?)
-    func CancelReservationResult(_ error: Error?, _ reservation: SuccessError_Model?)
+    
 }
 class ReservationListPresenter {
     private let services: Services
@@ -33,10 +33,5 @@ class ReservationListPresenter {
             self?.dismissIndicator()
         }
     }
-    func postCancelReservation(id: Int) {
-        services.postCancelReservation(id: id) {[weak self] (error: Error?, reservation: SuccessError_Model?) in
-            self?.ReservationListViewDelegate?.CancelReservationResult(error, reservation)
-            self?.dismissIndicator()
-        }
-    }
+   
 }

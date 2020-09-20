@@ -88,6 +88,10 @@ class RegisterationVC: UIViewController {
             print("Password not match")
         }
     }
+    @IBAction func backButton(_ sender: Any) {
+    guard let sb = UIStoryboard(name: "Authentications", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginVC else {return}
+    self.navigationController?.pushViewController(sb, animated: true)
+    }
 }
 extension RegisterationVC: UserRegisterViewDelegate {
     func LoginResult(_ error: Error?, _ result: SuccessError_Model?) {

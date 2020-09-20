@@ -13,6 +13,7 @@ protocol RestaurantDetailsViewDelegate: class {
     func RestaurantMealsResult(_ error: Error?, _ meals: [RestaurantMeal]?)
     func FavoriteResult(_ error: Error?, _ result: SuccessError_Model?)
     func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?)
+    func AddToCartResult(_ error: Error?, _ result: SuccessError_Model?)
 }
 class RestaurantDetailPresenter {
     private let services: Services
@@ -55,4 +56,10 @@ class RestaurantDetailPresenter {
             self?.dismissIndicator()
         }
     }
+    func postAddToCart(meal_id: Int, quantity: Int, message: String, options: [Int]) {
+               services.postAddToCart(meal_id: meal_id, quantity: quantity, message: message, options: options) {[weak self] (error: Error?, result: SuccessError_Model?) in
+                   self?.RestaurantDetailsViewDelegate?.AddToCartResult(error, result)
+                   self?.dismissIndicator()
+               }
+           }
 }

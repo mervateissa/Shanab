@@ -15,7 +15,7 @@ public func displayMessage(title: String, message: String, status: Theme, forCon
     success.configureTheme(status, iconStyle: .default )
     success.configureDropShadow()
     success.configureContent(title: title, body: message)
-    success.button?.isHidden = true
+    success.button?.isHidden = false
     var successConfig = SwiftMessages.defaultConfig
     successConfig.duration = .seconds(seconds: 1)
     successConfig.presentationStyle = .top

@@ -10,6 +10,8 @@ import UIKit
 class MyAddressesVC: UIViewController {
     private let cellIdentifier = "AddressCell"
     @IBOutlet weak var AddressesTableView: UITableView!
+    var total = Double()
+    var quantity = Int()
     private let AddressesListVCPresenter = AddressesListpresenter(services: Services())
     var Addresses = [Address]() {
         didSet {
@@ -22,10 +24,10 @@ class MyAddressesVC: UIViewController {
         super.viewDidLoad()
         AddressesTableView.delegate = self
         AddressesTableView.dataSource = self
-        AddressesTableView.rowHeight = UITableView.automaticDimension
-        AddressesTableView.estimatedRowHeight = UITableView.automaticDimension
-        AddressesTableView.rowHeight = UITableView.automaticDimension
-        AddressesTableView.estimatedRowHeight = UITableView.automaticDimension
+//        AddressesTableView.rowHeight = UITableView.automaticDimension
+//        AddressesTableView.estimatedRowHeight = UITableView.automaticDimension
+//        AddressesTableView.rowHeight = UITableView.automaticDimension
+//        AddressesTableView.estimatedRowHeight = UITableView.automaticDimension
         AddressesTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         AddressesListVCPresenter.setAddressesListViewDelegate(AddressesListViewDelegate: self)
         AddressesListVCPresenter.showIndicator()
@@ -34,6 +36,15 @@ class MyAddressesVC: UIViewController {
     @IBAction func AddAddressBn(_ sender: UIButton) {
         guard let Details = UIStoryboard(name: "Location", bundle: nil).instantiateViewController(withIdentifier: "LocationDetailsVC") as? LocationDetailsVC else { return }
         self.navigationController?.pushViewController(Details, animated: true)
+    }
+    
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+               self.navigationController?.pushViewController(details, animated: true)
+    }
+    
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
     }
 }
 
@@ -55,8 +66,12 @@ extension MyAddressesVC: UITableViewDelegate, UITableViewDataSource {
         return 90
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let Details = UIStoryboard(name: "PaymentGetWay", bundle: nil).instantiateViewController(withIdentifier: "RequestTypePopUpVC") as? RequestTypePopUpVC else { return }
-        self.navigationController?.pushViewController(Details, animated: true)
+       guard let sb = UIStoryboard(name: "PaymentGetWay", bundle: nil).instantiateViewController(withIdentifier: "RequestTypePopUpVC") as? RequestTypePopUpVC else { return }
+        sb.total = total
+        sb.quantity_cart = quantity
+        sb.address_id = Addresses[indexPath.row].id ?? 0
+       self.navigationController?.pushViewController(sb, animated: true)
+                 
     }
 }
 extension MyAddressesVC: AddressesListViewDelegate {

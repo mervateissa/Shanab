@@ -9,13 +9,12 @@
 import UIKit
 
 class CustomerProfileVC: UIViewController {
-    @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var ProfileCollectionView: UICollectionView!
     @IBOutlet weak var name: UITextField!
-    let picker = UIImagePickerController()
+//    let picker = UIImagePickerController()
     var profile = [User]()
     fileprivate let cellIdentifier = "ProfileCell"
     private let UserProfileVCPresenter = UserProfilePresenter(services: Services())
@@ -29,24 +28,38 @@ class CustomerProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserProfileVCPresenter.setUserProfileViewDelegate(UserProfileViewDelegate: self)
-        profilePic.isUserInteractionEnabled = true
-        profilePic.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(ProfileImageView(_:))))
+//        profilePic.isUserInteractionEnabled = true
+//        profilePic.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(ProfileImageView(_:))))
         ProfileCollectionView.delegate = self
         ProfileCollectionView.dataSource = self
         ProfileCollectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         UserProfileVCPresenter.showIndicator()
         UserProfileVCPresenter.getUserProfile()
-        self.profileArr = [ ProfileModel(name: "Profile", id: "profile", selected: false, profileImage: #imageLiteral(resourceName: "ic_person_24px")), ProfileModel(name: "ChangePassword", id: "ChangePassword", selected: false, profileImage: #imageLiteral(resourceName: "password")), ProfileModel(name: "Notifications", id: "Notifications", selected: false, profileImage: #imageLiteral(resourceName: "turn-notifications-on-button"))
-        ]
+        if "lang".localized == "en" {
+            self.profileArr = [ ProfileModel(name: "Profile", id: "profile", selected: false, profileImage: #imageLiteral(resourceName: "ic_person_24px")), ProfileModel(name: "ChangePassword", id: "ChangePassword", selected: false, profileImage: #imageLiteral(resourceName: "password")), ProfileModel(name: "Notifications", id: "Notifications", selected: false, profileImage: #imageLiteral(resourceName: "turn-notifications-on-button"))
+            ]
+        } else {
+            self.profileArr = [ ProfileModel(name: "الملف الشخصي", id: "profile", selected: false, profileImage: #imageLiteral(resourceName: "ic_person_24px")), ProfileModel(name: "الباسورد", id: "ChangePassword", selected: false, profileImage: #imageLiteral(resourceName: "password")), ProfileModel(name: "الاشعارات", id: "Notifications", selected: false, profileImage: #imageLiteral(resourceName: "turn-notifications-on-button"))
+            ]
+        }
+        
         
     }
-    @IBAction func ProfileImageView(_ sender: UIButton) {
-        showPickerImageControlActionSheet()
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
     }
-    @objc fileprivate func profileImageView_Pressed(_ sender: UITapGestureRecognizer) {
-        showPickerImageControlActionSheet()
-        
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+               self.navigationController?.pushViewController(details, animated: true)
     }
+    
+    //    @IBAction func ProfileImageView(_ sender: UIButton) {
+//        showPickerImageControlActionSheet()
+//    }
+//    @objc fileprivate func profileImageView_Pressed(_ sender: UITapGestureRecognizer) {
+//        showPickerImageControlActionSheet()
+//        
+//    }
     func SelectionAction(indexPath: IndexPath) {
         switch profileArr[indexPath.row].profileId {
         case "profile":
@@ -119,7 +132,7 @@ extension CustomerProfileVC: UICollectionViewDelegateFlowLayout {
         let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
         let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
         let size: CGFloat = (collectionView.frame.size.width + space) / 3.1
-        return CGSize(width: size , height: size - 25 )
+        return CGSize(width: size , height: size - 15 )
     }
     
 }
@@ -128,13 +141,17 @@ extension CustomerProfileVC: UserProfileViewDelegate {
         if let profile = result {
             let personal = profile.personal ?? Personal()
             self.email.text = personal.email ?? ""
-            self.name.text = profile.nameAr ?? ""
+            if "lang".localized == "ar" {
+               self.name.text = profile.nameAr ?? ""
+            } else {
+                self.name.text = profile.nameEn ?? ""
+            }
             self.phone.text = profile.phone ?? ""
             self.address.text = profile.address ?? ""
-            if let image = profile.image {
-                guard let url = URL(string: BASE_URL + "/" + image) else { return }
-                self.profilePic.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "logo-2"))
-            }
+//            if let image = profile.image {
+//                guard let url = URL(string: BASE_URL + "/" + image) else { return }
+//                self.profilePic.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "logo-2"))
+//            }
             }
         }
         
@@ -152,34 +169,34 @@ extension CustomerProfileVC: UserProfileViewDelegate {
         }
         
     }
-    extension CustomerProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-        func showPickerImageControlActionSheet() {
-            let PhotoLibraryAction = UIAlertAction(title: "اختر من الكاميرا", style: .default) { (action) in
-                self.showImagePickerView(sourceType: .photoLibrary)
-            }
-            let cameraAction = UIAlertAction(title: "التقط صورة", style: .default) { (action) in
-                self.showImagePickerView(sourceType: .camera)
-            }
-            let cancelAction = UIAlertAction(title: "الغاء", style: .cancel, handler: nil)
-            AlertService.showAlert(style: .actionSheet, title: "المكتبة", message: nil, actions: [PhotoLibraryAction, cameraAction,cancelAction], completion: nil)
-            
-        }
-        
-        func showImagePickerView(sourceType: UIImagePickerController.SourceType) {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.allowsEditing = true
-            imagePickerController.sourceType = sourceType
-            present(imagePickerController, animated: true, completion: nil)
-            
-        }
-         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-               if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-                UserProfileVCPresenter.postUserChangeProfileImage(image: editedImage)
-               } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                  UserProfileVCPresenter.postUserChangeProfileImage(image: originalImage)
-               }
-               dismiss(animated: true, completion: nil)
-           }
-}
-
+//    extension CustomerProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+//        func showPickerImageControlActionSheet() {
+//            let PhotoLibraryAction = UIAlertAction(title: "اختر من الكاميرا", style: .default) { (action) in
+//                self.showImagePickerView(sourceType: .photoLibrary)
+//            }
+//            let cameraAction = UIAlertAction(title: "التقط صورة", style: .default) { (action) in
+//                self.showImagePickerView(sourceType: .camera)
+//            }
+//            let cancelAction = UIAlertAction(title: "الغاء", style: .cancel, handler: nil)
+//            AlertService.showAlert(style: .actionSheet, title: "المكتبة", message: nil, actions: [PhotoLibraryAction, cameraAction,cancelAction], completion: nil)
+//
+//        }
+//
+//        func showImagePickerView(sourceType: UIImagePickerController.SourceType) {
+//            let imagePickerController = UIImagePickerController()
+//            imagePickerController.delegate = self
+//            imagePickerController.allowsEditing = true
+//            imagePickerController.sourceType = sourceType
+//            present(imagePickerController, animated: true, completion: nil)
+//
+//        }
+//         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//               if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+//                UserProfileVCPresenter.postUserChangeProfileImage(image: editedImage)
+//               } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//                  UserProfileVCPresenter.postUserChangeProfileImage(image: originalImage)
+//               }
+//               dismiss(animated: true, completion: nil)
+//           }
+//}
+//

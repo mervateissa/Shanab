@@ -11,11 +11,13 @@ import DLRadioButton
 class PaymentGatewayVC: UIViewController {
     @IBOutlet weak var radioButton: DLRadioButton!
     let Userdefaults = UserDefaults.standard
-    private let UserCreateOrderVCPresenter = UserCreateOrderPresenter(services: Services())
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserCreateOrderVCPresenter.setCreateViewDelegate(CreateOrderViewDelegate: self)
+       
+        
 
+    }
+    @IBAction func dismiss(_ sender: Any) {
     }
     @IBAction func RadioButtonAction(_ sender: DLRadioButton) {
         switch radioButton.tag {
@@ -40,35 +42,4 @@ class PaymentGatewayVC: UIViewController {
 //        
 //        
 //    }
-}
-extension PaymentGatewayVC: CreateOrderViewDelegate {
-    func CreateOrderResult(_ error: Error?, _ result: SuccessError_Model?) {
-        if let resultMsg = result {
-          if resultMsg.successMessage != "" {
-              displayMessage(title: "", message: resultMsg.successMessage , status: .success, forController: self)
-            let sb = UIStoryboard(name: "PopUps", bundle: nil).instantiateViewController(withIdentifier: "OrderConfirmationPopUp")
-                   sb.modalPresentationStyle = .overCurrentContext
-                   sb.modalTransitionStyle = .crossDissolve
-                   self.present(sb, animated: true, completion: nil)
-          } else if resultMsg.latitude != [""] {
-            displayMessage(title: "", message: resultMsg.latitude[0], status: .error, forController: self)
-          } else if resultMsg.longitude != [""] {
-            displayMessage(title: "", message: resultMsg.longitude[0], status: .error, forController: self)
-          } else if resultMsg.quantity != [""] {
-            displayMessage(title: "", message: resultMsg.currency[0], status: .error, forController: self)
-          } else if resultMsg.quantity != [""] {
-            displayMessage(title: "", message: resultMsg.quantity[0], status: .error, forController: self)
-          } else if resultMsg.total != [""] {
-            displayMessage(title: "", message: resultMsg.total[0], status: .error, forController: self)
-          } else if resultMsg.message != [""] {
-            displayMessage(title: "", message: resultMsg.message[0], status: .error, forController: self)
-          } else if resultMsg.cartItems != [""] {
-            displayMessage(title: "", message: resultMsg.cartItems[0], status: .error, forController: self)
-            }
-          }
-       
-        
-    }
-    
-    
 }

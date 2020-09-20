@@ -12,6 +12,7 @@ protocol AddAddressViewDelegate: class {
     func postAddAddress(_ error: Error?, _ result: SuccessError_Model?)
     func postGetCountries(_ error: Error?, _ result: [Country]?)
     func postGetCitiesAndAries(_ error: Error?, _ result: [Country]?)
+    func postGetAries(_ error: Error?, _ result: [Country]?)
 }
 class AddAddressPresenter {
     private let services: Services
@@ -46,5 +47,11 @@ class AddAddressPresenter {
                self?.dismissIndicator()
            }
        }
-    
+    func postGetAries(table: String, condition: String, id: Int) {
+        services.postGetCities(table: table, condition: condition, id: id) {[weak self] (error: Error?, result: [Country]?) in
+            self?.AddAddressViewDelegate?.postGetAries(error, result)
+            self?.dismissIndicator()
+        }
+          
+    }
 }

@@ -18,16 +18,16 @@ class DriverOrderListVC: UIViewController {
     @IBOutlet weak var available: UIButton!
     var ChangeAvailablity = String()
     var isAvailable = Int()
-    var type = "parpare"
+    var type = "new"
     var id = Int()
-    let TypesArr = ["parpare", "On Way", "Arrived", "completed"]
+    let TypesArr = ["new", "OnWay", "Arrived", "completed"]
     let StatusArr = ["Avaliable", "Unavailable"]
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var DriverListCollectionView: UICollectionView!
     fileprivate let cellIdentifier = "DriverListCell"
     private let DriverProfileVCPresenter = DriverProfilePresenter(services: Services())
     let picker = UIImagePickerController()
-    var list = [Order]() {
+    var list = [OrderList]() {
         didSet {
             DispatchQueue.main.async {
                 self.DriverListCollectionView.reloadData()
@@ -45,17 +45,28 @@ class DriverOrderListVC: UIViewController {
         DriverListCollectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         DriverProfileVCPresenter.setDriverProfileViewDelegate(DriverProfileViewDelegate: self)
         DriverProfileVCPresenter.showIndicator()
+        DriverProfileVCPresenter.getDriverProfile()
         DriverProfileVCPresenter.DriverOrderList(type: ["parpare", "On Way", "Arrived", "completed"] )
         SetupDriverStatusDropDown()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(true)
+           if AppDelegate.notification_flag {
+           let sb = UIStoryboard(name: "PopUps", bundle: nil).instantiateViewController(withIdentifier: "AgentChoicePopUp")
+                  sb.modalPresentationStyle = .overCurrentContext
+                  sb.modalTransitionStyle = .crossDissolve
+                  self.present(sb, animated: true, completion: nil)
+                  
+        }
+           }
     func SetupDriverStatusDropDown() {
         DriverStatusDropDown.anchorView = orderType
         DriverStatusDropDown.bottomOffset = CGPoint(x: 0, y: DriverStatusDropDown.anchorView?.plainView.bounds.height ?? 0 + 50)
         DriverStatusDropDown.dataSource = TypesArr
         DriverStatusDropDown.selectionAction = {
             [weak self] (index, item) in
-            self?.orderType.setTitleColor(#colorLiteral(red: 0.007525420282, green: 0.4868255258, blue: 0.6823853254, alpha: 1), for: .normal)
+            self?.orderType.setTitleColor(#colorLiteral(red: 0.9195484519, green: 0.2682709396, blue: 0.21753335, alpha: 1), for: .normal)
             self?.orderType.setTitle("\(item.capitalized) Orders", for: .normal)
             self?.DriverProfileVCPresenter.showIndicator()
             if self?.type ?? "" == "parpare" {
@@ -71,10 +82,18 @@ class DriverOrderListVC: UIViewController {
         DriverStatusDropDown.direction = .any
         DriverStatusDropDown.width = self.view.frame.width * 1
     }
+    @IBAction func perviousList(_ sender: Any) {
+        guard let Details = UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "OrderListVC") as? OrderListVC else { return }
+                    
+                  
+                    self.navigationController?.pushViewController(Details, animated: true)
+        
+    }
     @IBAction func EditProfile(_ sender: UIButton) {
         guard let name = self.DriverName.text else { return }
 //              guard let email = self.Email.text else { return }
               guard let phone = self.phoneLB.text else { return }
+       
         DriverProfileVCPresenter.showIndicator()
 //        DriverProfileVCPresenter.postEditDriverProfile(phone: phone, email: <#T##String#>, name_ar: name)
               
@@ -87,6 +106,15 @@ class DriverOrderListVC: UIViewController {
         present(imagePickerController, animated: true, completion: nil)
         
     }
+   
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+               self.navigationController?.pushViewController(details, animated: true)
+    }
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage ] as? UIImage
         {
@@ -154,15 +182,21 @@ extension DriverOrderListVC: DriverProfileViewDelegate {
         if let profile = result {
             
             self.phoneLB.text = profile.phone ?? ""
-            self.DriverName.text = profile.nameAr ?? ""
+            if "lang".localized == "ar" {
+                 self.DriverName.text = profile.nameAr ?? ""
+            } else {
+                 self.DriverName.text = profile.nameEn ?? ""
+                
+            }
+           
             if let image = profile.image {
-                guard let url = URL(string: BASE_URL + "/" + image) else { return }
-                self.profileImage.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "profileSM"))
+                guard let url = URL(string: image) else { return }
+                self.profileImage.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "ic_assignment_ind_24px"))
             }
         }
     }
     
-    func DriverOrderListResult(_ error: Error?, _ list: [Order]?, _ orderErrors: OrdersErrors?) {
+    func DriverOrderListResult(_ error: Error?, _ list: [OrderList]?, _ orderErrors: OrdersErrors?) {
         if let lists = list {
             self.list = lists.reversed()
             if self.list.count == 0 {
@@ -189,8 +223,8 @@ extension DriverOrderListVC: DriverProfileViewDelegate {
     
     func DriverIsAvaliableChangeResult(_ error: Error?, _ result: SuccessError_Model?) {
         if let profile = result {
-            //            self.ChangeAvailablity = "\(profile.isAvailable ?? 0)"
-            //            if profile.isAvailable ?? 0 == 0 {
+//            self.ChangeAvailablity = "\(profile. ?? 0)"
+//                        if profile.un_active_account ?? 0 == 0 {
             self.available.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             if "lang".localized == "ar" {
                 self.available.setTitle("غير متصل", for: .normal)
@@ -206,9 +240,9 @@ extension DriverOrderListVC: DriverProfileViewDelegate {
                 self.available.setTitle("Connected", for: .normal)
             }
             
-        }
+        //}
     }
-    
+    }
 }
 extension DriverOrderListVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -217,7 +251,8 @@ extension DriverOrderListVC: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
           guard let Details = UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "DriverOrderListVC") as? DriverOrderListVC else { return }
                Details.id = list[indexPath.row].id ?? 0
-
+             Details.profileImage =  profileImage
+        
               self.navigationController?.pushViewController(Details, animated: true)
     }
     

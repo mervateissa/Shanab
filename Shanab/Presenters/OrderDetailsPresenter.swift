@@ -11,6 +11,7 @@ import SVProgressHUD
 protocol DriverOrderDetailsViewDelegate: class {
     func DriverOrderDetailsResult(_ error: Error?, _ details: [DriverOrder]?)
      func DriverChangeStatusResult(_ error: Error?, _ result: SuccessError_Model?)
+     func getDriverProfileResult(_ error: Error?, _ result: User?)
 }
 class DriverOrderDetailsPresenter {
     private let services: Services
@@ -28,7 +29,7 @@ class DriverOrderDetailsPresenter {
         SVProgressHUD.dismiss()
     }
     func getDriverOrderDetails(id: Int) {
-        services.getDriverOrderDetails(id: id) {[weak self] (error: Error?, details: [DriverOrder]?) in
+        services.postDriverOrderDetails(id: id) {[weak self] (error: Error?, details: [DriverOrder]?) in
             self?.DriverOrderDetailsViewDelegate?.DriverOrderDetailsResult(error, details)
             self?.dismissIndicator()
         }
@@ -39,4 +40,9 @@ class DriverOrderDetailsPresenter {
                self?.dismissIndicator()
            }
        }
+    func getDriverProfile() {
+          services.getDriverProfile { [weak self](error: Error?, result: User?) in
+              self?.DriverOrderDetailsViewDelegate?.getDriverProfileResult(error, result)
+          }
+      }
 }

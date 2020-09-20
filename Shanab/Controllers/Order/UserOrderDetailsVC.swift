@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class UserOrderDetailsVC: UIViewController {
     private let UserOrderDetailsVCPresenter = UserOrderDetailsPresenter(services: Services())
     @IBOutlet weak var totalPriceLB: UILabel!
@@ -33,6 +32,7 @@ class UserOrderDetailsVC: UIViewController {
         UserOrderDetailsVCPresenter.postUserOrderDetails(id: id, status: status)
         
         
+        
     }
     
     
@@ -46,6 +46,18 @@ extension UserOrderDetailsVC: UserOrderDetailsViewDelegate {
         if let detail = result {
             self.details = detail[0].orderDetail ?? [OrderDetail]()
             self.details = self.details.reversed()
+            var orderCost = Double()
+            for item in details {
+                orderCost = orderCost + (item.price ?? 0.0)
+        
+            }
+            orderPrice.text = "\(orderCost)"
+            totalPriceLB.text = "\(orderCost + 50)"
+            
+//            self.totalPriceLB.text
+//            self.fees.text
+//            self.orderPrice.text = details.
+        
         }
         
     }
@@ -60,7 +72,7 @@ extension UserOrderDetailsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? OrderReceiptCell else {return UITableViewCell()}
         let meal = details[indexPath.row].meal ?? Meal()
-        cell.config(name: meal.nameAr ?? "" , number: 0 , price: 0, options: self.details[indexPath.row].option ?? [Option]() )
+        cell.config(name: meal.nameAr ?? "" , number: details[indexPath.row].quantity ?? 0 , price: Int(details[indexPath.row].price ?? 0.0) , options: self.details[indexPath.row].option ?? [Option]() )
         return cell
     }
     

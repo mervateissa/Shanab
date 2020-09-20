@@ -52,7 +52,7 @@ extension OrderReceiptCell: UITableViewDelegate, UITableViewDataSource {
          guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as?
             DriverDetailsTableViewCell else {return UITableViewCell()}
         let detailedOption = options[indexPath.row].options ?? Options()
-        cell.config(name:  detailedOption.nameEn ?? ""  , number: 0 , price: 0)
+        cell.config(name:  detailedOption.nameEn ?? ""  , number: 1 ,price: 0)
                return cell
     }
     

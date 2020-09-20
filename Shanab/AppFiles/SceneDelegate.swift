@@ -20,6 +20,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window = self.window
+        if let api_token = Helper.getApiToken() {
+                   print("api_token: \(api_token)")
+                   if let customer_type = Helper.getUserRole() {
+                       
+                       switch customer_type {
+                       case "customer":
+                         let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBar")
+                           UIApplication.shared.windows.first?.rootViewController = sb
+                           UIApplication.shared.windows.first?.makeKeyAndVisible()
+                           Singletone.instance.appUserType = .Customer
+                       case "driver":
+                           let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBar")
+                           UIApplication.shared.windows.first?.rootViewController = sb
+                          UIApplication.shared.windows.first?.makeKeyAndVisible()
+                           Singletone.instance.appUserType = .Driver
+                       default:
+                           let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBar")
+                           UIApplication.shared.windows.first?.rootViewController = sb
+                           UIApplication.shared.windows.first?.makeKeyAndVisible()
+                           Singletone.instance.appUserType = .guest
+                       }
+                   }
+               }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

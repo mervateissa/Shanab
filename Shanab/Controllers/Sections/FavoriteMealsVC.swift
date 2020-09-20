@@ -12,6 +12,7 @@ class FavoriteMealsVC: UIViewController {
     @IBOutlet weak var favoriteMealsTableView: UITableView!
     fileprivate let cellIdentifier = "FavoriteCell"
     var item_type = "meal"
+    var deletedIndex: Int = 0
     private let UserFavoritesMealsVCPresenter = UserFavoritesMealsPresenter(services: Services())
     var ClientFavoriteList = [Favorites]() {
         didSet {
@@ -21,34 +22,30 @@ class FavoriteMealsVC: UIViewController {
         }
     }
     var total = Double()
-    var cartItems = [CartModelItem]()
+    var cartItems = [onlineCart]()
     var currency = String()
+    var meal_id = Int()
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteMealsTableView.delegate = self
         favoriteMealsTableView.dataSource = self
         favoriteMealsTableView.rowHeight = UITableView.automaticDimension
-               favoriteMealsTableView.estimatedRowHeight = UITableView.automaticDimension
+        favoriteMealsTableView.estimatedRowHeight = UITableView.automaticDimension
         favoriteMealsTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         UserFavoritesMealsVCPresenter.setFavoriteMealsViewDelegate(FavoriteMealsViewDelegate: self)
         UserFavoritesMealsVCPresenter.showIndicator()
         UserFavoritesMealsVCPresenter.postFavoriteGet(item_type: "meal")
-        handleGetCart()
         
     }
     
-    func handleGetCart() {
-        if let cart = CartCoreData.getCurrentCart()  {
-            
-            self.cartItems = cart.items ?? []
-            self.total = cart.totalPrice ?? 0.0
-            self.currency = cart.Currency ?? ""
-            
-            
-            
-        } else {
-            displayMessage(title: "", message: "No Cart Yet", status: .error, forController: self)
-        }
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+               self.navigationController?.pushViewController(details, animated: true)
+        
+    }
+    
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
     }
     
     
@@ -62,25 +59,31 @@ extension FavoriteMealsVC: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FavoriteCell else {return UITableViewCell()}
         let item_type = ClientFavoriteList[indexPath.row].meal ?? Meal()
         cell.AddToCart = {
-            var modifiedCartItems = self.cartItems
-            var totalPrice = Double()
-            var item = CartModelItem(itemId: self.ClientFavoriteList[indexPath.row].itemID ?? 0, itemNameEn: item_type.nameEn ?? "", itemNameAr: item_type.nameAr ?? "", itemPrice: 50, itemSize: "Large", itemQuantity: 1, itemImageURL: item_type.image ?? "", itemCurrency: "SAR")
-            if modifiedCartItems.contains(where: {$0.itemId == item.itemId}) {
-                item.itemQuantity! += 1
-            } else {
-                modifiedCartItems.append(item)
-            }
-            for item in modifiedCartItems {
-                totalPrice += (item.itemPrice ?? 0.0) * (Double(item.itemQuantity ?? 1))
-            }
-            self.total = totalPrice
-            let cartModel = CartModel(items: modifiedCartItems, totalPrice: self.total, cartNotes: "", Currency: self.currency)
-            
-            CartCoreData.SaveCart(cart_data: cartModel)
+            self.UserFavoritesMealsVCPresenter.showIndicator()
+            self.UserFavoritesMealsVCPresenter.postAddToCart(meal_id: self.ClientFavoriteList[indexPath.row].id ?? 0  , quantity: 1 , message:  "test one" , options: [])
+        }
+        cell.RemoveFromeFavorite = {
+            self.deletedIndex = indexPath.row
+            self.UserFavoritesMealsVCPresenter.showIndicator()
+            self.UserFavoritesMealsVCPresenter.postRemoveFavorite(item_id: self.ClientFavoriteList[indexPath.row].id ?? 0, item_type: self.ClientFavoriteList[indexPath.row].itemType ?? "")
         }
         
+    
+       
         cell.config(name: item_type.nameAr ?? "" , details: item_type.descriptionAr ?? "" , imagePath: item_type.image ?? "")
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let details = UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "AdditionsVC") as? AdditionsVC else { return }
+           let meal_items = ClientFavoriteList[indexPath.row].meal ?? Meal()
+         details.meal_id = ClientFavoriteList[indexPath.row].id ?? 0
+        details.mealName = meal_items.nameAr ?? ""
+        details.imagePath = meal_items.image ?? ""
+        details.mealComponents = meal_items.descriptionAr ?? ""
+        details.mealCalory = meal_items.points ?? 0
+    
+      
+        self.navigationController?.pushViewController(details, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
@@ -89,6 +92,36 @@ extension FavoriteMealsVC: UITableViewDataSource, UITableViewDelegate {
     
 }
 extension FavoriteMealsVC: FavoriteMealsViewDelegate {
+    func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?) {
+        if let resultMsg = result {
+            if resultMsg.successMessage != "" {
+                displayMessage(title: "", message: resultMsg.successMessage, status: .success, forController: self)
+                self.ClientFavoriteList.remove(at: deletedIndex)
+            } else if resultMsg.item_id != [""] {
+                displayMessage(title: "", message: resultMsg.item_id[0], status: .error, forController: self)
+            } else if resultMsg.item_type != [""] {
+                displayMessage(title: "", message: resultMsg.item_type[0], status: .error, forController: self)
+            }
+        }
+    }
+    
+    func AddToCartResult(_ error: Error?, _ result: SuccessError_Model?) {
+        if let meals = result {
+            if meals.successMessage != "" {
+                displayMessage(title: "done", message: meals.successMessage, status: .success, forController: self)
+            
+            } else if meals.meal_id != [""] {
+                displayMessage(title: "", message: meals.meal_id[0], status: .error, forController: self)
+            } else if meals.quantity != [""] {
+                displayMessage(title: "", message: meals.quantity[0], status: .error, forController: self)
+            } else if meals.message != [""] {
+                displayMessage(title: "", message: meals.message[0], status: .error, forController: self)
+            } else if meals.options != [""] {
+                displayMessage(title: "", message: meals.options[0], status: .error, forController: self)
+            }
+        }
+    }
+    
     func UserFavoriteMealssResult(_ error: Error?, _ favoriteList: [Favorites]?) {
         if let lists = favoriteList{
             self.ClientFavoriteList = lists.reversed()

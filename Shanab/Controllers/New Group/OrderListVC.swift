@@ -15,9 +15,9 @@ class OrderListVC: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     let orderTypsDropDown = DropDown()
     fileprivate let cellIdentifier = "ListCell"
-    var type = "Parpare"
-    let TypesArr = ["Parpare", "OnWay", "Arrived", "completed"]
-    var list = [OrderList](){
+    var type = "new"
+    let TypesArr = ["new", "OnWay", "Arrived", "completed"]
+    var list = [orderList](){
         didSet {
             DispatchQueue.main.async {
                 self.listTableView.reloadData()
@@ -30,10 +30,8 @@ class OrderListVC: UIViewController {
         listTableView.dataSource = self
         listTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         UserListVCPresenter.setUserListViewDelegate(UserListViewDelegate: self)
-        listTableView.rowHeight = UITableView.automaticDimension
-               listTableView.estimatedRowHeight = UITableView.automaticDimension
         UserListVCPresenter.showIndicator()
-        UserListVCPresenter.postUserGetList(status: ["Parpare"])
+        UserListVCPresenter.postUserGetList(status: ["new"])
         SetuporderTypesDropDown()
         
     }
@@ -46,25 +44,29 @@ class OrderListVC: UIViewController {
             self?.orderType.setTitleColor(#colorLiteral(red: 0.8121929765, green: 0.2939046025, blue: 0.2674312294, alpha: 1), for: .normal)
             self?.orderType.setTitle("\(item.capitalized) Orders", for: .normal)
             self?.type = self?.TypesArr[index] ?? ""
-            
             self?.UserListVCPresenter.showIndicator()
-            self?.UserListVCPresenter.postUserGetList(status: [self?.type ?? ""])
-            
+            if self?.type ?? "" == "new" {
+                self?.UserListVCPresenter.postUserGetList(status:  [self?.type ?? "", "arrived", "on_way", "approved"])
+            } else {
+                self?.UserListVCPresenter.postUserGetList(status: [self?.type ?? ""])
+            }
         }
-        
-        
         orderTypsDropDown.direction = .any
         orderTypsDropDown.width = self.view.frame.width * 1
     }
-    
     
     @IBAction func orderType(_ sender: UIButton) {
         orderTypsDropDown.show()
         
     }
-    @IBAction func sideMenu(_ sender: UIBarButtonItem) {
+    @IBAction func sideMenu(_ sender: Any) {
         self.setupSideMenu()
     }
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+        self.navigationController?.pushViewController(details, animated: true)
+    }
+    
     
 }
 extension OrderListVC: UITableViewDelegate, UITableViewDataSource {
@@ -74,35 +76,43 @@ extension OrderListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListCell else { return UITableViewCell()}
-        cell.config(date: list[indexPath.row].createdAt ?? "", status: list[indexPath.row].status ?? "")
+        cell.config(date: list[indexPath.row].updatedAt ?? "", status: list[indexPath.row].status ?? "", orderNumber: list[indexPath.row].id ?? 0)
+        cell.goToDetails = {
+            guard let Details = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "UserOrderDetailsVC") as? UserOrderDetailsVC else { return }
+            Details.id = self.list[indexPath.row].id ?? 0
+            Details.status = self.list[indexPath.row].status ?? ""
+            self.navigationController?.pushViewController(Details, animated: true)
+        }
+        cell.FollowOrder = {
+            guard let Details = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "OrderFollowingVC") as? OrderFollowingVC else { return }
+            Details.id = self.list[indexPath.row].id ?? 0
+            Details.status = self.list[indexPath.row].status ?? ""
+            Details.date = self.list[indexPath.row].createdAt ?? ""
+            self.navigationController?.pushViewController(Details, animated: true)
+        }
         return cell
         
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let Details = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "UserOrderDetailsVC") as? UserOrderDetailsVC else { return }
-         Details.id = list[indexPath.row].id ?? 0
-        Details.status = list[indexPath.row].status ?? ""
-        self.navigationController?.pushViewController(Details, animated: true)
-    }
+   
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        200
+        220
     }
-    
-    
     
 }
 extension OrderListVC: UserListViewDelegate {
-    func UserListResult(_ error: Error?, _ list: [OrderList]?) {
+    func UserListResult(_ error: Error?, _ list: [orderList]?) {
         if let lists = list {
             self.list = lists.reversed()
             if self.list.count == 0 {
-                self.emptyView.isHidden = true
-                self.listTableView.isHidden = false
+                self.emptyView.isHidden = false
+                self.listTableView.isHidden = true
             } else {
                 self.emptyView.isHidden = true
                 self.listTableView.isHidden = false
             }
+           
+            self.orderType.setTitle("\(self.type.capitalized) Orders", for: .normal)
         }
-        
+
     }
 }

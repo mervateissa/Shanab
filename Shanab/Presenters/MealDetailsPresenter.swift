@@ -11,6 +11,7 @@ import Foundation
 import SVProgressHUD
 protocol MealsDetailsViewDelegate: class {
     func RestaurantMealsResult(_ error: Error?, _ meals: [RestaurantMeal]?)
+     func RestaurantDetailsResult(_ error: Error?, _ details: RestaurantDetail?)
     func FavoriteResult(_ error: Error?, _ result: SuccessError_Model?)
     func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?)
 }
@@ -50,4 +51,10 @@ protocol MealsDetailsViewDelegate: class {
             self?.dismissIndicator()
         }
     }
+        func postRestaurantDetails(restaurant_id: Int) {
+            services.postRestaurantDetails(restaurant_id: restaurant_id) {[weak self] (error: Error?,  details: RestaurantDetail?) in
+                self?.MealsDetailsViewDelegate?.RestaurantDetailsResult(error, details)
+                self?.dismissIndicator()
+            }
+        }
 }

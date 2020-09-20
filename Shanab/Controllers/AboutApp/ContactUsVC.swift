@@ -20,11 +20,12 @@ class ContactUsVC: UIViewController {
     fileprivate let  cellIdentifeir = "SettingCell"
     let TypeArr = ["شكوي", "اقتراح"]
     var id = Int()
+    var selections = [String]()
     var mailTempalte = [Tempalte]()
     var sectionArr = [Setting]() {
         didSet {
             DispatchQueue.main.async {
-            self.socialMediaCollectionView.reloadData()
+                self.socialMediaCollectionView.reloadData()
                 
             }
         }
@@ -36,8 +37,10 @@ class ContactUsVC: UIViewController {
         socialMediaCollectionView.delegate = self
         socialMediaCollectionView.dataSource = self
         socialMediaCollectionView.register(UINib(nibName: cellIdentifeir, bundle: nil), forCellWithReuseIdentifier: cellIdentifeir)
+        MailTemplateVCPresenter.setMailTempalteViewDelegate(MailTempalteViewDelegate: self)
         MailTemplateVCPresenter.showIndicator()
         MailTemplateVCPresenter.getSettings()
+        MailTemplateVCPresenter.getmailTemalte(type: "client")
         
     }
     func SetupMessageTypeDropDown() {
@@ -54,9 +57,9 @@ class ContactUsVC: UIViewController {
         MessageTypeDropDown.width = self.view.frame.width * 1
     }
     func SelectionAction(index: Int) {
-        switch sectionArr[index].valueEn  {
+        switch sectionArr[index].key  {
         case "twitter":
-            let userName = sectionArr[index].valueEn ?? ""
+            let userName = sectionArr[index].valueAr ?? ""
             
             let appURL = URL(string: "twitter:///\(userName)")!
             let webURL = URL(string: "https://twitter.com/\(userName)")!
@@ -75,7 +78,7 @@ class ContactUsVC: UIViewController {
                 }
             }
         case "facebook":
-            let facebook = sectionArr[index].valueEn ?? ""
+            let facebook = sectionArr[index].valueAr ?? ""
             let urlFacebook = "https://wa.me/\(facebook)"
             if let urlString = urlFacebook.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
                 if let facebookURL = URL(string: urlString) {
@@ -92,7 +95,7 @@ class ContactUsVC: UIViewController {
                 }
             }
         case "instagram":
-            let instagram = sectionArr[index].valueEn ?? ""
+            let instagram = sectionArr[index].valueAr ?? ""
             let urlinstagram = "https://wa.me/\(instagram)"
             if let urlString = urlinstagram.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
                 if let instgramURL = URL(string: urlString) {
@@ -115,13 +118,20 @@ class ContactUsVC: UIViewController {
             
         }
     }
-    
-    
-    @IBAction func send(_ sender: Any) {
-        
-        
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
     }
     
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+        self.navigationController?.pushViewController(details, animated: true)
+    }
+    
+    @IBAction func send(_ sender: Any) {
+        MailTemplateVCPresenter.showIndicator()
+        MailTemplateVCPresenter.getmailTemalte(type: "client")
+        
+    }
     
     @IBAction func messageType(_ sender: UIButton) {
         MessageTypeDropDown.show()
@@ -192,17 +202,21 @@ extension ContactUsVC: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifeir, for: indexPath) as? SettingCell else {return UICollectionViewCell()}
         cell.config(imagePath: UIImage(data: sectionArr[indexPath.row].SettingImage!) ?? #imageLiteral(resourceName: "shanab loading"))
         cell.selectionAction = {
-                   self.SelectionAction(index: indexPath.row)
-               }
-               return cell
-    
-     
-         
+            self.SelectionAction(index: indexPath.row)
+        }
+        
+        return cell
+        
+        
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        SelectionAction(index: indexPath.row)
     }
     
     
 }
- extension ContactUsVC: UICollectionViewDelegateFlowLayout {
+extension ContactUsVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
         let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
@@ -215,35 +229,29 @@ extension ContactUsVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension ContactUsVC: MailTempalteViewDelegate {
     func SupprortingResult(_ error: Error?, _ result: [Setting]?) {
-        if let settings = result {
-            for i in 0..<3 {
-                self.sectionArr.append(settings[i])
+        guard var settings = result else{ return }
+        
+        for i in 0..<settings.count {
+            switch settings[i].key {
+            case "facebook":
+                settings[i].SettingImage = #imageLiteral(resourceName: "facebook").pngData()
+            case "twitter":
+                settings[i].SettingImage = #imageLiteral(resourceName: "twitter").pngData()
+            case "instagram":
+                settings[i].SettingImage = #imageLiteral(resourceName: "snapchat").pngData()
+            default:
+                settings[i].SettingImage = #imageLiteral(resourceName: "logo-1").pngData()
                 
             }
-            for i in 0..<self.sectionArr.count {
-                        switch self.sectionArr[i].key {
-                        case "facebook":
-                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "twitter").pngData()
-                        case "twitter":
-                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "logo").pngData()
-                        case "instagram":
-                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "snapchat").pngData()
-                       
-                            
-                        default:
-                            self.sectionArr[i].SettingImage = #imageLiteral(resourceName: "profile pic").pngData()
-                        }
-                    }
-                }
+        }
+        self.sectionArr = settings
+        self.socialMediaCollectionView.reloadData()
     }
-
-    
     
     func mailTempalteResult(_ error: Error?, _ result: [Tempalte]?) {
-        
-        
+        //        if let lists = result {
+        //            self.mailTempalte = lists[0].inputType ?? ""
+        //        }
     }
-    
-    
 }
 

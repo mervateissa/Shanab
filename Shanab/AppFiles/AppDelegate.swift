@@ -14,6 +14,7 @@ import Firebase
 import FirebaseMessaging
 import IQKeyboardManagerSwift
 import MOLH
+import AlamofireNetworkActivityLogger
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
     static var type = String()
@@ -22,8 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
     func reset() {
         let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
         if self.token == "" {
-            let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav")
+            let sb = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNav")
             rootviewcontroller.rootViewController = sb
+            window?.makeKeyAndVisible()
             Singletone.instance.appUserType = .guest
         } else {
             if let customer_type = Helper.getUserRole() {
@@ -31,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
                 case "Driver":
                     let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav")
                     rootviewcontroller.rootViewController = sb
+                    window?.makeKeyAndVisible()
                     Singletone.instance.appUserType = .Driver
                 case "Customer":
                     let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav")
@@ -39,18 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
                 default:
                     let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav")
                     rootviewcontroller.rootViewController = sb
+                    window?.makeKeyAndVisible()
                     Singletone.instance.appUserType = .guest
                 }
             }
         }
-        
+
     }
     static var item_id = Int()
     static var notification_flag = false
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        NetworkActivityLogger.shared.level = .debug
+        NetworkActivityLogger.shared.startLogging()
         UIApplication.shared.applicationIconBadgeNumber = 0
         //
         if ("lang".localized == "en") {
@@ -89,18 +94,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
         if let api_token = Helper.getApiToken() {
             print("api_token: \(api_token)")
             if let customer_type = Helper.getUserRole() {
+                
                 switch customer_type {
-                case "Customer":
-                    let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav")
-                    window?.rootViewController = sb
+                case "customer":
+                  let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBar")
+                    UIApplication.shared.windows.first?.rootViewController = sb
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
                     Singletone.instance.appUserType = .Customer
-                case "Driver":
-                    let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav")
-                    window?.rootViewController = sb
+                case "driver":
+                    let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBar")
+                    UIApplication.shared.windows.first?.rootViewController = sb
+                   UIApplication.shared.windows.first?.makeKeyAndVisible()
                     Singletone.instance.appUserType = .Driver
                 default:
-                    let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav")
-                    window?.rootViewController = sb
+                    let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBar")
+                    UIApplication.shared.windows.first?.rootViewController = sb
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
                     Singletone.instance.appUserType = .guest
                 }
             }
@@ -175,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
             print("Remote Instance ID Token: \(result.token)")
             Helper.saveDeviceToken(token: result.token)
             //                Services.postSetToken(token: result.token, type: "ios") { (error: Error?, result: SuccessError_Model?) in
-            if Helper.getApiToken() ?? "" != "" {
+            if Helper.getApiToken() ?? "" == "" {
                 switch Helper.getUserRole() ?? "" {
                 case "Customer":
                     Services.postUserSetToken(type: "ios", device_token: Helper.getDeviceToken() ?? "") { (error: Error?, result: SuccessError_Model?) in

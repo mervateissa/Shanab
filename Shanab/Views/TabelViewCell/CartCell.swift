@@ -14,6 +14,7 @@ class CartCell: UITableViewCell {
     var productCounter = 1
     var Increase: (() ->Void)? = nil
     var Dicrease:(() ->Void)? = nil
+    @IBOutlet weak var components: UILabel!
     var Size:(() ->Void)? = nil
     var delet:(() ->Void)? = nil
     @IBOutlet weak var dicrease: UIButton!
@@ -33,16 +34,23 @@ class CartCell: UITableViewCell {
         
         
     }
-    func config(name: String, price: Double , imagePath:  String) {
-        if imagePath != "" {
+    func config(name: String, price: Double , imagePath:  String, components: String) {
+        if (!imagePath.contains("http")) {
+            guard let imageURL = URL(string: (BASE_URL + "/" + imagePath).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+            print(imageURL)
+            self.orderImage.kf.setImage(with: imageURL)
+        }  else if imagePath != "" {
             guard let imageURL = URL(string: imagePath) else { return }
-                  self.orderImage.kf.setImage(with: imageURL)
-        } else {
+            self.orderImage.kf.setImage(with: imageURL)
+        }
+        else {
             self.orderImage.image = #imageLiteral(resourceName: "shanab loading")
         }
-      
+        
         self.orderName.text = name
         self.price.text = "\(price)"
+        self.components.text = components
+        
         
         
     }

@@ -9,11 +9,12 @@
 import UIKit
 
 class SectionsVC: UIViewController {
- 
+    
     @IBOutlet weak var searchBar: UISearchBar!
-   
+    
     @IBOutlet weak var sectionCollectionView: UICollectionView!
     private let CatgeoriesVCPresenter = CatgeoriesPresenter(services: Services())
+    
     var catgeories = [Category]() {
         didSet {
             DispatchQueue.main.async {
@@ -28,41 +29,60 @@ class SectionsVC: UIViewController {
         sectionCollectionView.dataSource = self
         sectionCollectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         CatgeoriesVCPresenter.setCatgeoriesViewDelegate(CatgeoriesViewDelegate: self)
-        CatgeoriesVCPresenter.getCatgeories()
         CatgeoriesVCPresenter.showIndicator()
-      
+        CatgeoriesVCPresenter.getCatgeories()
+ 
+        
     }
-  
-
+    
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+        self.navigationController?.pushViewController(details, animated: true)
+    }
+    @IBAction func sideMenu(_ sender: Any) {
+        self.setupSideMenu()
+    }
 }
 
- 
+
 extension SectionsVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return catgeories.count
+        return catgeories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? SectionCell else { return UICollectionViewCell()}
-               cell.config(imagePath: catgeories[indexPath.row].image ?? "", name: catgeories[indexPath.row].nameAr ?? "")
-               return cell
+        if "lang".localized == "ar" {
+            cell.config(imagePath: catgeories[indexPath.row].image ?? "", name: catgeories[indexPath.row].nameAr ?? "")
+            return cell
+        } else {
+            cell.config(imagePath: catgeories[indexPath.row].image ?? "", name: catgeories[indexPath.row].nameEn ?? "")
+            return cell
+        }
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         guard let details = UIStoryboard(name: "Products", bundle: nil).instantiateViewController(withIdentifier: "MealDetailsVC") as? MealDetailsVC else { return }
-            details.category_id =  self.catgeories[indexPath.row].id ?? 0
-            self.navigationController?.pushViewController(details, animated: true)
+        guard let details = UIStoryboard(name: "Products", bundle: nil).instantiateViewController(withIdentifier: "MealDetailsVC") as? MealDetailsVC else { return }
+        details.category_id =  self.catgeories[indexPath.row].id ?? 0
+        details.image = self.catgeories[indexPath.row].image ?? ""
+        if "lang".localized == "en" {
+            details.Name = self.catgeories[indexPath.row].nameEn ?? ""
+            
+        }
+        details.Name = self.catgeories[indexPath.row].nameAr ?? ""
+        self.navigationController?.pushViewController(details, animated: true)
     }
-   
+    
 }
 extension SectionsVC: UICollectionViewDelegateFlowLayout {
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
-           let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
-           let size: CGFloat = (collectionView.frame.size.width - space) / 2.1
-           return CGSize(width: size , height: size + 15)
-       }
-       
-   }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+        let size: CGFloat = (collectionView.frame.size.width - space) / 2.1
+        return CGSize(width: size  , height: size - 20)
+    }
+    
+}
 extension SectionsVC: CatgeoriesViewDelegate {
     func CatgeoriesResult(_ error: Error?, _ catgeory: [Category]?) {
         if let catgeoryList = catgeory {

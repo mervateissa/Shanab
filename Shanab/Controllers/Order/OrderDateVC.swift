@@ -11,6 +11,7 @@ import FSCalendar
 class OrderDateVC: UIViewController {
     var dateString = String()
     @IBOutlet weak var orderCalender: FSCalendar!
+    var selectedDate: ((String) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         orderCalender.delegate = self
@@ -19,7 +20,9 @@ class OrderDateVC: UIViewController {
      
     }
     @IBAction func Confirm(_ sender: UIButton) {
-      
+        
+        selectedDate?(dateString)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -39,6 +42,8 @@ extension OrderDateVC: FSCalendarDelegate, FSCalendarDataSource {
         self.view.layoutIfNeeded()
     }
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        dateString = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateString = dateFormatter.string(from: date) ?? ""
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class NotificationsVC: UIViewController {
     @IBOutlet weak var notificationsTableView: UITableView!
+    @IBOutlet weak var profileCollectionView: UICollectionView!
     fileprivate let cellIdentifier = "NotificationsCell"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +20,15 @@ class NotificationsVC: UIViewController {
        
     }
     
-
-   
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+              self.navigationController?.pushViewController(details, animated: true)
+    }
+    
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
+    }
+    
 
 }
 extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {

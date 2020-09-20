@@ -22,6 +22,15 @@ class DriverChangePasswordProfileVC: UIViewController {
     @IBAction func passwordInstructions(_ sender: UIButton) {
     }
     
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+               self.navigationController?.pushViewController(details, animated: true)
+    }
+    
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
+    }
+    
     @IBAction func save(_ sender: UIButton) {
         guard self.validate() else { return }
         guard let password = self.passwordTF.text else {return}

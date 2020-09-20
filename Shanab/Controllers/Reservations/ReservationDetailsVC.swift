@@ -26,6 +26,14 @@ class ReservationDetailsVC: UIViewController {
         
         
     }
+    @IBAction func menu(_ sender: Any) {
+        self.setupSideMenu()
+    }
+    
+    @IBAction func cart(_ sender: Any) {
+        guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC else { return }
+               self.navigationController?.pushViewController(details, animated: true)
+    }
 }
 extension ReservationDetailsVC: ReservationDetailsViewDelegate {
     func ReservationDetailsResult(_ error: Error?, _ details: DetailsDataClass?) {

@@ -1,21 +1,18 @@
 
 /* Class = "UILabel"; text = "Fees"; ObjectID = "0Lk-LE-D5g"; */
-"0Lk-LE-D5g.text" = "تكلفة الشحن";
+"0Lk-LE-D5g.text" = "التوصيل";
 
 /* Class = "UINavigationItem"; title = "Payment Gateway"; ObjectID = "11H-bR-eMY"; */
-"11H-bR-eMY.title" = "طريقة الدفع";
+"11H-bR-eMY.title" = "Payment Gateway";
 
 /* Class = "UILabel"; text = "Eva "; ObjectID = "1fY-nf-qcx"; */
 "1fY-nf-qcx.text" = "Eva ";
 
 /* Class = "UILabel"; text = "Order Status:"; ObjectID = "2BH-Fb-lHx"; */
-"2BH-Fb-lHx.text" = " حالة الطلب:";
+"2BH-Fb-lHx.text" = "حالة الطلب:";
 
 /* Class = "UIButton"; normalTitle = "Pasherly"; ObjectID = "3Wr-CH-ywV"; */
-"3Wr-CH-ywV.normalTitle" = "باشرلي";
-
-/* Class = "UILabel"; text = "Order Follwing"; ObjectID = "3lz-27-c7Q"; */
-"3lz-27-c7Q.text" = "متابعة الطلب";
+"3Wr-CH-ywV.normalTitle" = "Pasherly";
 
 /* Class = "UILabel"; text = "Order Num:"; ObjectID = "4Sw-78-D8g"; */
 "4Sw-78-D8g.text" = "رقم الطلب:";
@@ -27,13 +24,16 @@
 "5NH-Hw-b1t.text" = "الاجمالي";
 
 /* Class = "UINavigationItem"; title = "Previous Order"; ObjectID = "6hE-P1-ATe"; */
-"6hE-P1-ATe.title" = "الطلبات السابقة";
+"6hE-P1-ATe.title" = "Previous Order";
 
 /* Class = "UILabel"; text = "Order Cost"; ObjectID = "9Xa-fI-zSn"; */
 "9Xa-fI-zSn.text" = "تكلفة الطلب";
 
+/* Class = "UILabel"; text = "Order Status:"; ObjectID = "9qj-s5-yw6"; */
+"9qj-s5-yw6.text" = "حالة الطلب:";
+
 /* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "AJI-ou-7gC"; */
-"AJI-ou-7gC.normalTitle" = "اغلاق";
+"AJI-ou-7gC.normalTitle" = "تاكيد";
 
 /* Class = "UILabel"; text = "18 ali mahmoud helioplis cairo "; ObjectID = "EYI-3x-sM3"; */
 "EYI-3x-sM3.text" = "18 ali mahmoud helioplis cairo ";
@@ -48,7 +48,7 @@
 "Kt3-qi-rnO.text" = "Label";
 
 /* Class = "UINavigationItem"; title = "Order Following"; ObjectID = "Kwd-DZ-0jg"; */
-"Kwd-DZ-0jg.title" = "متابعة الطلب";
+"Kwd-DZ-0jg.title" = "Order Following";
 
 /* Class = "UILabel"; text = "EGP"; ObjectID = "KxK-wK-ZYW"; */
 "KxK-wK-ZYW.text" = "ريال";
@@ -60,7 +60,7 @@
 "Oyk-e2-SMH.text" = "Label";
 
 /* Class = "UILabel"; text = "Fees"; ObjectID = "PIG-4m-3ub"; */
-"PIG-4m-3ub.text" = "تكلفة الشحن";
+"PIG-4m-3ub.text" = "التوصيل";
 
 /* Class = "UILabel"; text = "Total"; ObjectID = "QWS-Xw-wzr"; */
 "QWS-Xw-wzr.text" = "الاجمالي";
@@ -69,9 +69,10 @@
 "QaH-Ro-XYO.text" = "ايصال الطلب";
 
 /* Class = "UINavigationItem"; title = "Order Receipt"; ObjectID = "RgB-RO-SKN"; */
-"RgB-RO-SKN.title" = "ايصال الطلب";
+"RgB-RO-SKN.title" = "Order Receipt";
+
 /* Class = "UILabel"; text = "Payment Gateway"; ObjectID = "SZi-x3-RTP"; */
-"SZi-x3-RTP.text" = "طريقة الدفع";
+"SZi-x3-RTP.text" = "Payment Gateway";
 
 /* Class = "UILabel"; text = "SAR"; ObjectID = "UkO-Lq-s7B"; */
 "UkO-Lq-s7B.text" = "ريال";
@@ -89,10 +90,10 @@
 "c9R-Tj-joR.text" = "Label";
 
 /* Class = "UILabel"; text = "Perparing"; ObjectID = "cWX-xc-jTd"; */
-"cWX-xc-jTd.text" = "تعد";
+"cWX-xc-jTd.text" = "يعد";
 
 /* Class = "UILabel"; text = "Order Receipt"; ObjectID = "dqw-bm-9Md"; */
-"dqw-bm-9Md.text" = "ايصال الطلب";
+"dqw-bm-9Md.text" = "Order Receipt";
 
 /* Class = "UILabel"; text = "On Way"; ObjectID = "eFq-jO-xx6"; */
 "eFq-jO-xx6.text" = "في الطريق";
@@ -103,23 +104,29 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "eOp-2H-bWU"; */
 "eOp-2H-bWU.text" = "Label";
 
+/* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "eYO-TR-I8d"; */
+"eYO-TR-I8d.normalTitle" = "تم";
+
+/* Class = "UILabel"; text = "Order Following"; ObjectID = "fqE-q3-7aE"; */
+"fqE-q3-7aE.text" = "اتباع الطلب";
+
 /* Class = "UILabel"; text = "165.54"; ObjectID = "h3a-5E-MHC"; */
 "h3a-5E-MHC.text" = "165.54";
 
 /* Class = "UILabel"; text = "012345678"; ObjectID = "hhl-eI-CEN"; */
 "hhl-eI-CEN.text" = "012345678";
 
+/* Class = "UILabel"; text = "Previous List"; ObjectID = "hoD-in-QR5"; */
+"hoD-in-QR5.text" = "الطلبات السابقة";
+
 /* Class = "UILabel"; text = "Completed"; ObjectID = "lgI-LV-Ugz"; */
-"lgI-LV-Ugz.text" = "مكتملة";
+"lgI-LV-Ugz.text" = "اكتمل";
 
 /* Class = "UIButton"; normalTitle = "International"; ObjectID = "mD7-on-3bi"; */
-"mD7-on-3bi.normalTitle" = "سفري";
+"mD7-on-3bi.normalTitle" = "International";
 
 /* Class = "UILabel"; text = "Total"; ObjectID = "n8R-4G-QT8"; */
 "n8R-4G-QT8.text" = "الاجمالي";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "qfM-1s-XWT"; */
-"qfM-1s-XWT.text" = "Label";
 
 /* Class = "UILabel"; text = "Arrived"; ObjectID = "qlN-ap-Qpk"; */
 "qlN-ap-Qpk.text" = "واصلة";
@@ -138,3 +145,6 @@
 
 /* Class = "UILabel"; text = "Order Cost"; ObjectID = "xGi-eV-Lq0"; */
 "xGi-eV-Lq0.text" = "تكلفة الطلب";
+
+/* Class = "UILabel"; text = "Receipt"; ObjectID = "xml-uw-USK"; */
+"xml-uw-USK.text" = "الايصال";

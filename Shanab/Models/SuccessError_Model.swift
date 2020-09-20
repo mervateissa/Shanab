@@ -71,4 +71,8 @@ class SuccessError_Model {
     var area_id = [String]()
     var building = [String]()
     var apartment = [String]()
+    var meal_id = [String]()
+    var options = [String]()
+    var condition = [String]()
+    var ducoments = [String]()
 }

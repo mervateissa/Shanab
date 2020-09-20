@@ -10,16 +10,20 @@ import UIKit
 import Kingfisher
 import Cosmos
 class ValiableResturantCell: UITableViewCell {
+    var goToFavorites: (() ->Void)? = nil
     @IBOutlet weak var staticLB: UILabel!
     @IBOutlet weak var staticTime: UILabel!
     @IBOutlet weak var resturantImage: UIImageView!
     @IBOutlet weak var type: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var cosmos: CosmosView!
+    @IBOutlet weak var FavoriteBN: UIButton!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var price: UILabel!
+    var isFavourite = Bool()
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         staticLB.adjustsFontSizeToFitWidth = true
         staticLB.minimumScaleFactor = 0.5
         staticTime.adjustsFontSizeToFitWidth = true
@@ -29,20 +33,43 @@ class ValiableResturantCell: UITableViewCell {
         // Initialization code
     }
     
+    @IBAction func AddToFavorite(_ sender: Any) {
+        goToFavorites?()
+        if isFavourite {
+            FavoriteBN.setImage(#imageLiteral(resourceName: "heart-1"), for: .normal)
+            isFavourite = false
+        }
+        else {
+            FavoriteBN.setImage(#imageLiteral(resourceName: "heart 2"), for: .normal)
+            isFavourite = true
+            
+        }
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     func config(name: String, time: String, rate: Double, price: Double, imagePath: String, type: String) {
-        if imagePath != "" {
-            guard let imageURL = URL(string:  imagePath) else { return }
+        if (!imagePath.contains("http")) {
+                   guard let imageURL = URL(string: (BASE_URL + "/" + imagePath).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+                             print(imageURL)
+             self.resturantImage.kf.setImage(with: imageURL)
+               }  else if imagePath != "" {
+                   guard let imageURL = URL(string: imagePath) else { return }
             self.resturantImage.kf.setImage(with: imageURL)
-        } else {
-            self.resturantImage.image = #imageLiteral(resourceName: "shanab loading")
-        }
+              }
         
         self.name.text = name
-        self.time.text = time
-        self.price.text = "\(price)"
+        
+        if "lang".localized == "ar" {
+            self.price.text = "\(price) ريال|"
+            self.time.text = "\(time )دقيقة"
+        } else {
+            self.price.text = "\(price)SAR|"
+            self.time.text = "\(time )Min"
+            
+        }
+        
         self.cosmos.rating = rate
         self.type.text = type
     }

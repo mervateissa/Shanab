@@ -9,6 +9,7 @@
 import UIKit
 class SideMenuVC: UIViewController {
     @IBOutlet weak var signIn: UIButton!
+    @IBOutlet weak var StatusLB: UILabel!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var editBN: UIButton!
     var id = Int()
@@ -29,6 +30,8 @@ class SideMenuVC: UIViewController {
     override func viewDidLoad() {
         profilePic.setRounded()
         super.viewDidLoad()
+        
+       
         SideMenuTableView.dataSource = self
         SideMenuTableView.delegate = self
         SideMenuTableView.rowHeight = UITableView.automaticDimension
@@ -37,12 +40,17 @@ class SideMenuVC: UIViewController {
         SideMenuVCPresenter.setSideMenuViewDelegate(SideMenuViewDelegate: self)
         if (Helper.getApiToken() ?? "") != "" {
             self.signIn.isHidden = true
+            self.StatusLB.isHidden = true
             
             
         } else {
+            self.profilePic.image = #imageLiteral(resourceName: "Group 6")
+            if "lang".localized == "en" {
+                 self.name.text = "Shnp"
+            } else {
+                 self.name.text = "شنب"
+            }
             self.SignOut.isHidden = true
-            profilePic.isHidden = true
-            name.isHidden = true
             editBN.isHidden = true
             
             
@@ -65,26 +73,26 @@ class SideMenuVC: UIViewController {
                     SideMenuModel(name: "Cart".localized, id: "Cart", selected: false,sideImage: #imageLiteral(resourceName: "cart (1)-1")),
                     SideMenuModel(name: "Reservations".localized, id: "Reservations", selected: false, sideImage: #imageLiteral(resourceName: "reservation2")),
                     SideMenuModel(name: "Order List".localized, id: "OrderList", selected: false, sideImage: #imageLiteral(resourceName: "order-food-1")),
-                    SideMenuModel(name: "Profile".localized, id: "Profile", selected: false,sideImage: #imageLiteral(resourceName: "ic_assignment_ind_24px")),
+                    SideMenuModel(name: "Profile".localized, id: "Profile", selected: false,sideImage: #imageLiteral(resourceName: "ic_assignment_ind_24px-1")),
                     SideMenuModel(name: "Favorit Restaurants".localized, id: "Favorites", selected: false, sideImage: #imageLiteral(resourceName: "heart")),
                     SideMenuModel(name: "Favorite Meals".localized, id: "FavoriteMeals", selected: false, sideImage: #imageLiteral(resourceName: "heart-1")),
-                    SideMenuModel(name: "ContactUs".localized, id: "ContactUs", selected: false,sideImage: #imageLiteral(resourceName: "contactUs")),
-                    SideMenuModel(name: "TermsAndConditions".localized, id: "TermsAndConditions", selected: false, sideImage: #imageLiteral(resourceName: "terms")),
-                    SideMenuModel(name: "Settings".localized, id: "Settings", selected: false, sideImage: #imageLiteral(resourceName: "burger"))
+                    SideMenuModel(name: "Contact Us".localized, id: "Contact Us", selected: false,sideImage: #imageLiteral(resourceName: "contactUs")),
+                    SideMenuModel(name: "Terms And Conditions".localized, id: "TermsAndConditions", selected: false, sideImage: #imageLiteral(resourceName: "terms")),
+                    SideMenuModel(name: "Settings".localized, id: "Setting", selected: false, sideImage: #imageLiteral(resourceName: "burger"))
                     
                 ]
             } else {
                 self.sideMenuArr = [
                     SideMenuModel(name: "Home".localized,id: "home", selected: false,sideImage: #imageLiteral(resourceName: "home")),
-                    SideMenuModel(name: "Sections".localized, id: "Sections", selected: false, sideImage: #imageLiteral(resourceName: "burger")),
-                    SideMenuModel(name: "Cart".localized, id: "Cart", selected: false,sideImage: #imageLiteral(resourceName: "cart (1)")),
-                    SideMenuModel(name: "Reservations".localized, id: "Reservations", selected: false, sideImage: #imageLiteral(resourceName: "reservation2")),
-                    SideMenuModel(name: "Order List".localized, id: "OrderList", selected: false, sideImage: #imageLiteral(resourceName: "order-food-1")),
-                    SideMenuModel(name: "Profile".localized, id: "Profile", selected: false,sideImage: #imageLiteral(resourceName: "ic_assignment_ind_24px")),
-                    SideMenuModel(name: "Favorit Restaurants".localized, id: "Favorites", selected: false, sideImage: #imageLiteral(resourceName: "heart")),
-                    SideMenuModel(name: "Favorite Meals".localized, id: "FavoriteMeals", selected: false, sideImage: #imageLiteral(resourceName: "heart-1")),
-                    SideMenuModel(name: "ContactUs".localized, id: "ContactUs", selected: false,sideImage: #imageLiteral(resourceName: "contactUs")),
-                    SideMenuModel(name: "TermsAndConditions".localized, id: "TermsAndConditions", selected: false, sideImage: #imageLiteral(resourceName: "terms"))
+                   
+                     SideMenuModel(name: "Pervious List".localized, id: "DriverOrderList", selected: false, sideImage: #imageLiteral(resourceName: "terms")),
+                  
+                     SideMenuModel(name: "Notifications".localized, id: "Notifications", selected: false, sideImage: #imageLiteral(resourceName: "icons8-notification")),
+                    SideMenuModel(name: "Contact Us".localized, id: "Contact Us", selected: false,sideImage: #imageLiteral(resourceName: "contactUs")),
+                    SideMenuModel(name: "Terms And Conditions".localized, id: "TermsAndConditions", selected: false, sideImage: #imageLiteral(resourceName: "terms")),
+                     SideMenuModel(name: "Settings".localized, id: "Setting", selected: false, sideImage: #imageLiteral(resourceName: "burger")),
+                    
+                    
                     
                 ]
             }
@@ -92,9 +100,9 @@ class SideMenuVC: UIViewController {
         } else {
             self.sideMenuArr = [
                 SideMenuModel(name: "Home".localized, id: "home", selected: false, sideImage: #imageLiteral(resourceName: "home")),
-                SideMenuModel(name: "Order List".localized, id: "OrderList", selected: false, sideImage: #imageLiteral(resourceName: "terms")),
-                SideMenuModel(name: "AboutUs".localized, id: "ContactUs", selected: false,sideImage: #imageLiteral(resourceName: "cridateCard")),
-                SideMenuModel(name: "TermsAndConditions".localized, id: "TermsAndConditions" , selected: false, sideImage: #imageLiteral(resourceName: "terms"))]
+                SideMenuModel(name: "Contact Us".localized, id: "Contact Us", selected: false,sideImage: #imageLiteral(resourceName: "cridateCard")),
+                SideMenuModel(name: "Terms And Conditions".localized, id: "TermsAndConditions" , selected: false, sideImage: #imageLiteral(resourceName: "terms")),
+             SideMenuModel(name: "Settings".localized, id: "Setting", selected: false, sideImage: #imageLiteral(resourceName: "burger"))]
         }
         
     }
@@ -164,12 +172,16 @@ class SideMenuVC: UIViewController {
             pushSideMenu(StoryboardName: "Orders", ForController: "FavoritesVC")
         case "FavoriteMeals":
             pushSideMenu(StoryboardName: "Orders", ForController: "FavoriteMealsVC")
-        case "ContactUs":
+        case "Contact Us":
             pushSideMenu(StoryboardName: "AboutApp", ForController: "ContactUsVC")
         case "TermsAndConditions":
             pushSideMenu(StoryboardName: "AboutApp", ForController: "TermsAndConditionsVC")
-        case "Sitting":
+        case "Setting":
             pushSideMenu(StoryboardName: "AboutApp", ForController: "SettingVC")
+        case "DriverOrderList":
+            pushSideMenu(StoryboardName: "Orders", ForController: "DriverOrderListVC")
+        case "Notifications":
+            pushSideMenu(StoryboardName: "Profile", ForController: "NotificationsVC")
             
         default:
             break
@@ -179,7 +191,7 @@ class SideMenuVC: UIViewController {
     func pushSideMenu(StoryboardName name: String,ForController identifier: String) {
         let main = UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: identifier)
         
-        self.navigationController?.pushViewController(main, animated: true)
+        self.navigationController!.pushViewController(main, animated: true)
     }
 }
 extension SideMenuVC: UITableViewDelegate,UITableViewDataSource {
@@ -231,10 +243,14 @@ extension SideMenuVC: SideMenuViewDelegate {
                 if let image = profile.image {
                     guard let url = URL(string: BASE_URL + "/" + image) else { return }
                     self.profilePic.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "shanab loading"))
+                    self.StatusLB.isHidden = true
                 }
             } else {
                 if let profile = result {
                     self.name.text = profile.nameAr ?? ""
+                    self.StatusLB.text = "\(profile.is_available ?? 0)"
+                    self.editBN.isHidden = true
+                    
                     if let image = profile.image {
                         guard let url = URL(string: BASE_URL + "/" + image) else { return }
                         self.profilePic.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "logo-1"))

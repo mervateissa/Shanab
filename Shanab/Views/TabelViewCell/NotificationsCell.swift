@@ -9,7 +9,6 @@
 import UIKit
 
 class NotificationsCell: UITableViewCell {
-     var delete: (() ->Void)? = nil
     @IBOutlet weak var notificationName: UILabel!
     @IBOutlet weak var status: UILabel!
     override func awakeFromNib() {
@@ -26,9 +25,6 @@ class NotificationsCell: UITableViewCell {
         self.notificationName.text = name
         self.status.text = status
     }
-    @IBAction func deleteBN(_ sender: UIButton) {
-        delete?()
-      
-    }
+  
     
 }

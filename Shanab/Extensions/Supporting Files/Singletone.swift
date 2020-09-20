@@ -20,7 +20,9 @@ class Singletone: NSObject {
     
     var aboutApp = String()
     var conditions = String()
+    var cart = [onlineCart]()
     var base_url = String()
     var appUserType : userType = .Customer
+  
     
 }

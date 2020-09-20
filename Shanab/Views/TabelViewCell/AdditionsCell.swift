@@ -9,6 +9,7 @@
 import UIKit
 import DLRadioButton
 class AdditionsCell: UITableViewCell {
+    var selectionOption: (() ->Void)?
     @IBOutlet weak var optionBN: DLRadioButton!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,30 +18,20 @@ class AdditionsCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        func config(name: String, selected: Bool) {
-//             self.name.text = name
-//            if selected {
-//               
-//                self.name.backgroundColor = #colorLiteral(red: 0.8121929765, green: 0.2939046025, blue: 0.2674312294, alpha: 1)
-//                self.name.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//            } else {
-//                self.name.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//                self.name.textColor = #colorLiteral(red: 0.8121929765, green: 0.2939046025, blue: 0.2674312294, alpha: 1)
-//            }
-//            
-        }
     }
-    @IBAction func selection(_ radioButton: DLRadioButton) {
-        switch radioButton.tag {
-        case 1:
-            print("Chees fries")
-            
-        default:
-            break
+    @IBAction func radioButtonAction(_ sender: DLRadioButton) {
+        selectionOption?()
+    }
+    func config(name: String, selected: Bool) {
+        optionBN.setTitle(name, for: .normal)
+        if selected {
+            optionBN.isSelected = true
+        } else {
+            optionBN.isSelected = false
         }
         
     }
+   
     
     
 }

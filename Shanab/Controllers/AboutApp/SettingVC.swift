@@ -10,7 +10,6 @@ import UIKit
 import DropDown
 import DLRadioButton
 import MOLH
-
 class SettingVC: UIViewController {
     @IBOutlet weak var languageType: UIButton!
     @IBOutlet weak var arabic: UIButton!
@@ -44,7 +43,7 @@ class SettingVC: UIViewController {
         switch radioButton.tag {
         case 1 :
             print("English")
-            self.english.setImage(#imageLiteral(resourceName: "righted_check"), for: .normal)
+            self.english.setImage(#imageLiteral(resourceName: "icons8-ok"), for: .normal)
             if MOLHLanguage.currentAppleLanguage() == "ar" {
                 MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
                 UIView.appearance().semanticContentAttribute = .forceLeftToRight
@@ -60,7 +59,7 @@ class SettingVC: UIViewController {
             }
         case 2 :
             print("Arabic")
-            self.arabic.setImage(#imageLiteral(resourceName: "righted_check"), for: .normal)
+            self.arabic.setImage(#imageLiteral(resourceName: "icons8-ok"), for: .normal)
             if MOLHLanguage.currentAppleLanguage() == "en" {
                 MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
                 MOLH.reset()

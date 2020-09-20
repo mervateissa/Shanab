@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.8.2)
+  - AlamofireNetworkActivityLogger (2.4.0):
+    - Alamofire (~> 4.8)
   - AnalogClock (1.0.0)
   - Charts (3.5.0):
     - Charts/Core (= 3.5.0)
@@ -118,6 +120,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.2)
+  - AlamofireNetworkActivityLogger
   - AnalogClock
   - Charts
   - Clocket
@@ -143,6 +146,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireNetworkActivityLogger
     - AnalogClock
     - Charts
     - Clocket
@@ -180,6 +184,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireNetworkActivityLogger: 6d3398c692d2c5d83b0c58793537860aca1e383d
   AnalogClock: 00515e08f77f923c69442d45c73a77f13ed6c357
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   Clocket: 096ae0fb73338019f32e9234799d3f5da85bf89d
@@ -215,6 +220,6 @@ SPEC CHECKSUMS:
   SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 6b15d6a2858394a015ea4ecaf63926f0137b2b2b
+PODFILE CHECKSUM: 089f71f02d770d9d282510c0d71f1298619d1602
 
 COCOAPODS: 1.9.3

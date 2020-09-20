@@ -13,16 +13,19 @@ class ListCell: UITableViewCell {
     var goToDetails: (() ->Void)? = nil
     var FollowOrder:(() ->Void)? = nil
     @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var orderNum: UILabel!
     @IBOutlet weak var date: UILabel!
+//    @IBOutlet weak var nameLB: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
        
     }
-    func config( date: String, status: String) {
+    func config( date: String, status: String, orderNumber: Int) {
  
         self.date.text = date
         self.status.text = status
+        self.orderNum.text = "\(orderNumber)"
 
     
     }

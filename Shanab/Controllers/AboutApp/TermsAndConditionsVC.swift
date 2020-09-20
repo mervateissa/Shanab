@@ -10,6 +10,7 @@ import UIKit
 
 class TermsAndConditionsVC: UIViewController {
     @IBOutlet weak var termsAndCondetionsTV: UITextView!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,5 +23,11 @@ class TermsAndConditionsVC: UIViewController {
     }
     
     
-
+    @IBAction func backButton(_ sender: Any) {
+        guard let window = UIApplication.shared.keyWindow else { return }
+                  let sb = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBar")
+                  window.rootViewController = sb
+                  UIView.transition(with: window, duration: 0.5, options: .curveEaseInOut, animations: nil, completion: nil)
+    }
+    
 }

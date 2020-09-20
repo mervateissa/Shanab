@@ -15,22 +15,24 @@ struct DriverOrderListModelJSON: Codable {
 
 // MARK: - DataClass
 struct UserAuthuDataClass: Codable {
-    var orders: [Order]?
+    var orders: [OrderList]?
 }
 struct OrdersErrors: Codable {
     var account: String?
 }
 
 // MARK: - Order
-struct Order: Codable {
-    var id, clientID, driverID: Int?
+struct OrderList: Codable {
+   var id, clientID, driverID, addressID: Int?
     var currency: String?
-    var total: Int?
+    var total: Double?
     var status, lat, long: String?
     var quantity, rate: Int?
+    var message: String?
     var createdAt, updatedAt: String?
     var client: Client?
     var orderDetail: [OrderDetail]?
+    var address: Address?
 
     enum CodingKeys: String, CodingKey {
         case id

@@ -9,7 +9,7 @@
 import Foundation
 import SVProgressHUD
 protocol SearchViewDelegate: class {
-    func MealSearchResult(_ error: Error?, _ result: [Collection]?)
+    func MealSearchResult(_ error: Error?, _ result: [CollectionDataClass]?)
     func RestaurantSearchResult(_ error: Error?, _ restaurantResult: [SearchResult]?)
 }
 class SearchPresenter {
@@ -28,7 +28,7 @@ class SearchPresenter {
         SVProgressHUD.dismiss()
     }
     func postMealSearch(word: String) {
-        services.postMealSearch(word: word) {[weak self] (error: Error?, result: [Collection]?) in
+        services.postMealSearch(word: word) {[weak self] (error: Error?, result: [CollectionDataClass]?) in
             self?.SearchViewDelegate?.MealSearchResult(error, result)
             self?.dismissIndicator()
         }

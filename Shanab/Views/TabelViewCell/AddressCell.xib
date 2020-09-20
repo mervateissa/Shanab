@@ -51,8 +51,11 @@
                             <constraint firstItem="xw9-mI-Bbr" firstAttribute="centerX" secondItem="5eU-84-J7Y" secondAttribute="centerX" id="SHc-rm-C3H"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ش علي محمود - مصر الجديدة" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTG-gB-VUd">
-                        <rect key="frame" x="141" y="28.5" width="169" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ش علي محمود - مصر الجديدة" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTG-gB-VUd">
+                        <rect key="frame" x="65.5" y="-3" width="244.5" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="tXa-za-j96"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -63,6 +66,7 @@
                     <constraint firstItem="eTG-gB-VUd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QYl-xq-XY4"/>
                     <constraint firstAttribute="trailing" secondItem="eTG-gB-VUd" secondAttribute="trailing" constant="16" id="TYq-xr-2xB"/>
                     <constraint firstItem="5eU-84-J7Y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lab-mI-Knp"/>
+                    <constraint firstItem="eTG-gB-VUd" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.75" id="qIE-h9-egJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

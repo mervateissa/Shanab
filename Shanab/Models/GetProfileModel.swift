@@ -25,6 +25,7 @@ struct User: Codable {
     var longitude, latitude: Int?
     var status: String?
     var personal: Personal?
+    var  is_available: Int?
 
     enum CodingKeys: String, CodingKey {
         case id

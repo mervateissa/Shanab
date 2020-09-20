@@ -10,6 +10,8 @@ import Foundation
 import SVProgressHUD
 protocol FavoriteMealsViewDelegate: class {
     func UserFavoriteMealssResult(_ error: Error?, _ favoriteList: [Favorites]?)
+    func AddToCartResult(_ error: Error?, _ result: SuccessError_Model?)
+    func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?)
     }
     class UserFavoritesMealsPresenter {
         private let services: Services
@@ -32,4 +34,16 @@ protocol FavoriteMealsViewDelegate: class {
                 self?.dismissIndicator()
             }
         }
+        func postAddToCart(meal_id: Int, quantity: Int, message: String, options: [Int]) {
+            services.postAddToCart(meal_id: meal_id, quantity: quantity, message: message, options: options) {[weak self] (error: Error?, result: SuccessError_Model?) in
+                self?.FavoriteMealsViewDelegate?.AddToCartResult(error, result)
+                self?.dismissIndicator()
+            }
+        }
+        func postRemoveFavorite(item_id: Int, item_type: String) {
+                 services.postRemoveFavorite(item_id: item_id, item_type: item_type) { [weak self] (error: Error?, result: SuccessError_Model?) in
+                     self?.FavoriteMealsViewDelegate?.RemoveFavorite(error, result)
+                     self?.dismissIndicator()
+                 }
+             }
     }

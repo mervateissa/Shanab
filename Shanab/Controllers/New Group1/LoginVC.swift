@@ -11,6 +11,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var EmailTF: UITextField!
     private let LoginVCPresenter = LoginPresenter(services: Services())
+    var websiteUrl = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         LoginVCPresenter.setLoginViewDelegate(LoginViewDelegate: self)
@@ -23,7 +24,16 @@ class LoginVC: UIViewController {
         sb.modalTransitionStyle = .crossDissolve
         self.present(sb, animated: true, completion: nil)
     }
+    @IBAction func backButton(_ sender: Any) {
+        guard let sb = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? MainVC else {return}
+               self.navigationController?.pushViewController(sb, animated: true)
+    }
     
+    @IBAction func prespectiveLogin(_ sender: UIButton) {
+        
+        guard let url = URL(string: ("http://shanp.dtagdev.com/join_us/restaurant" )) else { return }
+            UIApplication.shared.open(url)
+ }
     @IBAction func login(_ sender: UIButton) {
         guard self .validate() else {return}
         guard let email = EmailTF.text else {return}

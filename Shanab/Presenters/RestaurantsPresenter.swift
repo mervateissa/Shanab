@@ -10,7 +10,8 @@ import Foundation
 import SVProgressHUD
 protocol RestaurantsViewDelegate: class {
     func getAllRestaurantsResult(_ error: Error?, _ restaurants: [Restaurant]?)
-   
+   func FavoriteResult(_ error: Error?, _ result: SuccessError_Model?)
+   func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?)
 }
 class RestaurantsPresenter {
     private let services: Services
@@ -35,5 +36,17 @@ class RestaurantsPresenter {
             self?.dismissIndicator()
         }
     }
+    func postCreateFavorite(item_id: Int, item_type: String) {
+              services.postCreateFavorite(item_id: item_id, item_type: item_type) { [weak self] (error: Error?, result: SuccessError_Model?) in
+                  self?.RestaurantsViewDelegate?.FavoriteResult(error, result)
+                  self?.dismissIndicator()
+              }
+          }
+          func postRemoveFavorite(item_id: Int, item_type: String) {
+              services.postRemoveFavorite(item_id: item_id, item_type: item_type) { [weak self] (error: Error?, result: SuccessError_Model?) in
+                  self?.RestaurantsViewDelegate?.RemoveFavorite(error, result)
+                  self?.dismissIndicator()
+              }
+          }
    
 }

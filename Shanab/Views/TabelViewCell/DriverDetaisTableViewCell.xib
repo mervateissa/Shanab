@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Cairo-Regular.ttf">
+            <string>Cairo-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,38 +23,43 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woe-6A-L62">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="90"/>
+                        <rect key="frame" x="0.0" y="0.0" width="410.5" height="90"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="U0J-Ut-05k">
-                                <rect key="frame" x="16" y="9" width="290" height="72"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="U0J-Ut-05k">
+                                <rect key="frame" x="10.5" y="7" width="390" height="76.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-T7-dfQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="83.5" height="72"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywz-ya-60z">
+                                        <rect key="frame" x="0.0" y="0.0" width="58.5" height="76.5"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
+                                        <color key="textColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adR-CR-fkz">
-                                        <rect key="frame" x="103.5" y="0.0" width="83" height="72"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="63.5" y="0.0" width="234" height="76.5"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
+                                        <color key="textColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywz-ya-60z">
-                                        <rect key="frame" x="206.5" y="0.0" width="83.5" height="72"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-T7-dfQ">
+                                        <rect key="frame" x="302.5" y="0.0" width="87.5" height="76.5"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
+                                        <color key="textColor" red="0.8121929765" green="0.2939046025" blue="0.26743122940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="KAa-T7-dfQ" firstAttribute="width" secondItem="U0J-Ut-05k" secondAttribute="width" multiplier="0.15" id="Cu8-vt-4Pm"/>
+                                    <constraint firstItem="ywz-ya-60z" firstAttribute="width" secondItem="U0J-Ut-05k" secondAttribute="width" multiplier="0.15" id="Yts-kj-PZr"/>
+                                    <constraint firstItem="adR-CR-fkz" firstAttribute="width" secondItem="U0J-Ut-05k" secondAttribute="width" multiplier="0.6" id="vIr-GW-SBc"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="U0J-Ut-05k" firstAttribute="centerX" secondItem="woe-6A-L62" secondAttribute="centerX" id="4t7-Ja-DAU"/>
                             <constraint firstItem="U0J-Ut-05k" firstAttribute="centerY" secondItem="woe-6A-L62" secondAttribute="centerY" id="LhF-f2-Z0h"/>
-                            <constraint firstItem="U0J-Ut-05k" firstAttribute="width" secondItem="woe-6A-L62" secondAttribute="width" multiplier="0.9" id="MGC-G1-Fih"/>
-                            <constraint firstItem="U0J-Ut-05k" firstAttribute="height" secondItem="woe-6A-L62" secondAttribute="height" multiplier="0.8" id="Wac-kc-nQX"/>
+                            <constraint firstItem="U0J-Ut-05k" firstAttribute="width" secondItem="woe-6A-L62" secondAttribute="width" multiplier="0.95" id="MGC-G1-Fih"/>
+                            <constraint firstItem="U0J-Ut-05k" firstAttribute="height" secondItem="woe-6A-L62" secondAttribute="height" multiplier="0.85" id="Wac-kc-nQX"/>
                         </constraints>
                     </view>
                 </subviews>

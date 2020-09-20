@@ -11,7 +11,7 @@ import SVProgressHUD
 protocol DriverProfileViewDelegate: class {
     func DriverChangeImageResult(_ error: Error?, _ result: SuccessError_Model?)
     func DriverIsAvaliableChangeResult(_ error: Error?, _ result: SuccessError_Model?)
-    func DriverOrderListResult(_ error: Error?, _ list: [Order]?, _ orderErrors: OrdersErrors?)
+    func DriverOrderListResult(_ error: Error?, _ list: [OrderList]?, _ orderErrors: OrdersErrors?)
     func getDriverProfileResult(_ error: Error?, _ result: User?)
     func postEditDriverProfileResult(_ error: Error?, _ result: SuccessError_Model?)
 }
@@ -42,7 +42,7 @@ class DriverProfilePresenter{
         }
     }
     func DriverOrderList(type: [String]) {
-        services.getDriverOrderList(type: type) {[weak self] (error: Error?, list:[Order]?, orderErrors: OrdersErrors?) in
+        services.getDriverOrderList(type: type) {[weak self] (error: Error?, list:[OrderList]?, orderErrors: OrdersErrors?) in
             self?.DriverProfileViewDelegate?.DriverOrderListResult(error, list, orderErrors)
             self?.dismissIndicator()
         }

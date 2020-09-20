@@ -9,7 +9,7 @@
 import Foundation
 import SVProgressHUD
 protocol UserListViewDelegate: class {
-    func UserListResult(_ error: Error?, _ list: [OrderList]?)
+    func UserListResult(_ error: Error?, _ list: [orderList]?)
 }
 class UserListPresenter {
     private let services: Services
@@ -27,7 +27,7 @@ class UserListPresenter {
         SVProgressHUD.dismiss()
     }
     func postUserGetList(status: [String]) {
-        services.postUserGetOrder(status: status) {[weak self] (_ error: Error?, _ list: [OrderList]?) in
+        services.postUserGetOrder(status: status) {[weak self] (_ error: Error?, _ list: [orderList]?) in
             self?.UserListViewDelegate?.UserListResult(error, list)
             self?.dismissIndicator()
         }

@@ -23,10 +23,10 @@ class AgentRegisterationVC: UIViewController {
     let gallery = GalleryController()
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-            DriverRegisterVCPresenter.setDriverRegisterViewDelegate(DriverRegisterViewDelegate: self)
-            
-    
+        
+        DriverRegisterVCPresenter.setDriverRegisterViewDelegate(DriverRegisterViewDelegate: self)
+        
+        
         func setupCountryPHone() {
             
             
@@ -37,11 +37,13 @@ class AgentRegisterationVC: UIViewController {
                 self?.phone.setFlag(countryCode: country.code)
             }
         }
-          func setupGallery() {
-              gallery.delegate = self
-              Config.tabsToShow = [.cameraTab, .imageTab]
-              Config.initialTab = .cameraTab
-          }
+        
+        
+        func setupGallery() {
+            gallery.delegate = self
+            Config.tabsToShow = [.cameraTab, .imageTab]
+            Config.initialTab = .cameraTab
+        }
         
         setupGallery()
     }
@@ -70,6 +72,10 @@ class AgentRegisterationVC: UIViewController {
         }
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        guard let sb = UIStoryboard(name: "Authentications", bundle: nil).instantiateViewController(withIdentifier: "DriverLoginVC") as? DriverLoginVC else {return}
+               self.navigationController?.pushViewController(sb, animated: true)
+    }
     
     @IBAction func confirm(_ sender: UIButton) {
         guard self.validate() else {return}
@@ -84,7 +90,7 @@ class AgentRegisterationVC: UIViewController {
         
     }
     @IBAction func login(_ sender: UIButton) {
-       guard let sb = UIStoryboard(name: "Authentications", bundle: nil).instantiateViewController(withIdentifier: "DriverLoginVC") as? DriverLoginVC else {return}
+        guard let sb = UIStoryboard(name: "Authentications", bundle: nil).instantiateViewController(withIdentifier: "DriverLoginVC") as? DriverLoginVC else {return}
         self.navigationController?.pushViewController(sb, animated: true)
         
     }
@@ -93,8 +99,11 @@ class AgentRegisterationVC: UIViewController {
         self.images_type = "documents"
         self.documents_images.removeAll()
         self.present(gallery, animated: true, completion: nil)
+        
+        
     }
 }
+
 
 extension AgentRegisterationVC: GalleryControllerDelegate {
     func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
@@ -102,12 +111,9 @@ extension AgentRegisterationVC: GalleryControllerDelegate {
     }
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
-        
-        
         for image in images {
             image.resolve { (img) in
                 if self.images_type == "documents" {
-                    
                     self.documents_images.append(img ?? UIImage())
                     if self.documents_images.count == images.count {
                         controller.dismiss(animated: true ){
@@ -115,12 +121,8 @@ extension AgentRegisterationVC: GalleryControllerDelegate {
                         }
                     }
                 }
-                
-                
             }
         }
-        
-        
     }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
         for image in images {
@@ -151,8 +153,12 @@ extension AgentRegisterationVC: DriverRegisterViewDelegate {
         if let resultMsg = result {
             if resultMsg.successMessage != "" {
                 displayMessage(title: "", message: resultMsg.successMessage, status: .success, forController: self)
+                  guard let details = UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "DriverOrderListVC") as? DriverOrderListVC else { return }
+                 self.navigationController?.pushViewController(details, animated: true)
+            } else if resultMsg.un_active_account != "" {
+                           displayMessage(title: "", message: resultMsg.un_active_account, status: .info, forController: self)
                 
-            } else if resultMsg.email != [""] {
+             } else if resultMsg.email != [""] {
                 displayMessage(title: "", message: resultMsg.email[0], status: .error, forController: self)
             } else if resultMsg.password != [""] {
                 displayMessage(title: "", message: resultMsg.password[0], status: .error, forController: self)
@@ -164,8 +170,7 @@ extension AgentRegisterationVC: DriverRegisterViewDelegate {
         if let resultMsg = result {
             if resultMsg.successMessage != "" {
                 displayMessage(title: "", message: resultMsg.successMessage, status: .success, forController: self)
-                self.DriverRegisterVCPresenter.postDriverLogin(email: UserDefaults.standard.string(forKey: "email") ?? "", password: self.password.text ?? "")
-                
+                self.DriverRegisterVCPresenter.postDriverLogin(email: UserDefaults.standard.string(forKey: self.email.text ?? "") ?? "", password: self.password.text ?? "")
             }  else if resultMsg.name != [""] {
                 displayMessage(title: "", message: resultMsg.name[0], status: .error, forController: self)
             } else if resultMsg.email != [""] {
@@ -176,11 +181,11 @@ extension AgentRegisterationVC: DriverRegisterViewDelegate {
                 displayMessage(title: "", message: resultMsg.password[0], status: .error, forController: self)
             } else if resultMsg.password_confirmation != [""]{
                 displayMessage(title: "", message: resultMsg.password_confirmation[0], status: .error, forController: self)
+            } else if !resultMsg.ducoments.isEmpty, resultMsg.ducoments != [""] {
+                displayMessage(title: "", message: resultMsg.ducoments[0], status: .error, forController: self)
             }
         }
     }
-    
-    
 }
 extension AgentRegisterationVC: FPNTextFieldDelegate {
     

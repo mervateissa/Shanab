@@ -77,6 +77,9 @@ class LocationVC: UIViewController {
     }
     @IBAction func LocationConfirmation(_ sender: Any) {
         UserDefaults.standard.set(self.LocationLabel.text ?? "", forKey: "Address")
+        Constants.lat = self.lat
+        Constants.long = self.long
+        Constants.address = self.LocationLabel.text ?? ""
         self.navigationController?.popViewController(animated: true)
         
     }

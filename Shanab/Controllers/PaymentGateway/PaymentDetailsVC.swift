@@ -15,6 +15,8 @@ class PaymentDetailsVC: UIViewController {
 
        
     }
+    @IBAction func dismiss(_ sender: Any) {
+    }
     
     @IBAction func conffirm(_ sender: Any) {
        guard let sb = UIStoryboard(name: "PaymentGetWay", bundle: nil).instantiateViewController(withIdentifier: "PaymentGatewayVC") as? PaymentGatewayVC else { return }

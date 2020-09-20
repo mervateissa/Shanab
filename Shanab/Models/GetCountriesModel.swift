@@ -9,11 +9,11 @@
 import Foundation
 struct GetCountriesModelJSON: Codable {
     var status: Bool?
-    var data: DataClass?
+    var data: OnlineCartDataClass?
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct OnlineCartDataClass: Codable {
     var countries: [Country]?
 }
 

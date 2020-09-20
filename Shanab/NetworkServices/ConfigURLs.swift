@@ -68,13 +68,13 @@ struct ConfigURLs {
     // get mail Template
     static var getmailTemplate = BASE_URL + "/api/user/mail/template?type=contact us"
     // post Create Reservation
-    static var postCreateReservation = BASE_URL + "/api/user/favorite/create"
+    static var postCreateReservation = BASE_URL + "/api/user/reservation/create"
     // post get Reservations
     static var postgetReservations = BASE_URL + "/api/user/reservation/get"
     // post User Get Order
     static var postUserGetOrder = BASE_URL + "/api/user/order/getOrder"
     // post User Order Detail
-    static var postUserOrderDetail = BASE_URL + "api/user/order/orderDetail"
+    static var postUserOrderDetail = BASE_URL + "/api/user/order/orderDetail"
     // post Reservation Details
     static var postReservationDetails = BASE_URL + "/api/user/reservation/detail"
     // post Cancel Reservation
@@ -108,8 +108,8 @@ struct ConfigURLs {
      static var postGetCities = BASE_URL + "/api/user/getCountries"
     // post Delete Address
     static var postDeleteAddress = BASE_URL + "/api/user/deleteAddress"
-    // get Cart
-    static var getCart = BASE_URL + "/api/user/cart/cartItems"
+    // get Cart Items
+    static var getCartItems = BASE_URL + "/api/user/cart/cartItems"
     // post Add To Cart
     static var postAddToCart = BASE_URL + "/api/user/cart/addToCart"
     // post Delete Cart

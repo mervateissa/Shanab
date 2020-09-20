@@ -12,6 +12,9 @@ protocol GetAddsViewDelegate: class {
     func getAddsResult(_ error: Error?, _ result: [Add]?)
     func CatgeoriesResult( _ error: Error?, _ catgeory: [Category]?)
     func getAllRestaurantsResult(_ error: Error?, _ restaurants: [Restaurant]?)
+    func RestaurantSearchResult(_ error: Error?, _ restaurantResult: [SearchResult]?)
+    func FavoriteResult(_ error: Error?, _ result: SuccessError_Model?)
+    func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?)
 }
 class GetAddsPresenter {
     private let services: Services
@@ -30,8 +33,8 @@ class GetAddsPresenter {
     }
     func getCategoreyList() {
     }
-    func getAdds(){
-        services.getAdds { [weak self](error: Error?,
+    func getAdds(item_id: Int, item_type: String){
+        services.getAdds(item_id: item_id, item_type: item_type) { [weak self](error: Error?,
             result: [Add]?) in
             self?.GetAddsViewDelegate?.getAddsResult(error, result)
             self?.dismissIndicator()
@@ -50,4 +53,22 @@ class GetAddsPresenter {
             self?.dismissIndicator()
         }
     }
+      func postRestaurantSearch(word: String) {
+           services.postSearchRestauran(word: word) {[weak self] (error: Error?, result: [SearchResult]?) in
+               self?.GetAddsViewDelegate?.RestaurantSearchResult(error, result)
+               self?.dismissIndicator()
+           }
+       }
+    func postCreateFavorite(item_id: Int, item_type: String) {
+           services.postCreateFavorite(item_id: item_id, item_type: item_type) { [weak self] (error: Error?, result: SuccessError_Model?) in
+               self?.GetAddsViewDelegate?.FavoriteResult(error, result)
+               self?.dismissIndicator()
+           }
+       }
+       func postRemoveFavorite(item_id: Int, item_type: String) {
+           services.postRemoveFavorite(item_id: item_id, item_type: item_type) { [weak self] (error: Error?, result: SuccessError_Model?) in
+               self?.GetAddsViewDelegate?.RemoveFavorite(error, result)
+               self?.dismissIndicator()
+           }
+       }
 }

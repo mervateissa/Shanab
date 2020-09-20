@@ -10,8 +10,9 @@ import UIKit
 import Cosmos
 import Kingfisher
 class ProductiveFamiliesCell: UITableViewCell {
-     var addToFavorite: (() -> Void)? = nil
+    var addToFavorite: (() -> Void)? = nil
     @IBOutlet weak var staticLB: UILabel!
+    @IBOutlet weak var FavoriteBN: UIButton!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var feesStatic: UILabel!
@@ -19,6 +20,7 @@ class ProductiveFamiliesCell: UITableViewCell {
     @IBOutlet weak var cosmos: CosmosView!
     @IBOutlet weak var familyName: UILabel!
     @IBOutlet weak var productImage: UIImageView!
+    var isFavourite = Bool()
     override func awakeFromNib() {
         super.awakeFromNib()
         productImage.setRounded()
@@ -31,6 +33,15 @@ class ProductiveFamiliesCell: UITableViewCell {
     
     @IBAction func addToFavorite(_ sender: UIButton) {
         addToFavorite?()
+        if isFavourite {
+            FavoriteBN.setImage(#imageLiteral(resourceName: "heart-1"), for: .normal)
+            isFavourite = false
+        }
+        else {
+            FavoriteBN.setImage(#imageLiteral(resourceName: "heart 2"), for: .normal)
+            isFavourite = true
+            
+        }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -38,17 +49,30 @@ class ProductiveFamiliesCell: UITableViewCell {
         
     }
     func config(familyName: String, time: Int, imagePath: String, productName: String, price: Double, rate: Double) {
-        if imagePath != "" {
-            guard let imageURL = URL(string: imagePath) else { return }
-            self.productImage.kf.setImage(with: imageURL)
-        } else {
-            self.productImage.image = #imageLiteral(resourceName: "shanab loading")
-        }
-        
+        if (!imagePath.contains("http")) {
+                   guard let imageURL = URL(string: (BASE_URL + "/" + imagePath).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+                   print(imageURL)
+                   self.productImage.kf.setImage(with: imageURL)
+               }  else if imagePath != "" {
+                   guard let imageURL = URL(string: imagePath) else { return }
+                   self.productImage.kf.setImage(with: imageURL)
+               } else {
+                   self.productImage.image = #imageLiteral(resourceName: "shanab loading")
+               }
         self.productName.text = productName
         self.familyName.text = familyName
-        self.time.text = "\(time)"
-        self.price.text = "\(price)"
+        if "lang".localized == "en" {
+            self.time.text = "\(time)Min|"
+            self.price.text = "\(price)SAR"
+            staticLB.text = "Delivery Time"
+            feesStatic.text = "Delivery Fees"
+        } else {
+            self.time.text = "\(time)دقيقة|"
+            self.price.text = "\(price)ريال"
+            staticLB.text = "وقت التوصيل"
+            feesStatic.text = "مصاريف التوصيل"
+        }
+        
         self.cosmos.rating = rate
     }
     

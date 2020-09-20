@@ -11,9 +11,13 @@ import SwiftyJSON
 import Alamofire
 class Services {
     //MARK:- Get Adds
-    func getAdds(completion: @escaping( _ error: Error?, _ result: [Add]?) -> Void){
+    func getAdds(item_id: Int, item_type: String ,completion: @escaping( _ error: Error?, _ result: [Add]?) -> Void){
         let url = ConfigURLs.getAdds
-        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
+        let parameters = [
+            "item_type": item_type,
+            "item_id": item_id
+            ] as [String : Any]
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil)
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
@@ -84,7 +88,7 @@ class Services {
                         completion(nil, restaurantDetails)
                     }
                 } catch {
-                    print(error.localizedDescription)
+                    print(error)
                     completion(error, nil)
                     
                 }
@@ -118,9 +122,9 @@ class Services {
     func postRestaurantMeals(restaurant_id: Int, type: String, category_id: Int, completion: @escaping( _ error: Error?, _ Meals: [RestaurantMeal]?)->Void) {
         let url = ConfigURLs.postRestaurantMeals
         let parameters = [
-            "restaurant_id": 1,
+            "restaurant_id": restaurant_id,
             "type": type,
-            "category_id": 1
+            "category_id": category_id
             ] as [String : Any]
         let device_token = Helper.getDeviceToken() ?? ""
         let token = Helper.getApiToken() ?? ""
@@ -192,6 +196,7 @@ class Services {
                         let successMsg = SuccessError_Model()
                         successMsg.successMessage = "تم تسجيل الدخول بنجاح"
                         if let token = json["data"]["user"]["token"].string, let email = json["data"]["user"]["email"].string, let user_id = json["data"]["user"]["user_id"].int
+                            
                         {
                             Singletone.instance.appUserType = .Customer
                             Helper.saveUserRole(role: Singletone.instance.appUserType.rawValue)
@@ -534,7 +539,7 @@ class Services {
             
             for image in documents {
                 if let data = image.jpegData(compressionQuality: 0.3) {
-                    form.append(data, withName: "documents_images", fileName: "documents_images.jpeg", mimeType: "image/jpeg")
+                    form.append(data, withName: "documents", fileName: "documents_images.jpeg", mimeType: "image/jpeg")
                 }
             }
             
@@ -721,7 +726,7 @@ class Services {
         }
     }
     //MARK:- Driver Order List
-    func getDriverOrderList(type: [String],completion: @escaping(_ error: Error?, _ result: [Order]?,_ orderErrors: OrdersErrors?)->Void) {
+    func getDriverOrderList(type: [String],completion: @escaping(_ error: Error?, _ result: [OrderList]?,_ orderErrors: OrdersErrors?)->Void) {
         let url = ConfigURLs.getDriverOrderList
         let token = Helper.getApiToken() ?? ""
         let headers = [
@@ -753,7 +758,7 @@ class Services {
         }
     }
     //MARK:- Driver Order Details
-    func getDriverOrderDetails(id: Int, completion: @escaping(_ error: Error?, _ details: [DriverOrder]?)->Void) {
+    func postDriverOrderDetails(id: Int, completion: @escaping(_ error: Error?, _ details: [DriverOrder]?)->Void) {
         let url = ConfigURLs.getDriverOrderDetails
         let token = Helper.getApiToken() ?? ""
         let headers = [
@@ -762,7 +767,7 @@ class Services {
         let parameters = [
             "id": id
         ]
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
@@ -783,7 +788,7 @@ class Services {
         
     }
     //MARK:- post User Create Order
-    func postUserCreateOrder(lat: Double, long: Double, quantity: Int, currency: String, total: Int, message: String, cartItems: [CartModelItem], completion: @escaping(_ error: Error?, _ result: SuccessError_Model?)->Void) {
+    func postUserCreateOrder(lat: Double, long: Double, quantity: Int, currency: String, total: Int, message: String, address_id: Int, cartItems: [onlineCart], completion: @escaping(_ error: Error?, _ result: SuccessError_Model?)->Void) {
         let url = ConfigURLs.postUserCreateOrder
         let token = Helper.getApiToken() ?? ""
         let headers = [
@@ -792,33 +797,43 @@ class Services {
         var cartItem = [[String: Any]]()
         for item in cartItems {
             var options = [[String:Any]]()
-            for option in item.options!{
+            for option in item.optionsContainer ?? [] {
                 let addition = ["option_id" : option.id ?? 0]
                 options.append(addition)
             }
             let order = ["order" : [
-                "meal_id" : item.itemId ?? 0,
-                "options" :options,
-                "quantity": item.itemQuantity ?? 0,
-                "message": ""
+                "meal_id" : item.mealID ?? 0,
+                "option" :options,
+                "quantity": item.quantity ?? 0,
+                "message": item.message ?? ""
                 ]]
             cartItem.append(order)
         }
+        
+        
+        print(modelToJSON(cartItems: cartItems))
         let parameters = [
-            "lat": lat,
-            "long": long,
-            "quantatiy": quantity,
-            "currency": currency,
-            "total": total,
-            "message": message,
-            "cartItems": cartItem
-            ] as [String : Any]
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+                    "lat": lat,
+                    "long": long,
+                    "quantity": quantity,
+                    "currency": currency,
+                    "total": total,
+                    "message": message,
+                    "cartItems":
+                        //(modelToJSON(cartItems: cartItems)),
+      "[{\"order\":{\"meal_id\":6,\"quantity\":4,\"message\":\"notes\"},\"option\":[{\"option_id\":1},{\"option_id\":2}]},{\"order\":{\"meal_id\":7,\"quantity\":4}}]" ,
+                    "address_id": address_id
+                    ] as [String : Any]
+
+        
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding:JSONEncoding.default, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
                 switch response.result {
                 case .failure(let error):
+                    print("error in create order:\(error.localizedDescription)")
                     completion(error, nil)
                 case .success(let value):
                     let json = JSON(value)
@@ -836,6 +851,7 @@ class Services {
                         errorMsg.total = errorArr["total"] as? [String] ?? [""]
                         errorMsg.message = errorArr["message"] as? [String] ?? [""]
                         errorMsg.cartItems = errorArr["cartItems"] as? [String] ?? [""]
+                        print(errorMsg)
                         completion(nil, errorMsg)
                     }
                 }
@@ -844,7 +860,61 @@ class Services {
         
         
     }
-    // post Favorite Get
+    func modelToJSON(cartItems:[onlineCart]) -> JSON{
+        var itemsArr:[Dictionary<String,Any>] = []
+        for cartIndex in 0...cartItems.count - 1{
+             var dict:[String:Any] = [:]
+            let item = cartItems[cartIndex]
+            var mealdict:[String:Any] = ["meal_id": item.meal!.id! ,"quantity":item.quantity!]
+
+            if item.message != ""{
+                mealdict["message"] = item.message ?? ""
+               
+            }
+            dict["order"] = mealdict
+            if let options = item.optionsContainer, options.count > 0{
+                var optionsArr:Array<Dictionary<String,Any>> = []
+                for index in 0...options.count - 1{
+                    let optionDict = ["option_id":options[index].id!]
+                    if index != options.count - 1{
+                        optionsArr.append(optionDict)
+                    }
+                }
+               
+                dict["option"] = optionsArr
+            }
+            itemsArr.append(dict)
+        }
+        print("JSON IS:\(itemsArr)")
+       
+//        for cartIndex in 0...cartItems.count - 1{
+//            let item = cartItems[cartIndex]
+//            string =  string + "{ \"order\":{ \"meal_id\":\(item.meal?.id ?? 0),\"quantity\":\(item.quantity ?? 0)"
+//
+//            if item.message != ""{
+//                string = string + ",\"message\":\(item.message ?? "")"
+//            }
+//            string = string + "}"
+//
+//            if let options = item.optionsContainer, options.count > 0{
+//                string = string + ",\"option\":["
+//                for index in 0...options.count - 1{
+//                    string = string + "{\"option_id:\(options[index].id!)}"
+//                    if index != options.count - 1{
+//                        string = string + ","
+//                    }
+//                }
+//                string = string + "]"
+//            }
+//
+//            string = string + "}"
+//            if cartIndex != cartItems.count - 1{
+//                string = string + ","
+//            }
+//        }
+        return JSON(itemsArr)
+    }
+   //MARK: post Favorite Get
     func PostfavorieGet(item_type: String, completion: @escaping(_ error: Error?, _ favorits: [Favorites]?)->Void) {
         let url = ConfigURLs.postFavoriteGet
         let device_token = Helper.getDeviceToken() ?? ""
@@ -927,7 +997,7 @@ class Services {
                     let json = JSON(value)
                     if json["status"] == true {
                         let successMsg = SuccessError_Model()
-                        successMsg.successMessage = "done"
+                        successMsg.successMessage = json["message"].string ?? ""
                         completion(nil, successMsg)
                     } else {
                         let errorMsg = SuccessError_Model()
@@ -975,7 +1045,7 @@ class Services {
         }
     }
     //MARK: post User Get Order
-    func postUserGetOrder(status: [String] ,completion: @escaping(_ error: Error?, _ list: [OrderList]?)->Void) {
+    func postUserGetOrder(status: [String] ,completion: @escaping(_ error: Error?, _ list: [orderList]?)->Void) {
         let url = ConfigURLs.postUserGetOrder
         let parameters = [
             "status": status
@@ -1019,6 +1089,8 @@ class Services {
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
+                let json = JSON(response.result.value)
+                               print(json)
                 do {
                     let details = try
                         JSONDecoder().decode(DriverOrderDetalilsModelJSON.self, from: response.data!)
@@ -1103,11 +1175,11 @@ class Services {
             "item_id": item_id,
             "item_type": item_type
             ] as [String : Any]
-        let deviceToken = Helper.getDeviceToken() ?? ""
+        let token = Helper.getApiToken() ?? ""
         let headers = [
-            "deviceToken": deviceToken
+            "token": token
         ]
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
@@ -1118,7 +1190,7 @@ class Services {
                     let json = JSON(value)
                     if json["status"] == true {
                         let successMsg = SuccessError_Model()
-                        successMsg.successMessage = "done"
+                        successMsg.successMessage = json["message"].string ?? ""
                         completion(nil, successMsg)
                     } else {
                         let errorMsg = SuccessError_Model()
@@ -1138,7 +1210,7 @@ class Services {
             "item_id": item_id,
             "item_type": item_type
             ] as [String : Any]
-        let deviceToken = Helper.getDeviceToken() ?? ""
+        let deviceToken = Helper.getApiToken() ?? ""
         let headers = [
             "deviceToken": deviceToken
         ]
@@ -1153,7 +1225,7 @@ class Services {
                     let json = JSON(value)
                     if json["status"] == true {
                         let successMsg = SuccessError_Model()
-                        successMsg.successMessage = "done"
+                        successMsg.successMessage = json["message"].string ?? ""
                         completion(nil, successMsg)
                     } else {
                         let errorMsg = SuccessError_Model()
@@ -1187,7 +1259,7 @@ class Services {
                     let json = JSON(value)
                     if json["status"] == true {
                         let successMsg = SuccessError_Model()
-                        successMsg.successMessage = "true"
+                        successMsg.successMessage = json["message"].string ?? ""
                         completion(nil, successMsg)
                     } else {
                         let errorMsg = SuccessError_Model()
@@ -1226,7 +1298,7 @@ class Services {
     
     
     //MARK:- post Meal Search
-    func postMealSearch(word: String, completion: @escaping( _ error: Error?, _ result: [Collection]?)->Void) {
+    func postMealSearch(word: String, completion: @escaping( _ error: Error?, _ result: [CollectionDataClass]?)->Void) {
         let url = ConfigURLs.postMealSearch
         let parameters = [
             "word": word
@@ -1235,10 +1307,12 @@ class Services {
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
+//                let json = JSON(response.result.value as Any)
+//                               print(json)
                 do {
                     let result = try
-                        JSONDecoder().decode(MealDetailsModelJSON.self, from: response.data!)
-                    if result.status == true, let mealsResult = result.data?.collection {
+                        JSONDecoder().decode(MealSearchModelJSON.self, from: response.data!)
+                    if result.status == true, let mealsResult = result.data?.searchResult {
                         print(mealsResult)
                         completion(nil, mealsResult)
                     }
@@ -1389,10 +1463,10 @@ class Services {
             .responseJSON {
                 response in
                 let json = JSON(response.result.value)
-                               print(json)
+                print(json)
                 do {
                     let mealDetails = try JSONDecoder().decode(MealDetailsModelJSON.self, from: response.data!)
-                     print(mealDetails)
+                    print(mealDetails)
                     if mealDetails.status == true, let details = mealDetails.data {
                         print(details)
                         Completion(nil, details)
@@ -1593,7 +1667,101 @@ class Services {
         
     }
     //MARK:- Get Cart Items
-    func getCartItems() {
+    func getCartItems(completion: @escaping(_ error: Error?, _ result: [onlineCart]?)->Void) {
+        let url = ConfigURLs.getCartItems
+        let token = Helper.getApiToken() ?? ""
+        let headers = [
+            "token": token
+        ]
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
+                response in
+                do {
+                    let items = try JSONDecoder().decode(OnlineCartModelJSON.self, from: response.data!)
+                    if items.status == true, let result = items.data?.cart {
+                        print(result)
+                        completion(nil, result)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    completion(error, nil)
+                    
+                }
+        }
+    }
+    //MARK:- Add To Cart
+    func postAddToCart(meal_id: Int, quantity: Int, message: String, options: [Int], completion: @escaping(_ error: Error?, _ result: SuccessError_Model?)->Void) {
+        let url = ConfigURLs.postAddToCart
+        let parameters = [
+            "meal_id": meal_id,
+            "quantity": quantity,
+            "message": message,
+            "options": options
+            ] as [String : Any]
+        let token = Helper.getApiToken() ?? ""
+        let headers = [
+            "token": token
+        ]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
+                response in
+                switch response.result {
+                case .failure(let error):
+                    completion(error, nil)
+                case .success(let value):
+                    let json = JSON(value)
+                    print(json)
+                    if json["status"] == true {
+                        let successMsg = SuccessError_Model()
+                        successMsg.successMessage = json["message"].string ?? ""
+                        completion(nil, successMsg)
+                    } else {
+                        let errorMsg = SuccessError_Model()
+                        guard let errorArr = json["errors"].dictionaryObject else {return}
+                        errorMsg.meal_id = errorArr["meal_id"] as? [String] ?? [""]
+                        errorMsg.quantity = errorArr["quantity"] as? [String] ?? [""]
+                        errorMsg.message = errorArr["message"] as? [String] ?? [""]
+                        errorMsg.options = errorArr["options"] as? [String] ?? [""]
+                        completion(nil, errorMsg)
+                    }
+                }
+        }
+    }
+    //MARK:- Delete Cart
+    func postDeleteCart(condition: String, id: Int, completion: @escaping(_ error: Error?, _ result: SuccessError_Model?)->Void) {
+        let url = ConfigURLs.postDeleteCart
+        let parameters = [
+             "id": id,
+            "condition": condition
+            ] as [String : Any]
+        let token = Helper.getApiToken() ?? ""
+        let headers = [
+            "token": token
+        ]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
+                response in
+                switch response.result {
+                case .failure(let error):
+                    completion(error, nil)
+                case .success(let value):
+                    let json = JSON(value)
+                    if json["status"] == true {
+                        let successMsg = SuccessError_Model()
+                        successMsg.successMessage = json["message"].string ?? ""
+                        completion(nil, successMsg)
+                    } else {
+                        let errorMsg = SuccessError_Model()
+                        guard let errorArr = json["errors"].dictionaryObject else {return}
+                        errorMsg.condition = errorArr["condition"] as? [String] ?? [""]
+                        errorMsg.id = errorArr["id"] as? [String] ?? [""]
+                        completion(nil, errorMsg)
+                    }
+                }
+        }
         
     }
 }

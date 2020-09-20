@@ -19,24 +19,32 @@ struct RestaurantDetailsDataClass: Codable {
 
 // MARK: - RestaurantDetail
 struct RestaurantDetail: Codable {
-    var id, userID, hasDelivery: Int?
+   var id, userID, hasDelivery: Int?
+    var type: String?
+    var isAvailable: Int?
+    var reservation: String?
+    var deliveryTime, deliveryFee, minimum, points: Int?
     var nameAr, nameEn: String?
-    var rate, deliveryTime: Int?
+    var rate: Int?
     var longitude, latitude, address, status: String?
     var image: String?
-    var openDate, closeDate, createdAt, updatedAt: String?
-    var category: [AllCategory]?
-    var favorite: [RestaurantsFavorite]?
+    var logo, documents, openDate, closeDate: String?
+    var createdAt, updatedAt: String?
+    var category, favorite: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id
         case userID = "user_id"
         case hasDelivery = "has_delivery"
+        case type
+        case isAvailable = "is_available"
+        case reservation
+        case deliveryTime = "delivery_time"
+        case deliveryFee = "delivery_fee"
+        case minimum, points
         case nameAr = "name_ar"
         case nameEn = "name_en"
-        case rate
-        case deliveryTime = "delivery_time"
-        case longitude, latitude, address, status, image
+        case rate, longitude, latitude, address, status, image, logo, documents
         case openDate = "open_date"
         case closeDate = "close_date"
         case createdAt = "created_at"

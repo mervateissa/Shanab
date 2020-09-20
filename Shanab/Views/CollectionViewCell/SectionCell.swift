@@ -19,13 +19,16 @@ class SectionCell: UICollectionViewCell {
         // Initialization code
     }
     func config( imagePath: String, name: String){
-           if imagePath != "" {
+          if (!imagePath.contains("http")) {
+               guard let imageURL = URL(string: (BASE_URL + "/" + imagePath).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+               print(imageURL)
+               self.sectionImage.kf.setImage(with: imageURL)
+           }  else if imagePath != "" {
                guard let imageURL = URL(string: imagePath) else { return }
                self.sectionImage.kf.setImage(with: imageURL)
            } else {
-               self.sectionImage.image = #imageLiteral(resourceName: "shanab loading")
+               self.sectionImage.image = #imageLiteral(resourceName: "logo-2")
            }
-           
            self.sectionName.text = name
        }
 

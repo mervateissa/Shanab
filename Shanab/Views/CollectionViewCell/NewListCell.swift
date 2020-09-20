@@ -19,8 +19,16 @@ class NewListCell: UICollectionViewCell {
         // Initialization code
     }
     func config(name: String, address: String, rate: Double, imagePath: String) {
-        guard let imageURL = URL(string:  imagePath) else { return }
-               self.image.kf.setImage(with: imageURL)
+        if (!imagePath.contains("http")) {
+                   guard let imageURL = URL(string: (BASE_URL + "/" + imagePath).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+                   print(imageURL)
+                   self.image.kf.setImage(with: imageURL)
+               }  else if imagePath != "" {
+                   guard let imageURL = URL(string: imagePath) else { return }
+                   self.image.kf.setImage(with: imageURL)
+               } else {
+                   self.image.image = #imageLiteral(resourceName: "shanab loading")
+               }
         self.name.text = name
         self.address.text = address
     }
