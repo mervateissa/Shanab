@@ -223,6 +223,22 @@
             </objects>
             <point key="canvasLocation" x="3747.826086956522" y="168.75"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="OmI-fZ-eeJ">
+            <objects>
+                <viewController id="1x6-dO-Qif" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WP5-2F-zJH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="eVd-te-KhG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SMl-qr-Ag1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqI-vW-IwF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5731.884057971015" y="168.75"/>
+        </scene>
         <!--Notifications-->
         <scene sceneID="swK-Xg-xPy">
             <objects>
@@ -280,30 +296,15 @@
                                     <constraint firstItem="4hf-i3-MQi" firstAttribute="centerX" secondItem="VXy-k0-g46" secondAttribute="centerX" id="wrb-17-i31"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8gD-4l-3Rw">
-                                <rect key="frame" x="20.5" y="84" width="373" height="54"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C73-fI-cF4">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="VXy-k0-g46" firstAttribute="centerX" secondItem="lUe-j6-6Kc" secondAttribute="centerX" id="2gU-Hh-5o3"/>
-                            <constraint firstItem="8gD-4l-3Rw" firstAttribute="width" secondItem="xOC-zP-9fK" secondAttribute="width" multiplier="0.9" id="BXo-Zf-vKt"/>
                             <constraint firstItem="6pS-ax-6VC" firstAttribute="top" secondItem="lUe-j6-6Kc" secondAttribute="top" constant="50" id="DwO-px-J1G"/>
                             <constraint firstItem="VXy-k0-g46" firstAttribute="height" secondItem="xOC-zP-9fK" secondAttribute="height" multiplier="0.1" id="FcJ-JZ-8q0"/>
                             <constraint firstItem="lUe-j6-6Kc" firstAttribute="trailing" secondItem="6pS-ax-6VC" secondAttribute="trailing" id="MSX-aY-pdv"/>
                             <constraint firstItem="VXy-k0-g46" firstAttribute="width" secondItem="xOC-zP-9fK" secondAttribute="width" id="Xoj-Iu-WLy"/>
-                            <constraint firstItem="8gD-4l-3Rw" firstAttribute="height" secondItem="xOC-zP-9fK" secondAttribute="height" multiplier="0.06" id="ZOW-QB-Ece"/>
-                            <constraint firstItem="8gD-4l-3Rw" firstAttribute="centerX" secondItem="lUe-j6-6Kc" secondAttribute="centerX" id="Zq1-R4-GYq"/>
                             <constraint firstItem="VXy-k0-g46" firstAttribute="top" secondItem="xOC-zP-9fK" secondAttribute="top" id="aIX-Uh-7oi"/>
-                            <constraint firstItem="8gD-4l-3Rw" firstAttribute="top" secondItem="lUe-j6-6Kc" secondAttribute="top" constant="40" id="fhq-t0-SeD"/>
                             <constraint firstItem="6pS-ax-6VC" firstAttribute="leading" secondItem="lUe-j6-6Kc" secondAttribute="leading" id="ju9-aT-x1b"/>
                             <constraint firstItem="lUe-j6-6Kc" firstAttribute="bottom" secondItem="6pS-ax-6VC" secondAttribute="bottom" id="nXX-a8-cOO"/>
                         </constraints>
@@ -312,12 +313,11 @@
                     <navigationItem key="navigationItem" title="Notifications" id="wbX-ua-XQa"/>
                     <connections>
                         <outlet property="notificationsTableView" destination="6pS-ax-6VC" id="4jH-Ej-9R6"/>
-                        <outlet property="profileCollectionView" destination="8gD-4l-3Rw" id="8S1-wH-YeG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzn-tc-eTH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5909" y="94"/>
+            <point key="canvasLocation" x="7257.971014492754" y="93.75"/>
         </scene>
         <!--Change Password-->
         <scene sceneID="150-1l-Ebh">
@@ -490,7 +490,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMU-Z7-2Ni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5175" y="94"/>
+            <point key="canvasLocation" x="6508.6956521739139" y="93.75"/>
         </scene>
         <!--الباسورد-->
         <scene sceneID="Wnz-wX-ugN">
@@ -535,6 +535,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajE-qY-dWW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2837.68115942029" y="168.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fVC-cd-aeI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xhr-7R-TYb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F8r-2o-Gzb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1x6-dO-Qif" kind="relationship" relationship="rootViewController" id="oJH-pB-CYI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bod-Om-d5F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4821.739130434783" y="168.75"/>
         </scene>
     </scenes>
     <resources>
