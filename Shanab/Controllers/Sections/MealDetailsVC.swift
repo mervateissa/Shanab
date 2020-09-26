@@ -27,7 +27,7 @@ class MealDetailsVC: UIViewController {
     var category_id = Int()
     var image = String()
     var Name = String()
-    
+    var cartItems = [onlineCart]()
     //    var quantity = Int()
     var meals = [RestaurantMeal]() {
         didSet {
@@ -53,8 +53,8 @@ class MealDetailsVC: UIViewController {
         if "lang".localized == "en" {
             categoriesArr.append(CategoriesModel(name: "Best Seller", id: "category", selected: true))
             categoriesArr.append(CategoriesModel(name: "Offers", id: "top", selected: false))
-            //            categoriesArr.append(CategoriesModel(name: "Drinks", id: "offer", selected: false))
-            //            categoriesArr.append(CategoriesModel(name: "Best Seller", id: "category", selected: false))
+//            categoriesArr.append(CategoriesModel(name: "Drinks", id: "", selected: false))
+//            categoriesArr.append(CategoriesModel(name: "Sweets", id: "", selected: false))
         } else {
             categoriesArr.append(CategoriesModel(name: "الاكثر مبيعا", id: "category", selected: true))
             categoriesArr.append(CategoriesModel(name: "العروض", id: "top", selected: false))
@@ -121,6 +121,10 @@ extension MealDetailsVC: UITableViewDelegate, UITableViewDataSource {
                 self.MealsDetailVCPresenter.postCreateFavorite(item_id:  self.meals[indexPath.row].id ?? 0, item_type: "meal")
                 self.MealsDetailVCPresenter.postRemoveFavorite(item_id: self.meals[indexPath.row].id ?? 0, item_type: "meal")
             }
+            cell.addToCart = {
+                self.MealsDetailVCPresenter.showIndicator()
+                self.MealsDetailVCPresenter.postAddToCart(meal_id: self.meals[indexPath.row].id ?? 0  , quantity: 1 , message:  "test one" , options: [])
+            }
             return cell
         }
         
@@ -130,6 +134,7 @@ extension MealDetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let details = UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "AdditionsVC") as? AdditionsVC else { return }
+        
         details.meal_id =  self.meals[indexPath.row].id ?? 0
         details.image = self.meals[indexPath.row].image ?? ""
         details.mealCalory = self.meals[indexPath.row].points ?? 0
@@ -180,6 +185,23 @@ extension MealDetailsVC: UICollectionViewDelegateFlowLayout {
     
 }
 extension MealDetailsVC: MealsDetailsViewDelegate {
+    func AddToCartResult(_ error: Error?, _ result: SuccessError_Model?) {
+        if let meals = result {
+            if meals.successMessage != "" {
+                displayMessage(title: "done", message: meals.successMessage, status: .success, forController: self)
+                Singletone.instance.cart = cartItems
+            } else if meals.meal_id != [""] {
+                displayMessage(title: "", message: meals.meal_id[0], status: .error, forController: self)
+            } else if meals.quantity != [""] {
+                displayMessage(title: "", message: meals.quantity[0], status: .error, forController: self)
+            } else if meals.message != [""] {
+                displayMessage(title: "", message: meals.message[0], status: .error, forController: self)
+            } else if meals.options != [""] {
+                displayMessage(title: "", message: meals.options[0], status: .error, forController: self)
+            }
+        }
+    }
+    
     func RestaurantDetailsResult(_ error: Error?, _ details: RestaurantDetail?) {
         if let restaurantDetails = details {
             if "lang".localized == "ar" {

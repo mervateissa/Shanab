@@ -116,5 +116,7 @@ struct ConfigURLs {
     static var postDeleteCart = BASE_URL + "/api/user/cart/deleteCart"
     // get Setting
     static var getSetting = BASE_URL + "/api/general/settings"
+    // get Delete Image
+    static var getDeleteImage = BASE_URL + "/api/driver/deleteImage"
    
 }

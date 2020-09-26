@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RUG-4H-kaz">
-                                <rect key="frame" x="0.0" y="109" width="414" height="753"/>
+                                <rect key="frame" x="0.0" y="129" width="414" height="733"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -126,7 +126,7 @@
                             <constraint firstItem="RUG-4H-kaz" firstAttribute="leading" secondItem="Lzr-6x-7te" secondAttribute="leading" id="GZO-12-sEh"/>
                             <constraint firstItem="Rod-2g-gi9" firstAttribute="width" secondItem="aLa-T4-nrR" secondAttribute="width" multiplier="0.57971" id="RcA-Uo-0Ms"/>
                             <constraint firstItem="6ec-tD-c0H" firstAttribute="width" secondItem="aLa-T4-nrR" secondAttribute="width" multiplier="0.9" id="Taa-Z1-mt5"/>
-                            <constraint firstItem="RUG-4H-kaz" firstAttribute="top" secondItem="Lzr-6x-7te" secondAttribute="top" constant="65" id="gLw-Pm-wzI"/>
+                            <constraint firstItem="RUG-4H-kaz" firstAttribute="top" secondItem="Lzr-6x-7te" secondAttribute="top" constant="85" id="gLw-Pm-wzI"/>
                             <constraint firstItem="p2v-68-H6v" firstAttribute="width" secondItem="aLa-T4-nrR" secondAttribute="width" id="ih0-K1-yVg"/>
                             <constraint firstItem="6ec-tD-c0H" firstAttribute="centerX" secondItem="Lzr-6x-7te" secondAttribute="centerX" id="lM1-Od-6vN"/>
                             <constraint firstItem="6ec-tD-c0H" firstAttribute="top" secondItem="aLa-T4-nrR" secondAttribute="top" constant="110" id="ntD-c4-AzX"/>
@@ -356,7 +356,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gfI-A3-fWW">
-                                        <rect key="frame" x="0.0" y="47.5" width="352" height="661"/>
+                                        <rect key="frame" x="0.0" y="70.5" width="352" height="661"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BJh-8L-9eS">
                                             <size key="itemSize" width="85" height="85"/>
@@ -374,11 +374,12 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="gfI-A3-fWW" firstAttribute="height" secondItem="Q1L-oK-LN2" secondAttribute="height" multiplier="0.9" id="4HB-IP-vN5"/>
-                                    <constraint firstItem="gfI-A3-fWW" firstAttribute="top" secondItem="iiK-7W-uRG" secondAttribute="bottom" constant="2" id="NsO-Us-DL4"/>
+                                    <constraint firstAttribute="trailing" secondItem="iiK-7W-uRG" secondAttribute="trailing" constant="-2.5" id="JjL-Sv-uQ8"/>
+                                    <constraint firstItem="gfI-A3-fWW" firstAttribute="top" secondItem="iiK-7W-uRG" secondAttribute="bottom" constant="25" id="NsO-Us-DL4"/>
                                     <constraint firstItem="iiK-7W-uRG" firstAttribute="top" secondItem="Q1L-oK-LN2" secondAttribute="top" constant="2" id="TXI-t9-XsZ"/>
                                     <constraint firstItem="gfI-A3-fWW" firstAttribute="width" secondItem="Q1L-oK-LN2" secondAttribute="width" id="fdP-X1-jom"/>
                                     <constraint firstItem="gfI-A3-fWW" firstAttribute="centerX" secondItem="Q1L-oK-LN2" secondAttribute="centerX" id="nQN-9B-sBf"/>
-                                    <constraint firstItem="iiK-7W-uRG" firstAttribute="leading" secondItem="Q1L-oK-LN2" secondAttribute="leading" constant="20" id="t8g-GL-dpV"/>
+                                    <constraint firstItem="iiK-7W-uRG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q1L-oK-LN2" secondAttribute="leading" symbolic="YES" id="t8g-GL-dpV"/>
                                     <constraint firstItem="iiK-7W-uRG" firstAttribute="width" secondItem="Q1L-oK-LN2" secondAttribute="width" multiplier="0.95" id="x6f-Sh-4LD"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

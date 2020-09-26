@@ -14,6 +14,7 @@ protocol RestaurantDetailsViewDelegate: class {
     func FavoriteResult(_ error: Error?, _ result: SuccessError_Model?)
     func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?)
     func AddToCartResult(_ error: Error?, _ result: SuccessError_Model?)
+    func CatgeoriesResult( _ error: Error?, _ catgeory: [Category]?)
 }
 class RestaurantDetailPresenter {
     private let services: Services
@@ -57,9 +58,16 @@ class RestaurantDetailPresenter {
         }
     }
     func postAddToCart(meal_id: Int, quantity: Int, message: String, options: [Int]) {
-               services.postAddToCart(meal_id: meal_id, quantity: quantity, message: message, options: options) {[weak self] (error: Error?, result: SuccessError_Model?) in
-                   self?.RestaurantDetailsViewDelegate?.AddToCartResult(error, result)
-                   self?.dismissIndicator()
-               }
-           }
+        services.postAddToCart(meal_id: meal_id, quantity: quantity, message: message, options: options) {[weak self] (error: Error?, result: SuccessError_Model?) in
+            self?.RestaurantDetailsViewDelegate?.AddToCartResult(error, result)
+            self?.dismissIndicator()
+        }
+    }
+    func getCatgeories() {
+        services.getAllCatgeories { [weak self] (_ error: Error?, _ catgeory: [Category]?) in
+            self?.RestaurantDetailsViewDelegate?.CatgeoriesResult(error, catgeory)
+            self?.dismissIndicator()
+        }
+        
+    }
 }

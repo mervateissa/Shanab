@@ -165,6 +165,10 @@ extension DriverOrderListVC: UIImagePickerControllerDelegate, UINavigationContro
     }
 }
 extension DriverOrderListVC: DriverProfileViewDelegate {
+    func getDeleteImage(_ error: Error?, _ result: SuccessError_Model?) {
+      
+    }
+    
     func postEditDriverProfileResult(_ error: Error?, _ result: SuccessError_Model?) {
          if let profile = result {
         if profile.successMessage != "" {

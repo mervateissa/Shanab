@@ -23,6 +23,7 @@ struct Category: Codable {
     var nameAr, nameEn: String?
     var image: String?
     var createdAt, updatedAt: String?
+//     var NameSelected: Bool
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,6 +33,7 @@ struct Category: Codable {
         case image
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+//      case NameSelected
     }
 }
 

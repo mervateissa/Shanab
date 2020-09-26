@@ -14,6 +14,7 @@ protocol DriverProfileViewDelegate: class {
     func DriverOrderListResult(_ error: Error?, _ list: [OrderList]?, _ orderErrors: OrdersErrors?)
     func getDriverProfileResult(_ error: Error?, _ result: User?)
     func postEditDriverProfileResult(_ error: Error?, _ result: SuccessError_Model?)
+    func getDeleteImage(_ error: Error?, _ result: SuccessError_Model?)
 }
 class DriverProfilePresenter{
     private let services: Services
@@ -56,6 +57,13 @@ class DriverProfilePresenter{
     func getDriverProfile() {
         services.getDriverProfile { [weak self](error: Error?, result: User?) in
             self?.DriverProfileViewDelegate?.getDriverProfileResult(error, result)
+            self?.dismissIndicator()
+        }
+    }
+    func getDriverDeleteImage() {
+        services.getDriverDeleteImage { (error: Error?, result: SuccessError_Model?) in
+            self.DriverProfileViewDelegate?.getDeleteImage(error, result)
+            self.dismissIndicator()
         }
     }
 }

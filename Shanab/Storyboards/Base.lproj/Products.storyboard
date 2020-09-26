@@ -540,7 +540,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwh-Fg-Cps">
-                                        <rect key="frame" x="311" y="40" width="83" height="22"/>
+                                        <rect key="frame" x="311" y="50" width="83" height="22"/>
                                         <color key="tintColor" red="0.92269460530000003" green="0.92269460530000003" blue="0.92269460530000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="cart.fill" catalog="system"/>
                                         <connections>
@@ -557,7 +557,7 @@
                                     <constraint firstItem="agK-pa-g5B" firstAttribute="centerY" secondItem="raB-th-SJg" secondAttribute="centerY" id="FeM-Qq-F7l"/>
                                     <constraint firstItem="agK-pa-g5B" firstAttribute="height" secondItem="raB-th-SJg" secondAttribute="height" id="Pic-8H-vVi"/>
                                     <constraint firstItem="agK-pa-g5B" firstAttribute="width" secondItem="raB-th-SJg" secondAttribute="width" id="Sz8-jy-cZj"/>
-                                    <constraint firstItem="Bwh-Fg-Cps" firstAttribute="top" secondItem="raB-th-SJg" secondAttribute="top" constant="40" id="g5c-jk-WhM"/>
+                                    <constraint firstItem="Bwh-Fg-Cps" firstAttribute="top" secondItem="raB-th-SJg" secondAttribute="top" constant="50" id="g5c-jk-WhM"/>
                                     <constraint firstAttribute="trailing" secondItem="Bwh-Fg-Cps" secondAttribute="trailing" constant="20" id="nRF-JZ-F0f"/>
                                     <constraint firstItem="agK-pa-g5B" firstAttribute="centerX" secondItem="raB-th-SJg" secondAttribute="centerX" id="tWN-W7-Six"/>
                                     <constraint firstItem="Bwh-Fg-Cps" firstAttribute="width" secondItem="raB-th-SJg" secondAttribute="width" multiplier="0.2" id="xNn-16-H2s"/>

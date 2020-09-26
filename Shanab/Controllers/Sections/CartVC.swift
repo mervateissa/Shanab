@@ -10,6 +10,7 @@ import UIKit
 
 class CartVC: UIViewController {
     @IBOutlet weak var cartTableView: UITableView!
+    @IBOutlet weak var emptyView: UIView!
     private let OnlineCartVCPresenter = OnlineCartPresenter(services: Services())
     @IBOutlet weak var total: CustomLabel!
     @IBOutlet weak var discreption: UITextView!
@@ -102,7 +103,12 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
         
         let price = Double(CartIems[indexPath.row].quantity ?? 0) * (CartIems[indexPath.row].meal?.price?[0].price ?? 0.0)
         cell.quantityLB.text = "\(self.CartIems[indexPath.row].quantity ?? 0)"
-        cell.orderName.text = self.CartIems[indexPath.row].meal?.nameAr ?? ""
+        if "lang".localized == "ar" {
+             cell.orderName.text = self.CartIems[indexPath.row].meal?.nameAr ?? ""
+        } else {
+             cell.orderName.text = self.CartIems[indexPath.row].meal?.nameEn ?? ""
+        }
+       
         cell.price.text = "\(price.rounded(toPlaces: 2))"
         totalCartPrice += price
         let totalPrice = Int(meal_price) * productCounter
@@ -123,11 +129,17 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
                 guard let Details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartDetailsVC") as? CartDetailsVC else { return }
                 let meal = self.CartIems[indexPath.row].meal ?? Meal()
                 Details.mealId = self.CartIems[indexPath.row].meal?.id ?? 0
-                Details.mealName = meal.nameAr ?? ""
-                Details.components = meal.descriptionAr ?? ""
+                if "lang".localized == "ar" {
+                    Details.mealName = meal.nameAr ?? ""
+                    Details.components = meal.descriptionAr ?? ""
+                    Details.Addition = self.CartIems[indexPath.row].meal?.option?[0].nameAr ?? ""
+                } else {
+                    Details.mealName = meal.nameEn ?? ""
+                    Details.components = meal.descriptionEn ?? ""
+                    Details.Addition = self.CartIems[indexPath.row].meal?.option?[0].nameEn ?? ""
+                }
                 Details.caloriesNamber = meal.status ?? ""
                 Details.imagePath = self.CartIems[indexPath.row].meal?.image ?? ""
-                Details.Addition = self.CartIems[indexPath.row].meal?.option?[0].nameAr ?? ""
                 Details.quantity = self.CartIems[indexPath.row].quantity ?? 0
                 Details.price = Int(meal.price?[0].price ?? 0)
                 Details.price = Int((self.totalCartPrice))
@@ -234,6 +246,13 @@ extension CartVC: onlineCartViewDelegate {
         if let cart_items = result {
             self.CartIems = cart_items
             Singletone.instance.cart = CartIems
+            if self.CartIems.count == 0 {
+                self.emptyView.isHidden = false
+                self.cartTableView.isHidden = true
+            } else {
+                self.emptyView.isHidden = true
+                self.cartTableView.isHidden = false
+            }
         }
     }
     

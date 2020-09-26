@@ -30,7 +30,8 @@ struct RestaurantDetail: Codable {
     var image: String?
     var logo, documents, openDate, closeDate: String?
     var createdAt, updatedAt: String?
-    var category, favorite: [String]?
+    var favorite: [String]?
+    var category: [Category]?
 
     enum CodingKeys: String, CodingKey {
         case id

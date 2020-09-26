@@ -60,29 +60,34 @@ extension FavoriteMealsVC: UITableViewDataSource, UITableViewDelegate {
         let item_type = ClientFavoriteList[indexPath.row].meal ?? Meal()
         cell.AddToCart = {
             self.UserFavoritesMealsVCPresenter.showIndicator()
-            self.UserFavoritesMealsVCPresenter.postAddToCart(meal_id: self.ClientFavoriteList[indexPath.row].id ?? 0  , quantity: 1 , message:  "test one" , options: [])
+            self.UserFavoritesMealsVCPresenter.postAddToCart(meal_id: self.ClientFavoriteList[indexPath.row].itemID ?? 0  , quantity: 1 , message:  "test one" , options: [])
         }
         cell.RemoveFromeFavorite = {
             self.deletedIndex = indexPath.row
             self.UserFavoritesMealsVCPresenter.showIndicator()
-            self.UserFavoritesMealsVCPresenter.postRemoveFavorite(item_id: self.ClientFavoriteList[indexPath.row].id ?? 0, item_type: self.ClientFavoriteList[indexPath.row].itemType ?? "")
+            self.UserFavoritesMealsVCPresenter.postRemoveFavorite(item_id: self.ClientFavoriteList[indexPath.row].itemID ?? 0, item_type: self.ClientFavoriteList[indexPath.row].itemType ?? "")
         }
-        
-    
-       
-        cell.config(name: item_type.nameAr ?? "" , details: item_type.descriptionAr ?? "" , imagePath: item_type.image ?? "")
+        if "lang".localized == "ar" {
+             cell.config(name: item_type.nameAr ?? "" , details: item_type.descriptionAr ?? "" , imagePath: item_type.image ?? "")
+        } else {
+             cell.config(name: item_type.nameEn ?? "" , details: item_type.descriptionEn ?? "" , imagePath: item_type.image ?? "")
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          guard let details = UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "AdditionsVC") as? AdditionsVC else { return }
            let meal_items = ClientFavoriteList[indexPath.row].meal ?? Meal()
          details.meal_id = ClientFavoriteList[indexPath.row].id ?? 0
-        details.mealName = meal_items.nameAr ?? ""
+        if "lang".localized == "ar" {
+            details.mealName = meal_items.nameAr ?? ""
+             details.mealComponents = meal_items.descriptionAr ?? ""
+        } else {
+            details.mealName = meal_items.nameEn ?? ""
+            details.mealComponents = meal_items.descriptionEn ?? ""
+        }
         details.imagePath = meal_items.image ?? ""
-        details.mealComponents = meal_items.descriptionAr ?? ""
         details.mealCalory = meal_items.points ?? 0
-    
-      
+        details.image = meal_items.image ?? ""
         self.navigationController?.pushViewController(details, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -96,6 +101,7 @@ extension FavoriteMealsVC: FavoriteMealsViewDelegate {
         if let resultMsg = result {
             if resultMsg.successMessage != "" {
                 displayMessage(title: "", message: resultMsg.successMessage, status: .success, forController: self)
+               
                 self.ClientFavoriteList.remove(at: deletedIndex)
             } else if resultMsg.item_id != [""] {
                 displayMessage(title: "", message: resultMsg.item_id[0], status: .error, forController: self)
@@ -109,7 +115,7 @@ extension FavoriteMealsVC: FavoriteMealsViewDelegate {
         if let meals = result {
             if meals.successMessage != "" {
                 displayMessage(title: "done", message: meals.successMessage, status: .success, forController: self)
-            
+             Singletone.instance.cart = cartItems
             } else if meals.meal_id != [""] {
                 displayMessage(title: "", message: meals.meal_id[0], status: .error, forController: self)
             } else if meals.quantity != [""] {

@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "icons8-cancel_filled-2.png",
+      "filename" : "icons8-cancel_filled-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icons8-cancel_filled-1.png",
+      "filename" : "icons8-cancel_filled-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

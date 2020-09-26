@@ -17,10 +17,8 @@ class OrderConfirmationPopUp: UIViewController {
     }
     
     @IBAction func FollowOrder(_ sender: UIButton) {
-        let sb = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "OrderFollowingVC")
-                     sb.modalPresentationStyle = .overCurrentContext
-                     sb.modalTransitionStyle = .crossDissolve
-                     self.present(sb, animated: true, completion: nil)
+        guard let details = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "OrderFollowingVC") as? OrderFollowingVC else { return }
+               self.navigationController?.pushViewController(details, animated: true)
         
     }
     

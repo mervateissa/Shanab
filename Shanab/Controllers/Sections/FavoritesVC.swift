@@ -62,7 +62,7 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
         cell.RemoveFromeFavorite = {
             self.deletedIndex = indexPath.row
             self.UserFavoritesVCPresenter.showIndicator()
-            self.UserFavoritesVCPresenter.postRemoveFavorite(item_id: self.ClientFavoriteList[indexPath.row].id ?? 0, item_type: self.ClientFavoriteList[indexPath.row].itemType ?? "")
+            self.UserFavoritesVCPresenter.postRemoveFavorite(item_id: self.ClientFavoriteList[indexPath.row].itemID ?? 0, item_type: self.ClientFavoriteList[indexPath.row].itemType ?? "")
         }
         
         

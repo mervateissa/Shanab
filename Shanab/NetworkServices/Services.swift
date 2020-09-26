@@ -813,18 +813,18 @@ class Services {
         
         print(modelToJSON(cartItems: cartItems))
         let parameters = [
-                    "lat": lat,
-                    "long": long,
-                    "quantity": quantity,
-                    "currency": currency,
-                    "total": total,
-                    "message": message,
-                    "cartItems":
-                        //(modelToJSON(cartItems: cartItems)),
-      "[{\"order\":{\"meal_id\":6,\"quantity\":4,\"message\":\"notes\"},\"option\":[{\"option_id\":1},{\"option_id\":2}]},{\"order\":{\"meal_id\":7,\"quantity\":4}}]" ,
-                    "address_id": address_id
-                    ] as [String : Any]
-
+            "lat": lat,
+            "long": long,
+            "quantity": quantity,
+            "currency": currency,
+            "total": total,
+            "message": message,
+            "cartItems":
+                //(modelToJSON(cartItems: cartItems)),
+            "[{\"order\":{\"meal_id\":6,\"quantity\":4,\"message\":\"notes\"},\"option\":[{\"option_id\":1},{\"option_id\":2}]},{\"order\":{\"meal_id\":7,\"quantity\":4}}]" ,
+            "address_id": address_id
+            ] as [String : Any]
+        
         
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding:JSONEncoding.default, headers: headers)
@@ -863,13 +863,13 @@ class Services {
     func modelToJSON(cartItems:[onlineCart]) -> JSON{
         var itemsArr:[Dictionary<String,Any>] = []
         for cartIndex in 0...cartItems.count - 1{
-             var dict:[String:Any] = [:]
+            var dict:[String:Any] = [:]
             let item = cartItems[cartIndex]
             var mealdict:[String:Any] = ["meal_id": item.meal!.id! ,"quantity":item.quantity!]
-
+            
             if item.message != ""{
                 mealdict["message"] = item.message ?? ""
-               
+                
             }
             dict["order"] = mealdict
             if let options = item.optionsContainer, options.count > 0{
@@ -880,41 +880,41 @@ class Services {
                         optionsArr.append(optionDict)
                     }
                 }
-               
+                
                 dict["option"] = optionsArr
             }
             itemsArr.append(dict)
         }
         print("JSON IS:\(itemsArr)")
-       
-//        for cartIndex in 0...cartItems.count - 1{
-//            let item = cartItems[cartIndex]
-//            string =  string + "{ \"order\":{ \"meal_id\":\(item.meal?.id ?? 0),\"quantity\":\(item.quantity ?? 0)"
-//
-//            if item.message != ""{
-//                string = string + ",\"message\":\(item.message ?? "")"
-//            }
-//            string = string + "}"
-//
-//            if let options = item.optionsContainer, options.count > 0{
-//                string = string + ",\"option\":["
-//                for index in 0...options.count - 1{
-//                    string = string + "{\"option_id:\(options[index].id!)}"
-//                    if index != options.count - 1{
-//                        string = string + ","
-//                    }
-//                }
-//                string = string + "]"
-//            }
-//
-//            string = string + "}"
-//            if cartIndex != cartItems.count - 1{
-//                string = string + ","
-//            }
-//        }
+        
+        //        for cartIndex in 0...cartItems.count - 1{
+        //            let item = cartItems[cartIndex]
+        //            string =  string + "{ \"order\":{ \"meal_id\":\(item.meal?.id ?? 0),\"quantity\":\(item.quantity ?? 0)"
+        //
+        //            if item.message != ""{
+        //                string = string + ",\"message\":\(item.message ?? "")"
+        //            }
+        //            string = string + "}"
+        //
+        //            if let options = item.optionsContainer, options.count > 0{
+        //                string = string + ",\"option\":["
+        //                for index in 0...options.count - 1{
+        //                    string = string + "{\"option_id:\(options[index].id!)}"
+        //                    if index != options.count - 1{
+        //                        string = string + ","
+        //                    }
+        //                }
+        //                string = string + "]"
+        //            }
+        //
+        //            string = string + "}"
+        //            if cartIndex != cartItems.count - 1{
+        //                string = string + ","
+        //            }
+        //        }
         return JSON(itemsArr)
     }
-   //MARK: post Favorite Get
+    //MARK: post Favorite Get
     func PostfavorieGet(item_type: String, completion: @escaping(_ error: Error?, _ favorits: [Favorites]?)->Void) {
         let url = ConfigURLs.postFavoriteGet
         let device_token = Helper.getDeviceToken() ?? ""
@@ -1090,7 +1090,7 @@ class Services {
             .responseJSON {
                 response in
                 let json = JSON(response.result.value)
-                               print(json)
+                print(json)
                 do {
                     let details = try
                         JSONDecoder().decode(DriverOrderDetalilsModelJSON.self, from: response.data!)
@@ -1210,9 +1210,9 @@ class Services {
             "item_id": item_id,
             "item_type": item_type
             ] as [String : Any]
-        let deviceToken = Helper.getApiToken() ?? ""
+        let token = Helper.getApiToken() ?? ""
         let headers = [
-            "deviceToken": deviceToken
+            "token": token
         ]
         Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers)
             .validate(statusCode: 200..<300)
@@ -1307,8 +1307,8 @@ class Services {
             .validate(statusCode: 200..<300)
             .responseJSON {
                 response in
-//                let json = JSON(response.result.value as Any)
-//                               print(json)
+                //                let json = JSON(response.result.value as Any)
+                //                               print(json)
                 do {
                     let result = try
                         JSONDecoder().decode(MealSearchModelJSON.self, from: response.data!)
@@ -1733,7 +1733,7 @@ class Services {
     func postDeleteCart(condition: String, id: Int, completion: @escaping(_ error: Error?, _ result: SuccessError_Model?)->Void) {
         let url = ConfigURLs.postDeleteCart
         let parameters = [
-             "id": id,
+            "id": id,
             "condition": condition
             ] as [String : Any]
         let token = Helper.getApiToken() ?? ""
@@ -1763,5 +1763,29 @@ class Services {
                 }
         }
         
+    }
+    //MARK: Driver Delete Image
+    func getDriverDeleteImage(completion: @escaping(_ error: Error?, _ result: SuccessError_Model?)->Void) {
+        let url = ConfigURLs.getDeleteImage
+        let token = Helper.getApiToken() ?? ""
+        let headers = [
+            "token": token
+        ]
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
+                response in
+                switch response.result {
+                case .failure(let error):
+                    completion(error, nil)
+                case .success(let value):
+                    let json = JSON(value)
+                    if json["status"] == true {
+                        let successMsg = SuccessError_Model()
+                        successMsg.successMessage = json["message"].string ?? ""
+                        completion(nil, successMsg)
+                    }
+                }
+        }
     }
 }

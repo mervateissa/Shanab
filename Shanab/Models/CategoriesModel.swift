@@ -7,17 +7,19 @@
 //
 
 import Foundation
-class CategoriesModel {
+class CategoriesModel : Codable{
     var CategoeryName: String
     var NameSelected: Bool
     var TypeId: String
-   
+
     
     
     init(name: String ,id: String,  selected: Bool) {
         self.CategoeryName = name
         self.NameSelected = selected
         self.TypeId = id
+
+        
        
     }
     
@@ -25,6 +27,7 @@ class CategoriesModel {
         self.CategoeryName = ""
         self.NameSelected = false
         self.TypeId = ""
+
        
     }
 }

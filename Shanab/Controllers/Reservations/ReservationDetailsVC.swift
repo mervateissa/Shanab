@@ -16,14 +16,22 @@ class ReservationDetailsVC: UIViewController {
     @IBOutlet weak var canclingFeesLB: UILabel!
     @IBOutlet weak var sessionLB: CustomLabel!
     var id = Int()
-    var ReservationDetails = [DetailsDataClass]()
+    var numberOfPeople = Int()
+    var date = String()
+    var time = String()
+    var session = String()
+    var ReservationDetails = DetailsDataClass()
     private let ReservationDetailsVCPresenter = ResevationDetailsPresenter(services: Services())
     override func viewDidLoad() {
         super.viewDidLoad()
         ReservationDetailsVCPresenter.setReservationDetailsViewDelegate(ReservationDetailsViewDelegate: self)
         ReservationDetailsVCPresenter.showIndicator()
-        ReservationDetailsVCPresenter.postReservationDetailsResult(id: id)
-        
+        ReservationDetailsVCPresenter.dismissIndicator()
+        ReservationDetailsVCPresenter.postReservationDetailsResult(id: ReservationDetails.id ?? 0)
+//        timeLB.text = time
+//        dateLB.text = date
+//        numberLB.text = "\(numberOfPeople)"
+//        sessionLB.text = session
         
     }
     @IBAction func menu(_ sender: Any) {
@@ -38,12 +46,11 @@ class ReservationDetailsVC: UIViewController {
 extension ReservationDetailsVC: ReservationDetailsViewDelegate {
     func ReservationDetailsResult(_ error: Error?, _ details: DetailsDataClass?) {
         if let lists = details {
-            let ReservationDetails = details
-            self.ReservationDetails = [lists]
-            self.dateLB.text = ReservationDetails?.date ?? ""
-            self.numberLB.text = details?.numberOfPersons
-            self.timeLB.text = details?.time
-            self.canclingFeesLB.text = "\(details?.cancelation)"
+            self.ReservationDetails = lists
+            self.dateLB.text = ReservationDetails.date ?? ""
+            self.numberLB.text = ReservationDetails.numberOfPersons
+            self.timeLB.text = ReservationDetails.time
+            self.canclingFeesLB.text = "\(String(describing: ReservationDetails.cancelation))"
         }
     }
     

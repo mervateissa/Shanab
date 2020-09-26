@@ -32,7 +32,9 @@ class RestaurantDetailsVC: UIViewController {
     var delivery_time = Int()
     var lowest_price = Int()
     var delivery_fees = Int()
-    var categoriesArr = [CategoriesModel]()
+    var categoriesArr = [Category]()
+    var cartItems = [onlineCart]()
+    
     var meals = [RestaurantMeal]() {
         didSet{
             DispatchQueue.main.async {
@@ -45,31 +47,21 @@ class RestaurantDetailsVC: UIViewController {
     var category_id = Int()
     override func viewDidLoad() {
         super.viewDidLoad()
-         if (!image.contains("http")) {
-                  guard let imageURL = URL(string: (BASE_URL + "/" + image).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
-                  print(imageURL)
-                  self.oneImageView.kf.setImage(with: imageURL)
-              }  else if image != "" {
-                  guard let imageURL = URL(string: image) else { return }
-                  self.oneImageView.kf.setImage(with: imageURL)
-              } else {
-                  self.oneImageView.image = #imageLiteral(resourceName: "shanab loading")
-              }
-        if "lang".localized == "en" {
-            categoriesArr.append(CategoriesModel(name: "Best Seller", id: "category", selected: true))
-            categoriesArr.append(CategoriesModel(name: "Offers", id: "top", selected: false))
-//             categoriesArr.append(CategoriesModel(name: "الاكثر مبيعا", id: "category", selected: true))
-//             categoriesArr.append(CategoriesModel(name: "الاكثر مبيعا", id: "category", selected: true))
-            
-            
-            
+        if (!image.contains("http")) {
+            guard let imageURL = URL(string: (BASE_URL + "/" + image).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+            print(imageURL)
+            self.oneImageView.kf.setImage(with: imageURL)
+        }  else if image != "" {
+            guard let imageURL = URL(string: image) else { return }
+            self.oneImageView.kf.setImage(with: imageURL)
         } else {
-            categoriesArr.append(CategoriesModel(name: "الاكثر مبيعا", id: "category", selected: true))
-            categoriesArr.append(CategoriesModel(name: "العروض", id: "top", selected: false))
-                                categoriesArr.append(CategoriesModel(name: "المشروبات", id: "offer", selected: false))
-//             categoriesArr.append(CategoriesModel(name: " مشروبات", id: "", selected: true))
-            
+            self.oneImageView.image = #imageLiteral(resourceName: "shanab loading")
         }
+        
+        categoriesArr.append(Category(id: 0, restaurantID: 0, nameAr: "الاكثر مبيعا", nameEn: "Best Seller", image: "", createdAt: "", updatedAt: ""))
+        
+        categoriesArr.append(Category(id: 0, restaurantID: 0, nameAr: "العروض", nameEn: "Offers", image: "", createdAt: "", updatedAt: ""))
+        
         ProductName.text = name
         type.text = restaurant_type
         deliveryTime.text = "\(delivery_time)"
@@ -107,14 +99,14 @@ class RestaurantDetailsVC: UIViewController {
     }
     @IBAction func cartItemsButton(_ sender: Any) {
         guard let details = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as?
-                  CartVC else { return }
-          self.navigationController?.pushViewController(details, animated: true)
+            CartVC else { return }
+        self.navigationController?.pushViewController(details, animated: true)
     }
     
     @IBAction func sideMenu(_ sender: Any) {
-         self.setupSideMenu()
+        self.setupSideMenu()
     }
-   
+    
     
     @IBAction func ReservationBn(_ sender: UIButton) {
         guard let details = UIStoryboard(name: "Reservation", bundle: nil).instantiateViewController(withIdentifier: "ReservationRequestVC") as?
@@ -125,9 +117,9 @@ class RestaurantDetailsVC: UIViewController {
     func SelectionAction(indexPath: IndexPath) {
         for i in 0..<categoriesArr.count {
             if i == indexPath.row {
-                self.categoriesArr[i].NameSelected = true
+                self.categoriesArr[i].nameEn ?? ""
             } else {
-                self.categoriesArr[i].NameSelected = false
+                self.categoriesArr[i].nameEn ?? ""
             }
         }
     }
@@ -165,12 +157,12 @@ extension RestaurantDetailsVC: UITableViewDelegate, UITableViewDataSource {
         if "lan".localized == "ar" {
             details.mealName = self.meals[indexPath.row].nameAr ?? ""
             details.mealComponents = self.meals[indexPath.row].descriptionAr ?? ""
-              details.imagePath = self.meals[indexPath.row].image ?? ""
-           
+            details.imagePath = self.meals[indexPath.row].image ?? ""
+            
         } else {
-           details.mealName = self.meals[indexPath.row].nameEn ?? ""
+            details.mealName = self.meals[indexPath.row].nameEn ?? ""
             details.mealComponents = self.meals[indexPath.row].descriptionEn ?? ""
-              details.imagePath = self.meals[indexPath.row].image ?? ""
+            details.imagePath = self.meals[indexPath.row].image ?? ""
         }
         
         self.navigationController?.pushViewController(details, animated: true)
@@ -180,10 +172,17 @@ extension RestaurantDetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension RestaurantDetailsVC: RestaurantDetailsViewDelegate {
+    func CatgeoriesResult(_ error: Error?, _ catgeory: [Category]?) {
+        if let catgeoryList = catgeory {
+            self.categoriesArr = catgeoryList
+        }
+    }
+    
     func AddToCartResult(_ error: Error?, _ result: SuccessError_Model?) {
         if let meals = result {
             if meals.successMessage != "" {
                 displayMessage(title: "done", message: meals.successMessage, status: .success, forController: self)
+                Singletone.instance.cart = cartItems
             } else if meals.meal_id != [""] {
                 displayMessage(title: "", message: meals.meal_id[0], status: .error, forController: self)
             } else if meals.quantity != [""] {
@@ -285,13 +284,29 @@ extension RestaurantDetailsVC: UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier, for: indexPath) as? RestaurantDetailsCell else {return UICollectionViewCell()}
-        cell.config(name: categoriesArr[indexPath.row].CategoeryName, selected: categoriesArr[indexPath.row].NameSelected)
+        cell.config(name: categoriesArr[indexPath.row].nameEn ?? "", selected: false)
+            //, selected: categoriesArr[indexPath.row]. )
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         RestaurantDetailVCPresenter.showIndicator()
         SelectionAction(indexPath: indexPath)
-        RestaurantDetailVCPresenter.postRestaurantMeals(restaurant_id: restaurant_id, type: categoriesArr[indexPath.row].TypeId, category_id: category_id)
+        if indexPath.row == 0 {
+            RestaurantDetailVCPresenter.postRestaurantMeals(restaurant_id: restaurant_id, type: categoriesArr[indexPath.row].nameEn ?? "", category_id: category_id)
+        }else{
+            RestaurantDetailVCPresenter.postRestaurantMeals(restaurant_id: restaurant_id, type: categoriesArr[indexPath.row].nameEn ?? "" , category_id: category_id)
+        }
+        func SelectionAction(indexPath: IndexPath) {
+            for i in 0..<categoriesArr.count {
+                
+                if i == indexPath.row {
+                    self.categoriesArr[i].nameEn  ?? ""
+                } else {
+                    self.categoriesArr[i].nameEn  ?? ""
+                }
+                
+            }
+        }
         DispatchQueue.main.async {
             self.categoriesCollectionView.reloadData()
         }

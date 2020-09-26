@@ -93,6 +93,9 @@ extension ResevationListVC: UITableViewDataSource, UITableViewDelegate {
         cell.goToDetails = {
             guard let Details = UIStoryboard(name: "Reservation", bundle: nil).instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC else { return }
             Details.id = self.ResevationList[indexPath.row].id ?? 0
+            Details.date = self.ResevationList[indexPath.row].date ?? ""
+            Details.time = self.ResevationList[indexPath.row].time ?? ""
+            Details.session = self.ResevationList[indexPath.row].position ?? ""
             self.navigationController?.pushViewController(Details, animated: true)
         }
         return cell

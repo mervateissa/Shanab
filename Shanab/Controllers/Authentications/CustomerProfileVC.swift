@@ -9,15 +9,24 @@
 import UIKit
 
 class CustomerProfileVC: UIViewController {
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var phone: UITextField!
-    @IBOutlet weak var address: UITextField!
     @IBOutlet weak var ProfileCollectionView: UICollectionView!
-    @IBOutlet weak var name: UITextField!
 //    let picker = UIImagePickerController()
     var profile = [User]()
     fileprivate let cellIdentifier = "ProfileCell"
-    private let UserProfileVCPresenter = UserProfilePresenter(services: Services())
+    var profileVC: ProfileVC!
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileSegue" {
+            if segue.destination.isKind(of: ProfileVC.self) {
+                profileVC = (segue.destination as! ProfileVC)
+            }
+        }
+    }
+    lazy var subViewControllers: [UIViewController] = {
+        return [
+            UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(identifier: "ProfileVC") as! ProfileVC, UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(identifier: "NotificationsVC") as! NotificationsVC,
+            UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(identifier: "UserProfileChangePasswordVC") as! UserProfileChangePasswordVC
+        ]
+    } ()
     var profileArr = [ProfileModel]() {
         didSet {
             DispatchQueue.main.async {
@@ -27,14 +36,13 @@ class CustomerProfileVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserProfileVCPresenter.setUserProfileViewDelegate(UserProfileViewDelegate: self)
+         //setViewControllerFromIndex(index: 0)
 //        profilePic.isUserInteractionEnabled = true
 //        profilePic.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(ProfileImageView(_:))))
         ProfileCollectionView.delegate = self
         ProfileCollectionView.dataSource = self
         ProfileCollectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
-        UserProfileVCPresenter.showIndicator()
-        UserProfileVCPresenter.getUserProfile()
+      
         if "lang".localized == "en" {
             self.profileArr = [ ProfileModel(name: "Profile", id: "profile", selected: false, profileImage: #imageLiteral(resourceName: "ic_person_24px")), ProfileModel(name: "ChangePassword", id: "ChangePassword", selected: false, profileImage: #imageLiteral(resourceName: "password")), ProfileModel(name: "Notifications", id: "Notifications", selected: false, profileImage: #imageLiteral(resourceName: "turn-notifications-on-button"))
             ]
@@ -53,21 +61,15 @@ class CustomerProfileVC: UIViewController {
                self.navigationController?.pushViewController(details, animated: true)
     }
     
-    //    @IBAction func ProfileImageView(_ sender: UIButton) {
-//        showPickerImageControlActionSheet()
-//    }
-//    @objc fileprivate func profileImageView_Pressed(_ sender: UITapGestureRecognizer) {
-//        showPickerImageControlActionSheet()
-//        
-//    }
+    
     func SelectionAction(indexPath: IndexPath) {
         switch profileArr[indexPath.row].profileId {
         case "profile":
-            guard let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "CustomerProfileVC") as? CustomerProfileVC else { return }
+            guard let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC") as? CustomerProfileVC else { return }
             
             self.navigationController?.pushViewController(vc, animated: true)
         case "ChangePassword":
-            guard UIStoryboard(name: "Authentications", bundle: nil).instantiateViewController(withIdentifier: "UserProfileChangePasswordVC") is UserProfileChangePasswordVC else { return }
+            guard UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileChangePasswordVC") is UserProfileChangePasswordVC else { return }
         case "Notifications":
             guard let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "NotificationsVC") as? NotificationsVC else { return }
             
@@ -95,7 +97,7 @@ class CustomerProfileVC: UIViewController {
             break
         }
     }
-    
+
     
 }
 
@@ -136,67 +138,7 @@ extension CustomerProfileVC: UICollectionViewDelegateFlowLayout {
     }
     
 }
-extension CustomerProfileVC: UserProfileViewDelegate {
-    func getUserProfileResult(_ error: Error?, _ result: User?) {
-        if let profile = result {
-            let personal = profile.personal ?? Personal()
-            self.email.text = personal.email ?? ""
-            if "lang".localized == "ar" {
-               self.name.text = profile.nameAr ?? ""
-            } else {
-                self.name.text = profile.nameEn ?? ""
-            }
-            self.phone.text = profile.phone ?? ""
-            self.address.text = profile.address ?? ""
-//            if let image = profile.image {
-//                guard let url = URL(string: BASE_URL + "/" + image) else { return }
-//                self.profilePic.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "logo-2"))
-//            }
-            }
-        }
-        
-        func UserChangeProfileResult(_ error: Error?, _ result: SuccessError_Model?) {
-            
-            if let resultMsg = result {
-                if resultMsg.successMessage != "" {
-                    displayMessage(title: "done", message: resultMsg.successMessage, status: .success, forController: self)
-                    UserProfileVCPresenter.dismissIndicator()
-                } else if resultMsg.image != [""] {
-                    displayMessage(title: "try agine", message: resultMsg.image[0], status: .error, forController: self)
-                    
-                }
-            }
-        }
-        
-    }
-//    extension CustomerProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-//        func showPickerImageControlActionSheet() {
-//            let PhotoLibraryAction = UIAlertAction(title: "اختر من الكاميرا", style: .default) { (action) in
-//                self.showImagePickerView(sourceType: .photoLibrary)
-//            }
-//            let cameraAction = UIAlertAction(title: "التقط صورة", style: .default) { (action) in
-//                self.showImagePickerView(sourceType: .camera)
-//            }
-//            let cancelAction = UIAlertAction(title: "الغاء", style: .cancel, handler: nil)
-//            AlertService.showAlert(style: .actionSheet, title: "المكتبة", message: nil, actions: [PhotoLibraryAction, cameraAction,cancelAction], completion: nil)
-//
-//        }
-//
-//        func showImagePickerView(sourceType: UIImagePickerController.SourceType) {
-//            let imagePickerController = UIImagePickerController()
-//            imagePickerController.delegate = self
-//            imagePickerController.allowsEditing = true
-//            imagePickerController.sourceType = sourceType
-//            present(imagePickerController, animated: true, completion: nil)
-//
-//        }
-//         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//               if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-//                UserProfileVCPresenter.postUserChangeProfileImage(image: editedImage)
-//               } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//                  UserProfileVCPresenter.postUserChangeProfileImage(image: originalImage)
-//               }
-//               dismiss(animated: true, completion: nil)
-//           }
-//}
-//
+
+    
+    
+

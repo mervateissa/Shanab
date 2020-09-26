@@ -50,16 +50,16 @@ class AdditionsVC: UIViewController {
         } else {
             price.text = "\(total) SAR"
         }
-        if (!imagePath.contains("http")) {
-            guard let imageURL = URL(string: (BASE_URL + "/" + image).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
-            print(imageURL)
-            self.oneImageView.kf.setImage(with: imageURL)
-        }  else if imagePath != "" {
-            guard let imageURL = URL(string: image) else { return }
-            self.oneImageView.kf.setImage(with: imageURL)
-        } else {
-            self.oneImageView.image = #imageLiteral(resourceName: "shanab loading")
-        }
+          if (!imagePath.contains("http")) {
+                  guard let imageURL = URL(string: (BASE_URL + "/" + imagePath).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+                  print(imageURL)
+                  self.oneImageView.kf.setImage(with: imageURL)
+              }  else if imagePath != "" {
+                  guard let imageURL = URL(string: imagePath) else { return }
+                  self.oneImageView.kf.setImage(with: imageURL)
+              } else {
+                  self.oneImageView.image = #imageLiteral(resourceName: "shanab loading")
+              }
         mealNameLB.text = mealName
         mealComponentsLB.text = mealComponents
         caloriesLB.text = "\(mealCalory)"

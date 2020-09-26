@@ -11,11 +11,12 @@ import Foundation
 import SVProgressHUD
 protocol MealsDetailsViewDelegate: class {
     func RestaurantMealsResult(_ error: Error?, _ meals: [RestaurantMeal]?)
-     func RestaurantDetailsResult(_ error: Error?, _ details: RestaurantDetail?)
+    func RestaurantDetailsResult(_ error: Error?, _ details: RestaurantDetail?)
     func FavoriteResult(_ error: Error?, _ result: SuccessError_Model?)
     func RemoveFavorite(_ error: Error?, _ result: SuccessError_Model?)
+    func AddToCartResult(_ error: Error?, _ result: SuccessError_Model?)
 }
-    class MealsDetailPresenter {
+class MealsDetailPresenter {
     private let services: Services
     private weak var MealsDetailsViewDelegate: MealsDetailsViewDelegate?
     init(services: Services) {
@@ -32,7 +33,7 @@ protocol MealsDetailsViewDelegate: class {
     }
     func getCategoreyList() {
     }
-   
+    
     func postRestaurantMeals(restaurant_id: Int, type: String, category_id: Int) {
         services.postRestaurantMeals(restaurant_id: restaurant_id, type: type, category_id: category_id) {[weak self] (_ error: Error?, _ meals: [RestaurantMeal]?) in
             self?.MealsDetailsViewDelegate?.RestaurantMealsResult(error, meals)
@@ -51,10 +52,16 @@ protocol MealsDetailsViewDelegate: class {
             self?.dismissIndicator()
         }
     }
-        func postRestaurantDetails(restaurant_id: Int) {
-            services.postRestaurantDetails(restaurant_id: restaurant_id) {[weak self] (error: Error?,  details: RestaurantDetail?) in
-                self?.MealsDetailsViewDelegate?.RestaurantDetailsResult(error, details)
-                self?.dismissIndicator()
-            }
+    func postRestaurantDetails(restaurant_id: Int) {
+        services.postRestaurantDetails(restaurant_id: restaurant_id) {[weak self] (error: Error?,  details: RestaurantDetail?) in
+            self?.MealsDetailsViewDelegate?.RestaurantDetailsResult(error, details)
+            self?.dismissIndicator()
         }
+    }
+    func postAddToCart(meal_id: Int, quantity: Int, message: String, options: [Int]) {
+        services.postAddToCart(meal_id: meal_id, quantity: quantity, message: message, options: options) {[weak self] (error: Error?, result: SuccessError_Model?) in
+            self?.MealsDetailsViewDelegate?.AddToCartResult(error, result)
+            self?.dismissIndicator()
+        }
+    }
 }

@@ -10,6 +10,7 @@ import Foundation
 struct ReservationDetailstModelJSON: Codable {
     var status: Bool?
     var data: DetailsDataClass?
+    
 }
 
 // MARK: - DataClass
